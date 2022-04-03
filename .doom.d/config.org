@@ -372,7 +372,6 @@ information retrieved from files created by the keychain script."
 #+end_src
 
 * KEYBINDS
-#+begin_src elisp
 ** Quickly change windows
 #+begin_src elisp
 (map!
@@ -389,7 +388,7 @@ information retrieved from files created by the keychain script."
         :desc "The elfeed" :n "e" #'elfeed)
 
 #+end_src
-** Rezise Windows
+** Resize Windows
 #+begin_src elisp
 (map!
     (:prefix "w"
