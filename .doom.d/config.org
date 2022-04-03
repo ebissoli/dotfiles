@@ -420,8 +420,11 @@ _h_ decrease width    _l_ increase width
 
 * PREFERENCES
 #+begin_src elisp
+** Elfeed
+#+begin_src elisp
 (after! elfeed
   (setq elfeed-search-filter "@1-day-ago"))
+#+end_src
 
 (setq ranger-cleanup-on-disable t) ;; apps - dired
 
