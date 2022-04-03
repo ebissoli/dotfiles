@@ -255,10 +255,17 @@ latter - its output."
 ;; when needed (platformio.ini present in project root).
 (add-hook 'c++-mode-hook (lambda ()
                            (lsp-deferred)
+                           (platformio-conditionally-enable)));; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
                            (platformio-conditionally-enable)))
 #+end_src
 
+** Bash
+#+begin_src elisp
 (set-docsets! 'sh-mode "Bash")
+#+end_src
 
 (add-to-list 'load-path "/usr/bin/maxima/")
 (autoload 'maxima-mode "maxima" "Maxima mode" t)
