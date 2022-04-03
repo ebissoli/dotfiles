@@ -252,10 +252,6 @@ latter - its output."
                            (lsp-deferred)
                            (platformio-conditionally-enable)))
 
-(setq ranger-cleanup-on-disable t) ;; apps - dired
-
-(setq delete-by-moving-to-trash t) ;; emergency trash can
-
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.
@@ -376,3 +372,10 @@ _h_ decrease width    _l_ increase width
   ("l" evil-window-increase-width)
 
   ("q" nil))
+
+(after! elfeed
+  (setq elfeed-search-filter "@1-day-ago"))
+
+(setq ranger-cleanup-on-disable t) ;; apps - dired
+
+(setq delete-by-moving-to-trash t) ;; emergency trash can

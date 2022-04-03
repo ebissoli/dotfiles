@@ -263,13 +263,6 @@ latter - its output."
                            (lsp-deferred)
                            (platformio-conditionally-enable)))
 #+end_src
-* DIRED
-#+begin_src elisp
-(setq ranger-cleanup-on-disable t) ;; apps - dired
-
-(setq delete-by-moving-to-trash t) ;; emergency trash can
-#+end_src
-
 * HACKS
 #+begin_src elisp
 ;;;###autoload
@@ -398,4 +391,14 @@ _h_ decrease width    _l_ increase width
   ("l" evil-window-increase-width)
 
   ("q" nil))
+#+end_src
+
+* PREFERENCES
+#+begin_src elisp
+(after! elfeed
+  (setq elfeed-search-filter "@1-day-ago"))
+
+(setq ranger-cleanup-on-disable t) ;; apps - dired
+
+(setq delete-by-moving-to-trash t) ;; emergency trash can
 #+end_src
