@@ -103,7 +103,8 @@
               ))
  (org-super-agenda-mode))
 #+end_src
-
+** Org roam
+#+begin_src elisp
 (setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
 (setq org-roam-completion-everywhere t)
 (require 'org-roam-protocol)
@@ -127,6 +128,7 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+#+end_src
 
 (setq org-pomodoro-length 45)
 (setq org-pomodoro-short-break-length 10)
