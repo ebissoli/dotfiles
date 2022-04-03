@@ -227,6 +227,14 @@ latter - its output."
 
 (setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
 
+(set-docsets! 'c-mode "C")
+
+;; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)))
+
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.

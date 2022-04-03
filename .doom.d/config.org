@@ -247,7 +247,16 @@ latter - its output."
 (setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
 #+end_src
 
+** C/C++
+#+begin_src elisp
 (set-docsets! 'c-mode "C")
+
+;; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)))
+#+end_src
 
 (set-docsets! 'sh-mode "Bash")
 
@@ -266,11 +275,6 @@ latter - its output."
 
 (require 'platformio-mode)
 
-;; Enable ccls for all c++ files, and platformio-mode only
-;; when needed (platformio.ini present in project root).
-(add-hook 'c++-mode-hook (lambda ()
-                           (lsp-deferred)
-                           (platformio-conditionally-enable)))
 #+end_src
 * HACKS
 #+begin_src elisp
