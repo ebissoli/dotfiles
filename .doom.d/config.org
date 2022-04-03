@@ -47,7 +47,10 @@
 
 (setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
 #+end_src
+** Org noter
+#+begin_src elisp
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
+#+end_src
 
 (use-package deft
   :after org
