@@ -255,3 +255,83 @@ latter - its output."
 (setq ranger-cleanup-on-disable t) ;; apps - dired
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
+
+;;;###autoload
+(defun keychain-refresh-environment ()
+  "Set ssh-agent and gpg-agent environment variables.
+Set the environment variables `SSH_AUTH_SOCK', `SSH_AGENT_PID'
+and `GPG_AGENT' in Emacs' `process-environment' according to
+information retrieved from files created by the keychain script."
+  (interactive)
+  (let* ((ssh (shell-command-to-string "keychain -q --noask --agents ssh --eval"))
+         (gpg (shell-command-to-string "keychain -q --noask --agents gpg --eval")))
+    (list (and ssh
+               (string-match "SSH_AUTH_SOCK[=\s]\\([^\s;\n]*\\)" ssh)
+               (setenv       "SSH_AUTH_SOCK" (match-string 1 ssh)))
+          (and ssh
+               (string-match "SSH_AGENT_PID[=\s]\\([0-9]*\\)?" ssh)
+               (setenv       "SSH_AGENT_PID" (match-string 1 ssh)))
+          (and gpg
+               (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
+               (setenv       "GPG_AGENT_INFO" (match-string 1 gpg))))))
+
+;;; _
+(provide 'keychain-environment)
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
+;;; keychain-environment.el ends here
+(keychain-refresh-environment) ;; hacks --ssh
+
+(setq auth-sources '("~/.authinfo"))
+
+(custom-set-faces!
+  '(aw-leading-char-face
+    :foreground "white" :background "red"
+    :weight bold :height 2.5 :box (:line-width 10 :color "red"))) ;; hacks?
+
+(setq wl-copy-process nil)
+(defun wl-copy (text)
+ (setq wl-copy-process (make-process :name "wl-copy"
+                                     :buffer nil
+                                     :command '("wl-copy" "-f" "-n")
+                                     :connection-type 'pipe))
+ (process-send-string wl-copy-process text)
+ (process-send-eof wl-copy-process))
+
+(defun wl-paste ()
+ (if (and wl-copy-process (process-live-p wl-copy-process))
+     nil ; should return nil if we're the current paste owner
+   (shell-command-to-string "wl-paste -n | tr -d \r")))
+
+(setq interprogram-cut-function 'wl-copy)
+(setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
+
+(setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+(after! dash-docs
+  (setq dash-docs-browser-func #'+lookup-xwidget-webkit-open-url-fn)) ;; hacks - internal docs
+
+(setq evil-move-cursor-back nil)
+
+(defun change-projectile-root ()
+  "Change the root dir for projectile"
+  (interactive)
+  (setq projectile-project-root (read-directory-name "Default project root: ")))
+
+;;; Internal functions
+(defun platformio--exec (target)
+  "Call `platformio ... TARGET' in the root of the project."
+  (let ((default-directory projectile-project-root)
+        (cmd (concat "platformio -f -c emacs " target)))
+    (unless default-directory
+      (user-error "Not in a projectile project, aborting"))
+    (save-some-buffers (not compilation-ask-about-save)
+                       (lambda ()
+                         (projectile-project-buffer-p (current-buffer)
+                                                      default-directory)))
+    (compilation-start cmd 'platformio-compilation-mode)))
+
+(defun platformio--silent-arg ()
+  "Return command line argument to make things silent."
+  (when platformio-mode-silent
+    "-s "))
