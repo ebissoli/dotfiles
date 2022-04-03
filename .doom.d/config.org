@@ -52,6 +52,8 @@
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
 #+end_src
 
+** Deft
+#+begin_src elisp
 (use-package deft
   :after org
   :custom
@@ -59,6 +61,7 @@
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
   (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
+#+end_src
 
 ;; Function to calculate relative day to today
 
