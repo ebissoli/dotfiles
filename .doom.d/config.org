@@ -352,3 +352,16 @@ information retrieved from files created by the keychain script."
   (when platformio-mode-silent
     "-s "))
 #+end_src
+
+* KEYBINDS
+#+begin_src elisp
+(map!
+        :leader
+        :prefix "w"
+        :desc "Quick window switch" :n "z" #'ace-window)
+
+(map!
+        :leader
+        :prefix "o"
+        :desc "The elfeed" :n "e" #'elfeed)
+#+end_src

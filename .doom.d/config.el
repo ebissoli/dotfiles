@@ -335,3 +335,13 @@ information retrieved from files created by the keychain script."
   "Return command line argument to make things silent."
   (when platformio-mode-silent
     "-s "))
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Quick window switch" :n "z" #'ace-window)
+
+(map!
+        :leader
+        :prefix "o"
+        :desc "The elfeed" :n "e" #'elfeed)
