@@ -241,6 +241,15 @@ latter - its output."
 
 (set-docsets! 'sh-mode "Bash")
 
+(add-to-list 'load-path "/usr/bin/maxima/")
+(autoload 'maxima-mode "maxima" "Maxima mode" t)
+(autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+(autoload 'maxima "maxima" "Maxima interaction" t)
+(autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+(setq imaxima-use-maxima-mode-flag t)
+(add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
+(matlab-cedet-setup) ;;programming -maxima
+
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.
