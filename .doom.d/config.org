@@ -289,6 +289,7 @@ latter - its output."
 
 #+end_src
 * HACKS
+** autoinsert SSH key
 #+begin_src elisp
 ;;;###autoload
 (defun keychain-refresh-environment ()
@@ -316,6 +317,7 @@ information retrieved from files created by the keychain script."
 ;; End:
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
+#+end_src
 
 (setq auth-sources '("~/.authinfo.gpg"))
 
