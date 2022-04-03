@@ -407,6 +407,8 @@ information retrieved from files created by the keychain script."
 (cl-map nil (lambda (y) (notify-me y title body)) (number-sequence (* interval 60) (* interval 60 repetition) interval)))
 #+end_src
 
+** Window resize
+#+begin_src elisp
 (defhydra doom-window-resize-hydra (:hint nil)
   "
              _k_ increase height
