@@ -373,6 +373,7 @@ for_window [app_id="dropdown"] floating enable, \
     [con_mark="dropdown"]  scratchpad show
 
 for_window [title="YouTube"] inhibit_idle focus
+for_window [title="Meet"] inhibit_idle focus
 #
 # Status Bar:
 # Read `man 5 sway-bar` for more information about this section.
