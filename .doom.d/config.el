@@ -370,7 +370,7 @@ _h_ decrease width    _l_ increase width
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
 
-(setq ranger-show-hidden nil)
+;; (setq ranger-show-hidden nil)
 
 (setq ranger-show-literal t)
 
@@ -378,6 +378,6 @@ _h_ decrease width    _l_ increase width
 
 (setq ranger-max-preview-size 10)
 
-(after! ranger (setq ranger-override-dired 'ranger))
+(after! ranger (setq ranger-override-dired t))
 
 (setq auth-sources '("~/.authinfo.gpg"))
