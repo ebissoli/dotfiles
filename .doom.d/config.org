@@ -223,12 +223,14 @@ latter - its output."
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
 #+end_src
 ** Julia
-#+begin_src
+#+begin_src elisp
 ;; lsp-julia config
 (setq lsp-julia-package-dir nil)
 (setq lsp-julia-default-environment "~/.julia/environments/v1.0") ;; programming - julia
 #+end_src
 
+** Zig
+#+begin_src elisp
 (use-package! zig-mode
   :hook ((zig-mode . lsp-deferred))
   :custom (zig-format-on-save nil)
@@ -243,6 +245,7 @@ latter - its output."
 
 
 (setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
+#+end_src
 
 (set-docsets! 'c-mode "C")
 

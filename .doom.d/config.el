@@ -208,6 +208,25 @@ latter - its output."
 
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
 
+;; lsp-julia config
+(setq lsp-julia-package-dir nil)
+(setq lsp-julia-default-environment "~/.julia/environments/v1.0") ;; programming - julia
+
+(use-package! zig-mode
+  :hook ((zig-mode . lsp-deferred))
+  :custom (zig-format-on-save nil)
+  :config
+  (after! lsp-mode
+    (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
+    (lsp-register-client
+      (make-lsp-client
+        :new-connection (lsp-stdio-connection "/home/enzobissoli/zls/zls")
+        :major-modes '(zig-mode)
+        :server-id 'zls)))) ;; programming zig, can remove?
+
+
+(setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
+
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.
