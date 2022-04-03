@@ -36,7 +36,7 @@ set $lockman exec bash ~/.config/sway/lockman.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec_always 'swaybg -i ~/.dotfiles/Wallpaper/macDead.png -m fill'
+exec_always 'swaybg -i ~/.config/Wallpaper/macDead.png -m fill'
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
@@ -53,10 +53,10 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f -i "$HOME/.dotfiles/Wallpaper/dragon.png"' \
+         timeout 300 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
          timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && playerctl -a play' \
          timeout 3600 'systemctl suspend' \
-         before-sleep 'swaylock -f -i "$HOME/.dotfiles/Wallpaper/dragon.png"' \
+         before-sleep 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
          after-resume 'swaymsg "output * dpms on"' \
          unlock 'playerctl -a play'
 
@@ -143,34 +143,34 @@ repeat_rate 50
 # Workspaces:
 #
     # # Switch to workspace
-    # bindsym $mod+1 workspace number 1
-    # bindsym $mod+2 workspace number 2
-    # bindsym $mod+3 workspace number 3
-    # bindsym $mod+4 workspace number 4
-    # bindsym $mod+5 workspace number 5
-    # bindsym $mod+6 workspace number 6
-    # bindsym $mod+7 workspace number 7
-    # bindsym $mod+8 workspace number 8
-    # bindsym $mod+9 workspace number 9
-    # bindsym $mod+0 workspace number 10
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace $$workroom$ws1
-    bindsym $mod+Shift+2 move container to workspace $$workroom$ws2
-    bindsym $mod+Shift+3 move container to workspace $$workroom$ws3
-    bindsym $mod+Shift+4 move container to workspace $$workroom$ws4
-    bindsym $mod+Shift+5 move container to workspace $$workroom$ws5
-    bindsym $mod+Shift+6 move container to workspace $$workroom$ws6
-    bindsym $mod+Shift+7 move container to workspace $$workroom$ws7
-    bindsym $mod+Shift+8 move container to workspace $$workroom$ws8
-    bindsym $mod+Shift+9 move container to workspace $$workroom$ws9
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
     # Workspaces:
-    set $ws0 0
-    set $ws1 1
-    set $ws2 2
-    set $ws3 3
+    # set $ws0 0
+    # set $ws1 1
+    # set $ws2 2
+    # set $ws3 3
     # set $ws4 4
     # set $ws5 5
     # set $ws6 6
@@ -179,21 +179,21 @@ repeat_rate 50
     # set $ws9 9
 
     # Workrooms:
-    set $workroom 1
-    set $workspace 0
+    # set $workroom 1
+    # set $workspace 0
 
-    bindsym Alt+Shift+1 set $$workroom T; workspace $$workroom$$workspace
-    bindsym Alt+Shift+2 set $$workroom S; workspace $$workroom$$workspace
-    bindsym Alt+Shift+3 set $$workroom W; workspace $$workroom$$workspace
+    # bindsym Alt+Shift+1 set $$workroom T; workspace $$workroom$$workspace
+    # bindsym Alt+Shift+2 set $$workroom S; workspace $$workroom$$workspace
+    # bindsym Alt+Shift+3 set $$workroom W; workspace $$workroom$$workspace
     # bindsym Alt+Shift+4 set $$workroom HistComp; workspace $$workroom$$workspace
     # bindsym Alt+Shift+5 set $$workroom InfraCom; workspace $$workroom$$workspace
     # bindsym Alt+Shift+6 set $$workroom InfraSW; workspace $$workroom$$workspace
 
     # Navigate
-    bindsym $mod+Escape workspace $$workroom$ws0; set $$workspace $ws0
-    bindsym $mod+1 workspace $$workroom$ws1; set $$workspace $ws1
-    bindsym $mod+2 workspace $$workroom$ws2; set $$workspace $ws2
-    bindsym $mod+3 workspace $$workroom$ws3; set $$workspace $ws3
+    # bindsym $mod+Escape workspace $$workroom$ws0; set $$workspace $ws0
+    # bindsym $mod+1 workspace $$workroom$ws1; set $$workspace $ws1
+    # bindsym $mod+2 workspace $$workroom$ws2; set $$workspace $ws2
+    # bindsym $mod+3 workspace $$workroom$ws3; set $$workspace $ws3
     # bindsym $mod+4 workspace $$workroom$ws4; set $$workspace $ws4
     # bindsym $mod+5 workspace $$workroom$ws5; set $$workspace $ws5
     # bindsym $mod+6 workspace $$workroom$ws6; set $$workspace $ws6
