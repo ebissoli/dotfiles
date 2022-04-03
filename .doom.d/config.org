@@ -389,7 +389,6 @@ information retrieved from files created by the keychain script."
 #+end_src
 
 * FUNCTIONS
-#+begin_src elisp
 ** Notify me in x minutes
 #+begin_src elisp
 (require 'notifications)
