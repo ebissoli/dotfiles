@@ -317,7 +317,7 @@ information retrieved from files created by the keychain script."
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
 
-(setq auth-sources '("~/.authinfo"))
+(setq auth-sources '("~/.authinfo.gpg"))
 
 (custom-set-faces!
   '(aw-leading-char-face
@@ -372,17 +372,24 @@ information retrieved from files created by the keychain script."
 #+end_src
 
 * KEYBINDS
+** Quickly change windows
 #+begin_src elisp
 (map!
         :leader
         :prefix "w"
         :desc "Quick window switch" :n "z" #'ace-window)
 
+#+end_src
+** Acess elfeed-mode
+#+begin_src elisp
 (map!
         :leader
         :prefix "o"
         :desc "The elfeed" :n "e" #'elfeed)
 
+#+end_src
+** Resize Windows
+#+begin_src elisp
 (map!
     (:prefix "w"
       :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
