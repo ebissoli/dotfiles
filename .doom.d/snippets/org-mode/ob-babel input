@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ob-babel input
+# key: 424234324
+# --
+
+#+name: input
+#+begin_src elisp
+(completing-read "Input:" nil)
+#+end_src

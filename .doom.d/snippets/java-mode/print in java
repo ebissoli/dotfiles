@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: print in java
+# key: 29490234
+# --
+
+System.out.println("type code");

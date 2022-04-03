@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:maxima-comment 
+# key: maxc
+# --
+/* */

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: simp param
+# uuid: 20021
+# key: sp
+# condition: t
+# --
+
+${2:param}:[$2_divide[1],$2_divide[2]/(denom($2))];

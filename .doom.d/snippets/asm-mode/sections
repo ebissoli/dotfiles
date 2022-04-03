@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sections
+# key: sections
+# --
+
+section data
+    $0
+section bss
+
+section code

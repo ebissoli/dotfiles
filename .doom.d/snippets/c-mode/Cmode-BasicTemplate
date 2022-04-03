@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Cmode-BasicTemplate
+# key: 3821083901
+# --
+
+#include <stdio.h>
+
+int main(){
+
+    return 0;
+}

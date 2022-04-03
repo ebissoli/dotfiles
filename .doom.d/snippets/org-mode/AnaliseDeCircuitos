@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: AnaliseDeCircuitos
+# key: anal_circ
+# --
+
+#+begin_src maxima :cmdline :results value verbatim
+/*Programa de calcular parametro do circuito dado a eq construtiva do mesmo no dominio da frequencia*/
+
+display_format_internal:false;
+powerdisp:true;
+pfeformat:true;
+stardisp:true;
+display2d:true;
+simpsum:true;
+load("engineering-format")$
+engineering_format_floats:true;
+engineering_format_min:1;
+engineering_format_max:100000000000000;
+algebraic:true;
+leftjust:false;
+radexpand:true;
+sumexpand:true;
+numer:true;
+fpprintprec:6;
+/*Colocar expressao simbolica */
+/* Checar se simbolicamente esta tudo ok */
+/* Os componentes do circuito*/
+/* Os polos do circuito*/
+/* Os termos da expansao de fracoes parciais*/
+/* As fases dos termos de expansao*/
+/* Calcular a transformada de Laplace inversa*/
+/* Exibir resultados*/
+#+end_src

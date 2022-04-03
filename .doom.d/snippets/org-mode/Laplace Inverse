@@ -1,0 +1,5 @@
+# key: LinvKx
+# name: Laplace Inverse
+# --
+
+LinvK${1:0}:expand(trigexpand(${0:2}*cabs(K$1)*t^(${2:0})/$2!*exp(-realpart(p${3:1})*t)*float(cos(K$1_ang+imagpart(p$3)*t))))*u(t-${4:0}); 

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: termos da expansao
+# key: 2323
+# --
+
+${1:exp}= \sum_{i=0}^{${2:1}}{\frac{K_{o}}{\prod_{j=0}^{${3:1}}{(s + p_{i})^{j}}} + \frac{K_{o}^{*}}{\prod_{j=0}^{${3:1}}{(s + p_{o})^{j}}}}

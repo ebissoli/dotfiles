@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name:maxima: Y-Delta Transform 
+# key: 4890238094
+# --
+
+;; Calculates The Delta-Wye equivalent impedance
+#+name:transformada delta-Wye
+#+begin_src maxima :noweb yes :results verbatim
+<<options>>
+/* Equivalencia de impedâncias */
+eq1:Z1 + Z2 = Za*(Zb + Zc)/Zt;
+eq2:Z2 + Z3 = Zb*(Za + Zc)/Zt;
+eq3:Z1 + Z3 = Zc*(Za + Zb)/Zt;
+Zt:Za + Zb +Zc;
+Risolve:linsolve([eq1,eq2,eq3],[Z1,Z2,Z3]);
+print(ratsimp(Risolve));
+#+end_src

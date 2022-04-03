@@ -1,0 +1,6 @@
+# key: racket
+# name: src_racket
+# --
+#+begin_src racket :lang sicp
+    $0
+#+end_src

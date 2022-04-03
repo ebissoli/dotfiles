@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name:org-babel: eqn-block 
+# key: 8429389480
+# --
+
+\begin{equation}
+
+\end{equation}

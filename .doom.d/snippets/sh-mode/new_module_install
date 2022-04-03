@@ -1,0 +1,5 @@
+# key: nmi
+# name: new_module_install
+# condition: t
+# --
+[$1-install]="\${status_sudo[$2]} \${installCMD[$3]} \${pkgs[$1]}"

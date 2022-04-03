@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: extend-tags-HTML
+# key: <>
+# --
+<$1>
+    $0
+</$1>

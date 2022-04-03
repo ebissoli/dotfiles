@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name:maxima: Wye-Delta Transform
+# key: 83192803
+# --
+
+;; Calculates The Wye-Delta equivalent impedance
+#+name:transformada Wye-Delta
+#+begin_src maxima :noweb yes :results verbatim
+<<options>>
+/* Equivalencia de impedâncias */
+ZT: Z1*Z2 + Z2*Z3 + Z1*Z3;
+Ztm: Za*Zb*Zc;
+Za: ZT / Z1;
+Zb: ZT / Z2;
+Zc: ZT / Z3;
+print(ratsimp([Za,Zb,Zc]));
+#+end_src

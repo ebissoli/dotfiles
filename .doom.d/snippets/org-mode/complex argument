@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: complex argument
+# uuid: 2012
+# key: ca
+# condition: t
+# --
+K${1:0}_ang:carg(K$1);

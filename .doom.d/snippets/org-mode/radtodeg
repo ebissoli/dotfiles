@@ -1,0 +1,4 @@
+# key: rtd
+# name: radtodeg
+# --
+print([cabs(${1:Z}),atan(imagpart($1)/(realpart($1)))*180/%pi]);

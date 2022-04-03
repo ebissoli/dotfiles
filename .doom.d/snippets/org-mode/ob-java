@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ob-java
+# key: 831292
+# --
+
+#+begin_src java :results output :dir /home/enzobissoli/.ob-java/
+
+#+end_src

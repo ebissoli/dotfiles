@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: maxima-print
+# uuid: 2016
+# key: trigger-key
+# condition: t
+# --
+print(ratsimp(${1:var}));

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:C template
+# key: 713897182973
+# --
+
+#+begin_src C :include <stdio.h> :results verbatim
+#+end_src

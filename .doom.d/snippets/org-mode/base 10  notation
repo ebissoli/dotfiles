@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:base 10  notation 
+# key: k
+# --
+*10^${1:3}

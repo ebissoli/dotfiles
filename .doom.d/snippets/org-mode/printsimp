@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: printsimp
+# uuid: 2015
+# key: trigger-key
+# condition: t
+# --
+print(ratsimp(${1:Vo}));

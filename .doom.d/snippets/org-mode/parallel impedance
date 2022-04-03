@@ -1,0 +1,5 @@
+# key: pi
+# name: parallel impedance
+# condition: t
+# --
+Z_${1:0}:(1/${2:Zi}+1/${3:Zj})^(-1);
