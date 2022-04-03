@@ -300,6 +300,11 @@ information retrieved from files created by the keychain script."
 (setq interprogram-cut-function 'wl-copy)
 (setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
 
+(defun change-projectile-root ()
+  "Change the root dir for projectile"
+  (interactive)
+  (setq projectile-project-root (read-directory-name "Default project root: ")))
+
 (map!
         :leader
         :prefix "w"
