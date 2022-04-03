@@ -361,6 +361,8 @@ information retrieved from files created by the keychain script."
   (setq projectile-project-root (read-directory-name "Default project root: ")))
 #+end_src
 
+** platformio-fix
+#+begin_src elisp
 ;;; Internal functions
 (defun platformio--exec (target)
   "Call `platformio ... TARGET' in the root of the project."
