@@ -319,7 +319,7 @@ information retrieved from files created by the keychain script."
 (keychain-refresh-environment) ;; hacks --ssh
 #+end_src
 
-* Copy & paste in wayland
+** Copy & paste in wayland
 #+begin_src elisp
 (custom-set-faces!
   '(aw-leading-char-face
@@ -344,11 +344,14 @@ information retrieved from files created by the keychain script."
 (setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
 #+end_src
 
+** Xwidget open dashdocs
+#+begin_src
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 (after! dash-docs
   (setq dash-docs-browser-func #'+lookup-xwidget-webkit-open-url-fn)) ;; hacks - internal docs
 
 (setq evil-move-cursor-back nil)
+#+end_src
 
 (defun change-projectile-root ()
   "Change the root dir for projectile"
