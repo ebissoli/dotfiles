@@ -22,11 +22,12 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$CDPATH:$PATH
 export PATH=$HOME/go/bin:$PATH
-export PATH=$HOME/.utils/:$PATH
 export LOCAL=$HOME/.local/bin
 export PATH=$HOME/.utils:$PATH
 export PATH=$LOCAL:$PATH
+export PATH=$LOCAL/spicetify-cli:$PATH
 export PATH=$LOCAL/zls:$PATH
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export PATH=$PATH:~/.platformio/penv/bin
 
 
