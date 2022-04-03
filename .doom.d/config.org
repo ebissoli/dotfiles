@@ -163,7 +163,7 @@
       mu4e-index-lazy-check t)
 #+end_src
 
-* ORG-BABEL
+* PROGRAMMING
 #+begin_src elisp
 ;; active Babel languages
 (org-babel-do-load-languages
