@@ -425,7 +425,10 @@ _h_ decrease width    _l_ increase width
   (setq elfeed-search-filter "@1-day-ago"))
 #+end_src
 
+** Dired
+#+begin_src elisp
 (setq ranger-cleanup-on-disable t) ;; apps - dired
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
+#+end_src
 #+end_src
