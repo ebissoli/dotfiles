@@ -107,7 +107,7 @@ plugins=(firewalld
          git
          )
 
-source $ZSH/oh-my-zsh.sh
+source $ZSH
 
 
 # User configuration
