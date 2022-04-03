@@ -390,6 +390,8 @@ information retrieved from files created by the keychain script."
 
 * FUNCTIONS
 #+begin_src elisp
+** Notify me in x minutes
+#+begin_src elisp
 (require 'notifications)
 (defun notify-me (interval title body)
   "function that notify me after interval seconds"
@@ -403,6 +405,7 @@ information retrieved from files created by the keychain script."
   "This function will notify you at most repetition times each happening every interval seconds"
 (interactive "MTitle of notification: \nMWhat should be it content: \nXFrequency in minutes: \nnHow many times: ")
 (cl-map nil (lambda (y) (notify-me y title body)) (number-sequence (* interval 60) (* interval 60 repetition) interval)))
+#+end_src
 
 (defhydra doom-window-resize-hydra (:hint nil)
   "
