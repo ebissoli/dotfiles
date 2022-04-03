@@ -319,7 +319,8 @@ information retrieved from files created by the keychain script."
 (keychain-refresh-environment) ;; hacks --ssh
 #+end_src
 
-
+* Copy & paste in wayland
+#+begin_src elisp
 (custom-set-faces!
   '(aw-leading-char-face
     :foreground "white" :background "red"
@@ -341,6 +342,7 @@ information retrieved from files created by the keychain script."
 
 (setq interprogram-cut-function 'wl-copy)
 (setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
+#+end_src
 
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 (after! dash-docs
