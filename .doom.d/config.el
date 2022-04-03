@@ -346,6 +346,10 @@ information retrieved from files created by the keychain script."
         :prefix "o"
         :desc "The elfeed" :n "e" #'elfeed)
 
+(map!
+    (:prefix "w"
+      :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
+
 (require 'notifications)
 (defun notify-me (interval title body)
   "function that notify me after interval seconds"
