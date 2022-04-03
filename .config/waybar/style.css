@@ -1,0 +1,73 @@
+@import "material.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: DM Mono;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 8, 20, 1.0);
+    border-bottom: 3px solid rgba(0, 53, 102, 0.5);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#workspaces, #tags {
+	background-color: transparent;
+	padding: 0px;
+  margin-right: 10px;
+	border-radius: 10px;
+}
+#workspaces button, #tags button {
+	border-radius: 8px;
+  font-weight:bold;
+  margin: 0px;
+	padding: 2px 10px 2px 10px;
+	color: @dark;
+}
+#window {
+	color: @greenish;
+	border-radius: 10px;
+	padding: 0px 8px 0px 8px;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover, #tags button:hover {
+	background-color: @darker;
+	box-shadow: inherit;
+	/* color: @yellow; */
+  color: #ffffff;
+  opacity:0.5;
+}
+#workspaces button.focused, #tags button.focused {
+	/* background-color: ; */
+  font-weight:bold;
+	/* color: @yellow; */
+  color: #ffffff;
+}
+#tags button.focused {
+  font-weight: 600;
+}
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#idle_inhibitor {
+    padding: 0 5px;
+    margin: 2px 1px;
+
+}
