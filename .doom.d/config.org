@@ -164,6 +164,7 @@
 #+end_src
 
 * PROGRAMMING
+** Org-Babel
 #+begin_src elisp
 ;; active Babel languages
 (org-babel-do-load-languages
@@ -180,7 +181,9 @@
    (haskell .t)
    )
  ) ;; programming -org-babel
+#+end_src
 
+#+begin_src elisp
 (defun my-preview-latex ()
   "Preview LaTeX from the current cell in a separate buffer.
 
