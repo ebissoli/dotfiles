@@ -38,6 +38,7 @@
 ;; change `org-directory'. It must be set before org loads!
 
 (setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
 
 (use-package deft
@@ -47,8 +48,6 @@
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
   (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
-
-;; Function to calculate relative day to today
 
 (progn
  (add-hook! 'org-agenda-mode-hook :append :local #'org-agenda-day-view)
@@ -110,13 +109,6 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
-
-(setq org-pomodoro-length 45)
-(setq org-pomodoro-short-break-length 10)
-(setq org-pomodoro-long-break-length 30)
-(setq org-pomodoro-clock-break nil)
-(setq org-pomodoro-long-break-frequency 3)
-(setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
 
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
