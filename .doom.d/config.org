@@ -373,11 +373,14 @@ information retrieved from files created by the keychain script."
 
 * KEYBINDS
 #+begin_src elisp
+** Quickly change windows
+#+begin_src elisp
 (map!
         :leader
         :prefix "w"
         :desc "Quick window switch" :n "z" #'ace-window)
 
+#+end_src
 (map!
         :leader
         :prefix "o"
