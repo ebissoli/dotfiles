@@ -229,6 +229,13 @@ latter - its output."
 
 (set-docsets! 'c-mode "C")
 
+(require 'platformio-mode)
+;; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)));; Enable ccls for all c++ files, and platformio-mode only
+
 (set-docsets! 'sh-mode "Bash")
 
 (add-to-list 'load-path "/usr/bin/maxima/")
@@ -243,14 +250,6 @@ latter - its output."
 (setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
 
 (set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
-
-(require 'platformio-mode)
-
-;; Enable ccls for all c++ files, and platformio-mode only
-;; when needed (platformio.ini present in project root).
-(add-hook 'c++-mode-hook (lambda ()
-                           (lsp-deferred)
-                           (platformio-conditionally-enable)))
 
 ;;;###autoload
 (defun keychain-refresh-environment ()
