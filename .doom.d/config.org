@@ -289,6 +289,7 @@ latter - its output."
 
 #+end_src
 * HACKS
+** autoinsert SSH key
 #+begin_src elisp
 ;;;###autoload
 (defun keychain-refresh-environment ()
@@ -316,9 +317,10 @@ information retrieved from files created by the keychain script."
 ;; End:
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
+#+end_src
 
-(setq auth-sources '("~/.authinfo.gpg"))
-
+** Copy & paste in wayland
+#+begin_src elisp
 (custom-set-faces!
   '(aw-leading-char-face
     :foreground "white" :background "red"
@@ -340,18 +342,27 @@ information retrieved from files created by the keychain script."
 
 (setq interprogram-cut-function 'wl-copy)
 (setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
+#+end_src
 
+** Xwidget open dashdocs
+#+begin_src
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 (after! dash-docs
   (setq dash-docs-browser-func #'+lookup-xwidget-webkit-open-url-fn)) ;; hacks - internal docs
 
 (setq evil-move-cursor-back nil)
+#+end_src
 
+** Change projectile root dir
+#+begin_src elisp
 (defun change-projectile-root ()
   "Change the root dir for projectile"
   (interactive)
   (setq projectile-project-root (read-directory-name "Default project root: ")))
+#+end_src
 
+** platformio-fix
+#+begin_src elisp
 ;;; Internal functions
 (defun platformio--exec (target)
   "Call `platformio ... TARGET' in the root of the project."
@@ -442,4 +453,9 @@ _h_ decrease width    _l_ increase width
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
 #+end_src
+#+end_src
+
+** Forge
+#+begin_src elisp
+(setq auth-sources '("~/.authinfo.gpg"))
 #+end_src

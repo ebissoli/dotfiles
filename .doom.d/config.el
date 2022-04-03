@@ -278,8 +278,6 @@ information retrieved from files created by the keychain script."
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
 
-(setq auth-sources '("~/.authinfo.gpg"))
-
 (custom-set-faces!
   '(aw-leading-char-face
     :foreground "white" :background "red"
@@ -301,12 +299,6 @@ information retrieved from files created by the keychain script."
 
 (setq interprogram-cut-function 'wl-copy)
 (setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
-
-(setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
-(after! dash-docs
-  (setq dash-docs-browser-func #'+lookup-xwidget-webkit-open-url-fn)) ;; hacks - internal docs
-
-(setq evil-move-cursor-back nil)
 
 (defun change-projectile-root ()
   "Change the root dir for projectile"
@@ -378,3 +370,5 @@ _h_ decrease width    _l_ increase width
 (setq ranger-cleanup-on-disable t) ;; apps - dired
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
+
+(setq auth-sources '("~/.authinfo.gpg"))
