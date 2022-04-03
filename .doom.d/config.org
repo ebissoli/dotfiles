@@ -29,6 +29,8 @@
 
 * ORG
 #+begin_src elisp
+** Basic org
+#+begin_src elisp
 (remove-hook 'org-mode-hook #'org-superstar-mode) ;;basic doom emacs
 
 
@@ -44,6 +46,7 @@
 ;; change `org-directory'. It must be set before org loads!
 
 (setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+#+end_src
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
 
 (use-package deft
