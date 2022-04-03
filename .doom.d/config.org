@@ -284,7 +284,10 @@ latter - its output."
 (setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
 #+end_src
 
+** MATLAB
+#+begin_src elisp
 (set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
+#+end_src
 
 (require 'platformio-mode)
 

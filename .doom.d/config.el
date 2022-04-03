@@ -252,6 +252,8 @@ latter - its output."
 
 (setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
 
+(set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
+
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.
