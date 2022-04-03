@@ -64,7 +64,8 @@
 #+end_src
 
 ;; Function to calculate relative day to today
-
+** Org agenda
+#+begin_src elisp
 (progn
  (add-hook! 'org-agenda-mode-hook :append :local #'org-agenda-day-view)
  (org-agenda-list)
@@ -101,6 +102,7 @@
                      :order 6)
               ))
  (org-super-agenda-mode))
+#+end_src
 
 (setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
 (setq org-roam-completion-everywhere t)
