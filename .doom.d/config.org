@@ -279,7 +279,10 @@ latter - its output."
 (matlab-cedet-setup) ;;programming -maxima
 #+end_src
 
+** SML
+#+begin_src elisp
 (setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
+#+end_src
 
 (set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
 

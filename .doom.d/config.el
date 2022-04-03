@@ -250,6 +250,8 @@ latter - its output."
 (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
 (matlab-cedet-setup) ;;programming -maxima
 
+(setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
+
 ;;;###autoload
 (defun keychain-refresh-environment ()
   "Set ssh-agent and gpg-agent environment variables.
