@@ -28,6 +28,7 @@
 #+end_src
 
 * ORG
+** Basic org
 #+begin_src elisp
 ** Basic org
 #+begin_src elisp
@@ -64,7 +65,8 @@
 #+end_src
 
 ;; Function to calculate relative day to today
-
+** Agenda
+#+begin_src elisp
 (progn
  (add-hook! 'org-agenda-mode-hook :append :local #'org-agenda-day-view)
  (org-agenda-list)
@@ -101,7 +103,9 @@
                      :order 6)
               ))
  (org-super-agenda-mode))
-
+#+end_src
+** Roam
+#+begin_src elisp
 (setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
 (setq org-roam-completion-everywhere t)
 (require 'org-roam-protocol)
@@ -125,7 +129,8 @@
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
-
+#+end_src
+** Pomodoro
 (setq org-pomodoro-length 45)
 (setq org-pomodoro-short-break-length 10)
 (setq org-pomodoro-long-break-length 30)
