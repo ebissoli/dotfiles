@@ -30,8 +30,6 @@
 * ORG
 ** Basic org
 #+begin_src elisp
-** Basic org
-#+begin_src elisp
 (remove-hook 'org-mode-hook #'org-superstar-mode) ;;basic doom emacs
 
 
