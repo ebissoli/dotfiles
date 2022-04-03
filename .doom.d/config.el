@@ -146,3 +146,105 @@
       ;; because gmail uses labels as folders we can use lazy check since
       ;; messages don't really "move"
       mu4e-index-lazy-check t)
+
+;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (gnuplot . t)
+   (spice .t)
+   (matlab . t)
+   (maxima . t)
+   (gnuplot .t)
+   (octave .t)
+   (jupyter .t)
+   (sml . t)
+   (haskell .t)
+   )
+ ) ;; programming -org-babel
+
+(defun my-preview-latex ()
+  "Preview LaTeX from the current cell in a separate buffer.
+
+Handles only markdown and code cells, but both in a bit different
+ways: on the former, its input is being rendered, while on the
+latter - its output."
+  (interactive)
+  (let* ((cell (ein:worksheet-get-current-cell))
+	 (text-to-render
+	  (cond ((ein:markdowncell-p cell) (slot-value cell :input))
+		((ein:codecell-p cell)
+		 (plist-get (car (cl-remove-if-not
+				  (lambda (e) (string= (plist-get e :name) "stdout"))
+				  (slot-value cell :outputs)))
+			    :text))
+		(t (error "Unsupported cell type"))))
+	 (buffer (get-buffer-create " *ein: LaTeX preview*")))
+    (with-current-buffer buffer
+      (when buffer-read-only
+	(toggle-read-only))
+      (unless (= (point-min) (point-max))
+	(delete-region (point-min) (point-max)))
+      (insert text-to-render)
+      (goto-char (point-min))
+      (org-mode)
+      (org-toggle-latex-fragment 16)
+      (special-mode)
+      (unless buffer-read-only
+	(toggle-read-only))
+      (display-buffer
+       buffer
+       '((display-buffer-below-selected display-buffer-at-bottom)
+         (inhibit-same-window . t)))
+      (fit-window-to-buffer (window-in-direction 'below))))) ;;programming - auctex
+
+
+(setq +latex-viewers '(pdf-tools)) ;; programming -latex
+
+;; lsp-julia config
+(setq lsp-julia-package-dir nil)
+(setq lsp-julia-default-environment "~/.julia/environments/v1.0") ;; programming - julia
+
+(use-package! zig-mode
+  :hook ((zig-mode . lsp-deferred))
+  :custom (zig-format-on-save nil)
+  :config
+  (after! lsp-mode
+    (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
+    (lsp-register-client
+      (make-lsp-client
+        :new-connection (lsp-stdio-connection "/home/enzobissoli/zls/zls")
+        :major-modes '(zig-mode)
+        :server-id 'zls)))) ;; programming zig, can remove?
+
+
+(setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
+
+(set-docsets! 'c-mode "C")
+
+(set-docsets! 'sh-mode "Bash")
+
+(add-to-list 'load-path "/usr/bin/maxima/")
+(autoload 'maxima-mode "maxima" "Maxima mode" t)
+(autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+(autoload 'maxima "maxima" "Maxima interaction" t)
+(autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+(setq imaxima-use-maxima-mode-flag t)
+(add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
+(matlab-cedet-setup) ;;programming -maxima
+
+(setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
+
+(set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
+
+(require 'platformio-mode)
+
+;; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)))
+
+(setq ranger-cleanup-on-disable t) ;; apps - dired
+
+(setq delete-by-moving-to-trash t) ;; emergency trash can
