@@ -182,7 +182,7 @@
    )
  ) ;; programming -org-babel
 #+end_src
-
+** Latex
 #+begin_src elisp
 (defun my-preview-latex ()
   "Preview LaTeX from the current cell in a separate buffer.
@@ -221,6 +221,9 @@ latter - its output."
 
 
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
+,#+begin_src elisp
+
+#+end_src
 
 ;; lsp-julia config
 (setq lsp-julia-package-dir nil)
