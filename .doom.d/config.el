@@ -207,7 +207,6 @@ latter - its output."
 
 
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
-#+begin_src elisp
 
 ;;;###autoload
 (defun keychain-refresh-environment ()
