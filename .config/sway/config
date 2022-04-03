@@ -36,7 +36,7 @@ set $lockman exec bash ~/.config/sway/lockman.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec_always 'swaybg -i ~/.dotfiles/Wallpaper/macDead.png -m fill'
+exec_always 'swaybg -i $HOME/.config/Wallpaper/macDead.png -m fill'
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
@@ -53,10 +53,10 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f -i "$HOME/.dotfiles/Wallpaper/dragon.png"' \
+         timeout 300 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
          timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && playerctl -a play' \
          timeout 3600 'systemctl suspend' \
-         before-sleep 'swaylock -f -i "$HOME/.dotfiles/Wallpaper/dragon.png"' \
+         before-sleep 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
          after-resume 'swaymsg "output * dpms on"' \
          unlock 'playerctl -a play'
 
