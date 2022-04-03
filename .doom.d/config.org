@@ -251,15 +251,12 @@ latter - its output."
 #+begin_src elisp
 (set-docsets! 'c-mode "C")
 
+(require 'platformio-mode)
 ;; Enable ccls for all c++ files, and platformio-mode only
 ;; when needed (platformio.ini present in project root).
 (add-hook 'c++-mode-hook (lambda ()
                            (lsp-deferred)
                            (platformio-conditionally-enable)));; Enable ccls for all c++ files, and platformio-mode only
-;; when needed (platformio.ini present in project root).
-(add-hook 'c++-mode-hook (lambda ()
-                           (lsp-deferred)
-                           (platformio-conditionally-enable)))
 #+end_src
 
 ** Bash
@@ -289,7 +286,6 @@ latter - its output."
 (set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
 #+end_src
 
-(require 'platformio-mode)
 
 #+end_src
 * HACKS

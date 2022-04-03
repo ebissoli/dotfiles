@@ -229,15 +229,12 @@ latter - its output."
 
 (set-docsets! 'c-mode "C")
 
+(require 'platformio-mode)
 ;; Enable ccls for all c++ files, and platformio-mode only
 ;; when needed (platformio.ini present in project root).
 (add-hook 'c++-mode-hook (lambda ()
                            (lsp-deferred)
                            (platformio-conditionally-enable)));; Enable ccls for all c++ files, and platformio-mode only
-;; when needed (platformio.ini present in project root).
-(add-hook 'c++-mode-hook (lambda ()
-                           (lsp-deferred)
-                           (platformio-conditionally-enable)))
 
 (set-docsets! 'sh-mode "Bash")
 
