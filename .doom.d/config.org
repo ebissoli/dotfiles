@@ -1,5 +1,5 @@
 #+title: Config
-* Doom specifics
+* DOOM
 #+begin_src elisp
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
 (setq user-full-name "Enzo Bissoli"
@@ -25,4 +25,95 @@
 (setq doom-theme 'modus-operandi)
 
 (setq display-line-numbers-type t)
+#+end_src
+
+* ORG
+#+begin_src elisp
+(remove-hook 'org-mode-hook #'org-superstar-mode) ;;basic doom emacs
+
+
+(setq display-line-numbers-type t) ;; basic -doom -config
+
+(after! org
+  (setq org-fontify-quote-and-verse-blocks nil
+        org-fontify-whole-heading-line nil
+        ;; org-hide-leading-stars nil
+        org-startup-indented nil))
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+
+(setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
+
+(use-package deft
+  :after org
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
+
+;; Function to calculate relative day to today
+
+(progn
+ (add-hook! 'org-agenda-mode-hook :append :local #'org-agenda-day-view)
+ (org-agenda-list)
+ (setq org-agenda-skip-deadline-if-scheduled 't)
+ (defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
+ (setq org-super-agenda-groups
+            `(
+              (
+               :discard (:regexp "W3"))
+              (:name "Overdue"
+                     :deadline past
+                     :order 0)
+              (:name "Tasks for today"
+                     :not (:tag "KOLB")
+                     :scheduled (before ,(timeFrwd "+1d"))
+                     :order 1)
+              (:name "Due in near future"
+                     :not (:tag "KOLB")
+                     :deadline (before ,(timeFrwd "+6d"))
+                     :order 2)
+              (:name "Meeting & Events"
+                     :tag "MEETING"
+                     :order 3)
+              (:name "Tests"
+                     :tag "TESTS"
+                     :priority> "B"
+                     :order 4)
+              (:name "Goals"
+                     :tag "GOAL"
+                     :priority> "B"
+                     :order 5)
+              (:name "Current Kolby's Cyle"
+                     :tag "KOLB"
+                     :order 6)
+              ))
+ (org-super-agenda-mode))
+
+(setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-roam-completion-everywhere t)
+(require 'org-roam-protocol)
+ (setq org-roam-capture-ref-templates
+	'(("i" "internet" plain #'org-roam-capture--get-point "%?"
+	   :file-name "float/%<%Y%m%d%H%M>-${slug}"
+	   :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_tags: bookmark"
+	   :unnarrowed t)))
+
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 #+end_src
