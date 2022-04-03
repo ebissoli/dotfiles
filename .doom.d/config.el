@@ -325,3 +325,5 @@ _h_ decrease width    _l_ increase width
 (setq ranger-cleanup-on-disable t) ;; apps - dired
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
+
+(setq auth-sources '("~/.authinfo.gpg"))

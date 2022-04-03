@@ -319,7 +319,6 @@ information retrieved from files created by the keychain script."
 (keychain-refresh-environment) ;; hacks --ssh
 #+end_src
 
-(setq auth-sources '("~/.authinfo.gpg"))
 
 (custom-set-faces!
   '(aw-leading-char-face
@@ -444,4 +443,9 @@ _h_ decrease width    _l_ increase width
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
 #+end_src
+#+end_src
+
+** Forge
+#+begin_src elisp
+(setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
