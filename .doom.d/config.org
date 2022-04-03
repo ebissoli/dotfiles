@@ -365,3 +365,33 @@ information retrieved from files created by the keychain script."
         :prefix "o"
         :desc "The elfeed" :n "e" #'elfeed)
 #+end_src
+
+* FUNCTIONS
+#+begin_src elisp
+(require 'notifications)
+(defun notify-me (interval title body)
+  "function that notify me after interval seconds"
+(run-with-timer interval nil
+                (lambda () (notifications-notify
+                            :title title
+                            :body body
+                            :sound-name "alarm-clock-elapsed"))))
+
+(defun notify-now (title body interval repetition)
+  "This function will notify you at most repetition times each happening every interval seconds"
+(interactive "MTitle of notification: \nMWhat should be it content: \nXFrequency in minutes: \nnHow many times: ")
+(cl-map nil (lambda (y) (notify-me y title body)) (number-sequence (* interval 60) (* interval 60 repetition) interval)))
+
+(defhydra doom-window-resize-hydra (:hint nil)
+  "
+             _k_ increase height
+_h_ decrease width    _l_ increase width
+             _j_ decrease height
+"
+  ("h" evil-window-decrease-width)
+  ("j" evil-window-increase-height)
+  ("k" evil-window-decrease-height)
+  ("l" evil-window-increase-width)
+
+  ("q" nil))
+#+end_src
