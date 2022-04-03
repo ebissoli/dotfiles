@@ -278,7 +278,7 @@ information retrieved from files created by the keychain script."
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
 
-(setq auth-sources '("~/.authinfo"))
+(setq auth-sources '("~/.authinfo.gpg"))
 
 (custom-set-faces!
   '(aw-leading-char-face
