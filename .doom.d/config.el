@@ -378,6 +378,6 @@ _h_ decrease width    _l_ increase width
 
 (setq ranger-max-preview-size 10)
 
-(after! ranger (ranger-override-dired 'ranger))
+(after! ranger (setq ranger-override-dired 'ranger))
 
 (setq auth-sources '("~/.authinfo.gpg"))
