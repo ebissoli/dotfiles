@@ -419,7 +419,6 @@ _h_ decrease width    _l_ increase width
 #+end_src
 
 * PREFERENCES
-#+begin_src elisp
 ** Elfeed
 #+begin_src elisp
 (after! elfeed

@@ -374,7 +374,3 @@ _h_ decrease width    _l_ increase width
 
 (after! elfeed
   (setq elfeed-search-filter "@1-day-ago"))
-
-(setq ranger-cleanup-on-disable t) ;; apps - dired
-
-(setq delete-by-moving-to-trash t) ;; emergency trash can
