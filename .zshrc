@@ -291,7 +291,7 @@ alias lf="nnn -c"
 alias ls="lsd"
 alias c="z"
 alias ci="zi"
-#alias rm="gomi"
+alias rm="gomi"
 alias btm="btm --battery --mem_as_value"
 
 edit() {
