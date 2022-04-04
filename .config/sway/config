@@ -319,16 +319,18 @@ bindsym $mod+n exec brave-browser
 bindsym $mod+F10 exec 'wf-recorder -g "$(slurp)"'
 bindsym $mod+F11 exec 'kill -2 "$(pidof wf-recorder)"'
 bindsym $mod+p exec 'pkill -USR1 gammastep || gammastep -O 4000'
+
 #
 # Auto startup
 #
+#
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec 'eval "$(ssh-agent -s)"'
 exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
 exec_always ./clamshell.sh
 exec 'udiskie --automount --tray --notify &'
 exec 'wl-paste -t text --watch clipman store'
-exec 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway'
 exec 'albert'
 exec 'insync start'
 exec 'emacs --daemon'
