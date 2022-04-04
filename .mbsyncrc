@@ -7,8 +7,8 @@ User enzogurgel15@gmail.com
 PassCmd "pass email/enzogurgel15@gmail.com"
 
 MaildirStore gmail-local
-Path ~/Mail/gmail/
-Inbox ~/Mail/gmail/INBOX
+Path ~/.mail/Personal/
+Inbox ~/.mail/Personal/INBOX
 Subfolders Verbatim
 
 Channel gmail
@@ -28,8 +28,8 @@ User egb2@cin.ufpe.br
 PassCmd "pass email/egb2@cin.ufpe.br"
 
 MaildirStore cin-local
-Path ~/Mail/CIn/
-Inbox ~/Mail/CIn/INBOX
+Path ~/.mail/CIn/
+Inbox ~/.mail/CIn/INBOX
 Subfolders Verbatim
 
 Channel cin
