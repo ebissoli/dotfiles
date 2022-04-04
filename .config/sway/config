@@ -328,7 +328,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec 'eval "$(ssh-agent -s)"'
 exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
-exec_always ./clamshell.sh
+exec_always '$HOME/.config/sway/clamshell.sh'
 exec 'udiskie --automount --tray --notify &'
 exec 'wl-paste -t text --watch clipman store'
 exec 'albert'
