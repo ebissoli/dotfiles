@@ -370,4 +370,6 @@ _h_ decrease width    _l_ increase width
 
 (setq delete-by-moving-to-trash t) ;; emergency trash can
 
+(after' ranger (setq ranger-override-dired-mode t))
+
 (setq auth-sources '("~/.authinfo.gpg"))
