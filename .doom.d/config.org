@@ -147,16 +147,16 @@
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-send-mail-function #'message-send-mail-with-sendmail))
 
-(set-email-account! "1enzogurgel15@gmail.com"
-  '((mu4e-sent-folder       . "/gmail/Sent Mail")
-    (mu4e-drafts-folder     . "/gmail/Drafts")
-    (mu4e-trash-folder      . "/gmail/Trash")
-    (mu4e-refile-folder     . "/gmail/All Mail")
+(set-email-account! "enzogurgel15@gmail.com"
+  '((mu4e-sent-folder       . "/Personal/Sent Mail")
+    (mu4e-drafts-folder     . "/Personal/Drafts")
+    (mu4e-trash-folder      . "/Personal/Trash")
+    (mu4e-refile-folder     . "/Personal/All Mail")
     (smtpmail-smtp-user     . "enzogurgel15@gmail.com")
     (mu4e-compose-signature . "---\n---/n/-------"))
   t)
 
-(set-email-account! "2egb2@cin.ufpe.br"
+(set-email-account! "egb2@cin.ufpe.br"
   '((mu4e-sent-folder       . "/CIn/Sent Mail")
     (mu4e-drafts-folder     . "/CIn/Drafts")
     (mu4e-trash-folder      . "/CIn/Trash")
@@ -165,8 +165,8 @@
     (mu4e-compose-signature . "---\n Tenha um ótimo dia--"))
   t)
 
-(setq +mu4e-gmail-accounts '(("enzogurgel15@gmail.com" . "/gmail/")
-                             ("egb2@cin.ufpe.br" . "/CIn/")))
+(setq +mu4e-gmail-accounts '(("enzogurgel15@gmail.com" . "/enzogurgel15")
+                             ("egb2@cin.ufpe.br" . "/egb2")))
 
 (setq mu4e-context-policy 'ask-if-none
       mu4e-compose-context-policy 'always-ask)
