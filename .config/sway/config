@@ -327,8 +327,8 @@ exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
 exec_always ./clamshell.sh
 exec 'udiskie --automount --tray --notify &'
-exec wl-paste -t text --watch clipman store
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec 'wl-paste -t text --watch clipman store'
+exec 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway'
 exec 'albert'
 exec 'insync start'
 exec 'emacs --daemon'
@@ -346,7 +346,7 @@ bindsym $mod+Tab exec '$switcher switch-to-urgent-or-lru-window'
 bindsym $mod+bracketright exec '$switcher next-window'
 bindsym $mod+bracketleft exec '$switcher prev-window'
 bindsym $mod+Ctrl+Space exec '$switcher switch-workspace-or-window'
-bindsym mod1+c exec '$switcher execute-swaymsg-command'
+bindsym $mod+c exec '$switcher execute-swayr-command'
 
 
 #
