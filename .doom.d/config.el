@@ -111,9 +111,9 @@
           org-roam-ui-open-on-start t))
 
 (setq org-pomodoro-length 45)
-(setq org-pomodoro-short-break-length 10)
-(setq org-pomodoro-long-break-length 30)
-(setq org-pomodoro-clock-break nil)
+(setq org-pomodoro-short-break-length 15)
+(setq org-pomodoro-long-break-length )
+(setq org-pomodoro-clock-break 60)
 (setq org-pomodoro-long-break-frequency 3)
 (setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
 
