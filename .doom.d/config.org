@@ -474,3 +474,8 @@ _h_ decrease width    _l_ increase width
 #+begin_src elisp
 (setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
+
+** Telega
+#+begin_src elisp
+(setq telega-directory "~/.telega")
+#+end_src
