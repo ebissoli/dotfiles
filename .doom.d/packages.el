@@ -107,7 +107,7 @@
 ;; (package! elcord)
 ;; (package! good-scroll)
 (package! platformio-mode)
-;; (package! burly)
+(package! burly)
  (package! org-ql)
 ;; (package! org-alert
 ;;   :recipe (:host github :repo "spegoraro/org-alert"))
