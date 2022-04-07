@@ -332,7 +332,6 @@ exec 'safeeyes'
 exec_always '$HOME/.config/sway/clamshell.sh'
 exec 'udiskie --automount --tray --notify &'
 exec 'wl-paste -t text --watch clipman store'
-exec 'albert'
 exec 'insync start'
 exec 'emacs --daemon'
 exec mako
