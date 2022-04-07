@@ -318,7 +318,7 @@ bindsym $mod+Delete exec $lockman
 # Aplications Keybinds
 bindsym $mod+n exec brave-browser
 bindsym $mod+F10 exec 'wf-recorder -g "$(slurp)"'
-bindsym $mod+F11 exec 'kill -2 "$(pidof wf-recorder)"'
+bindsym $mod+F11 exec 'killall -s INT "wf-recorder"'
 bindsym $mod+p exec 'pkill -USR1 gammastep || gammastep -O 4000'
 
 #
