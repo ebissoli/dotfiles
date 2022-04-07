@@ -27,7 +27,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu 'albert show'
+set $menu fuzzel
 set $switcher '$HOME/.cargo/bin/swayr'
 set $lockman exec bash ~/.config/sway/lockman.sh
 # Start the app switcher
