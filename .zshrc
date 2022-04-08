@@ -105,6 +105,7 @@ plugins=(firewalld
          zsh-syntax-highlighting
          zsh-autosuggestions
          git
+         asdf
          )
 
 source $ZSH/oh-my-zsh.sh
