@@ -364,7 +364,10 @@ for_window [app_id="brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default"] {
     move to scratchpad
 }
 
-bindsym $mod+t exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term -a dropdown
+bindsym $mod+Ctrl+d exec (swaymsg "[app_id=notes] scratchpad show") || exec $term -a notes
+bindsym $mod+Ctrl+n exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
+bindsym $mod+Ctrl+t exec (swaymsg "[app_id=monitor] scratchpad show") || exec $term -a monitor
+bindsym $mod+Ctrl+f exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term -a dropdown
 
 for_window [app_id="dropdown"] floating enable, \
     border pixel 5, \
@@ -374,6 +377,29 @@ for_window [app_id="dropdown"] floating enable, \
     move to scratchpad, \
     [con_mark="dropdown"]  scratchpad show
 
+for_window [app_id="notes"] floating enable, \
+    border pixel 5, \
+    resize set 50 ppt 60 ppt, \
+    move position center, \
+    mark "notes", \
+    move to scratchpad, \
+    [con_mark="notes"]  scratchpad show
+
+for_window [app_id="calendar"] floating enable, \
+    border pixel 5, \
+    resize set 50 ppt 60 ppt, \
+    move position center, \
+    mark "calendar", \
+    move to scratchpad, \
+    [con_mark="calendar"]  scratchpad show
+
+for_window [app_id="monitor"] floating enable, \
+    border pixel 5, \
+    resize set 50 ppt 60 ppt, \
+    move position center, \
+    mark "monitor", \
+    move to scratchpad, \
+    [con_mark="monitor"]  scratchpad show
 for_window [title="YouTube"] inhibit_idle focus
 for_window [title="Meet"] inhibit_idle focus
 #
