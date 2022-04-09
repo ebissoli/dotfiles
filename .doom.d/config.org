@@ -440,8 +440,7 @@ information retrieved from files created by the keychain script."
 #+end_src
 
 * KEYBINDS
-*** Windows
-**** Quickly change windows
+** Quickly change windows
 #+begin_src elisp
 (map!
         :leader
@@ -449,7 +448,7 @@ information retrieved from files created by the keychain script."
         :desc "Quick window switch" :n "z" #'ace-window)
 
 #+end_src
-**** Acess elfeed-mode
+** Acess elfeed-mode
 #+begin_src elisp
 (map!
         :leader
@@ -457,51 +456,13 @@ information retrieved from files created by the keychain script."
         :desc "The elfeed" :n "e" #'elfeed)
 
 #+end_src
-**** Resize Windows
+** Resize Windows
 #+begin_src elisp
 (map!
     (:prefix "w"
       :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
 #+end_src
-*** Movement
-**** Move outer of inner of function
-#+begin_src emacs-lisp
-(map!
-    :desc "Move into function hierarchy" :n "M-v" #'sp-backward-up-sexp)
 
-(map!
-        :desc "Move outside of function hierarchy" :n "C-M-v" #'sp-backward-down-sexp)
-#+end_src
-**** Same depth movement
-#+begin_src emacs-lisp
-(map!
-        :desc "next in list" :n "C-M-p" #'sp-forward-parallel-sexp)
-(map!
-        :desc "previous in list" :n "M-p" #'sp-backward-parallel-sexp)
-(map!
-        :desc "next context" :n "M-n" #'sp-end-of-previous-sexp)
-(map!
-        :desc "previous in context" :n "C-M-n" #'sp-beginning-of-next-sexp)
-#+end_src
-
-**** Symbol jumping
-#+begin_src emacs-lisp
-(map!
-        :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
-(map!
-        :desc "next symbol" :n "C-M-r" #'sp-next-sexp)
-
-(map!
-        :desc "prev symbol" :n "M-r" #'sp-backward-sexp)
-#+end_src
-
-**** Killing sexp
-#+begin_src emacs-lisp
-(map!
- :desc "kill context" :n "dw"#'sp-delete-symbol)
-(map!
- :desc "kill whole line" :n "dd" #'sp-kill-whole-line)
-#+end_src
 * FUNCTIONS
 ** Notify me in x minutes
 #+begin_src elisp
@@ -560,20 +521,4 @@ _h_ decrease width    _l_ increase width
 ** Telega
 #+begin_src elisp
 (setq telega-directory "~/.telega")
-#+end_src
-
-* EVIL mode
-
-** Text objects
-#+begin_src emacs-lisp
-#+end_src
-** Text operators
-#+begin_src emacs-lisp
-
-#+end_src
-** Text motions
-#+begin_src emacs-lisp
-#+end_src
-** Text maps
-#+begin_src emacs-lisp
 #+end_src
