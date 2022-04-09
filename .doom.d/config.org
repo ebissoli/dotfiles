@@ -516,11 +516,11 @@ information retrieved from files created by the keychain script."
 #+begin_src elisp
 (map!
     :g "C-M-k" nil
-    :desc "kill whole line" :no "C-M-k #'sp-kill-whole-line)
+    :desc "kill whole line" :no "C-M-k" #'sp-kill-whole-line)
 
 (map!
-        :g C-k" nil
-        :n "C-k" #'sp-mark-sexp
+        :g "C-k" nil
+        :n "C-k" #'sp-mark-sexp)
 
 (map!
         :g "M-a" nil
