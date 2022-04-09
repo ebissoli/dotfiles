@@ -475,18 +475,17 @@ information retrieved from files created by the keychain script."
         :desc "Move outside of function hierarchy" :n "C-M-v" #'sp-backward-down-sexp)
 (map!
         :g "C-M-]" nil
-        :desc "Move into ()'s" :n "C-M-]" #'forward-list)
-
+        :desc "previous in context" :n "C-M-]" #'sp-beginning-of-next-sexp)
 (map!
         :g "M-]"
-        :desc "Move out ()'s'" :n "M-]" #'backward-list)
+        :desc "next context" :n "M-]" #'sp-end-of-previous-sexp)
 
 (map!
-        :g "C-M-b" nil
+        :g "C-M-f" nil
         :desc "Move below" :n "C-M-f" #'sp-forward-symbol)
 
 (map!
-        :g "M-b" nil
+        :g "M-f" nil
         :desc "Move up" :n "M-f" #'sp-backward-symbol)
 #+end_src
 **** Same depth movement
@@ -499,10 +498,10 @@ information retrieved from files created by the keychain script."
         :desc "previous in list" :n "M-p" #'sp-backward-parallel-sexp)
 (map!
         :g "M-n" nil
-        :desc "next context" :n "M-n" #'sp-end-of-previous-sexp)
+        :desc "Move out ()'s'" :n "M-n" #'backward-list)
 (map!
         :g "C-M-n" nil
-        :desc "previous in context" :n "C-M-n" #'sp-beginning-of-next-sexp)
+        :desc "previous in context" :n "C-M-n" #'forward-list)
 
 (map!
         :g "M-s" nil
