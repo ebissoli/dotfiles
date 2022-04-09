@@ -65,6 +65,31 @@
 ;; Function to calculate relative day to today
 ** Agenda
 #+begin_src elisp
+ ;; (progn
+ ;;  (add-hook! 'org-agenda-mode-hook :append :local #'org-agenda-day-view)
+ ;;  (org-agenda-list)
+ ;;  (setq org-agenda-skip-deadline-if-scheduled 't)
+ ;;  (defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
+ ;;  (setq org-super-agenda-groups
+ ;;             `(
+ ;;               (:name "Overdue"
+ ;;                      :deadline past
+ ;;                      :order 0)
+ ;;                (:name "Tasks for today"
+ ;;                    :tag "DOING"
+ ;;                    :order 1)
+ ;;               (:name "Due in near future"
+ ;;                      :deadline (before ,(timeFrwd "+6d"))
+ ;;                      :order 2)
+ ;;               (:name "Meeting & Events"
+ ;;                      :tag "MEETING"
+ ;;                      :order 3)
+ ;;               (:name "Tests"
+ ;;                      :tag "TESTS"
+ ;;                      :priority> "B"
+ ;;                      :order 4)
+ ;;               ))
+ ;;  (org-super-agenda-mode))
 
 (defun my-open-calendar ()
   (interactive)
@@ -73,24 +98,52 @@
    (list
     (cfw:org-create-source "Green")  ; org-agenda source
     (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-    )))
+   )))
 
-(use-package org-gtd
-  :after org
-  :demand t
-  :custom
-  (org-gtd-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/")
-  (org-edna-use-inheritance t)
-  :config
-  (org-edna-mode)
-  :bind
-  (("C-c d c" . org-gtd-capture)
-   ("C-c d e" . org-gtd-engage)
-   ("C-c d p" . org-gtd-process-inbox)
-   ("C-c d n" . org-gtd-show-all-next)
-   ("C-c d s" . org-gtd-show-stuck-projects)
-   :map org-gtd-process-map
-   ("C-c c" . org-gtd-choose)))
+;; (let ((org-super-agenda-groups
+;;        '(;; Each group has an implicit boolean OR operator between its selectors.
+;;          (:name "Today"  ; Optionally specify section name
+;;                 :time-grid t  ; Items that appear on the time grid
+;;                 :todo "DOING")  ; Items that have this TODO keyword
+;;          (:name "Important"
+;;                 ;; Single arguments given alone
+;;                 :tag "bills"
+;;                 :priority "A")
+;;         (:name "Tasks for today"
+;;                 :tag "DOING")
+;;          ;; Set order of multiple groups at once
+;;          (:order-multi (2 (:name "Shopping in town"
+;;                                  ;; Boolean AND group matches items that match all subgroups
+;;                                  :and (:tag "shopping" :tag "@town"))
+;;                           (:name "Food-related"
+;;                                  ;; Multiple args given in list with implicit OR
+;;                                  :tag ("food" "dinner"))
+;;                           (:name "Personal"
+;;                                  :habit t
+;;                                  :tag "personal")
+;;                           (:name "Space-related (non-moon-or-planet-related)"
+;;                                  ;; Regexps match case-insensitively on the entire entry
+;;                                  :and (:regexp ("space" "NASA")
+;;                                                ;; Boolean NOT also has implicit OR between selectors
+;;                                                :not (:regexp "moon" :tag "planet")))))
+;;          ;; Groups supply their own section names when none are given
+;;          (:todo "WAITING" :order 8)  ; Set order of this section
+;;          (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
+;;                 ;; Show this group at the end of the agenda (since it has the
+;;                 ;; highest number). If you specified this group last, items
+;;                 ;; with these todo keywords that e.g. have priority A would be
+;;                 ;; displayed in that group instead, because items are grouped
+;;                 ;; out in the order the groups are listed.
+;;                 :order 9)
+;;          (:priority<= "B"
+;;                       ;; Show this section after "Today" and "Important", because
+;;                       ;; their order is unspecified, defaulting to 0. Sections
+;;                       ;; are displayed lowest-number-first.
+;;                       :order 1)
+;;          ;; After the last group, the agenda will display items that didn't
+;;          ;; match any of these groups, with the default order position of 99
+;;          )))
+;;   (org-agenda nil "a"))
 #+end_src
 ** Roam
 #+begin_src elisp
@@ -473,35 +526,22 @@ information retrieved from files created by the keychain script."
 **** Killing sexp
 #+begin_src elisp
 (map!
- :g "C-M-k" nil
- :desc "kill whole line" :no "C-M-k" #'sp-kill-hybrid-sexp)
- (map!
-  :g "C-k" nil
-  :n "C-k" #'sp-mark-sexp)
+    :g "C-M-k" nil
+    :desc "kill whole line" :no "C-M-k" #'sp-kill-whole-line)
 
- (map!
-  :g "M-a" nil
-  :desc "transpose sexp" :no "M-a" #'sp-transpose-sexp)
-
- (map!
-  :g "C-a" nil
-  :desc "copy mark" :no "C-a" #'sp-copy-sexp)
-#+end_src
-
-**** Yanking
-#+begin_src emacs-lisp
 (map!
-        :g "C-M-y" nil
-        :desc "acess the kill-ring" :n "C-M-y" #'yank-from-kill-ring)
+        :g "C-k" nil
+        :n "C-k" #'sp-mark-sexp)
 
-#+end_src
-*** Mode interface
-#+begin_src emacs-lisp
 (map!
- :leader
- :prefix "o"
- :desc "Interface for org-gtd" "g" #'org-gtd-capture)
+        :g "M-a" nil
+        :desc "transpose sexp" :no "M-a" #'sp-transpose-sexp)
+
+(map!
+        :g "C-a" nil
+        :desc "copy mark" :no "C-a" #'sp-copy-sexp)
 #+end_src
+
 * FUNCTIONS
 ** Notify me in x minutes
 #+begin_src elisp
