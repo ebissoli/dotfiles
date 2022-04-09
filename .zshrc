@@ -299,7 +299,7 @@ edit() {
     zi $1 && vim $(fzf --query "$2") && cd 
 }
 restart-emacs() {
-    pkill -9 --full "emacs --daemon" && emacs --daemon && emacsclient -t $1
+    killall "emacs" && emacs --daemon && emacsclient -t $1
 }
 link() {
     rm -rf $2/$1 ; mkdir $2/$1 && stow -t $2/$1 -Rv $1;
