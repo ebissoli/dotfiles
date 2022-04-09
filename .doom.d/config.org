@@ -475,11 +475,19 @@ information retrieved from files created by the keychain script."
         :desc "Move outside of function hierarchy" :n "C-M-v" #'sp-backward-down-sexp)
 (map!
         :g "C-M-]" nil
-        :desc "Move into ()'s" :n "C-M-]" #'sp-down-sexp)
+        :desc "Move into ()'s" :n "C-M-]" #'forward-list)
 
 (map!
         :g "M-]"
-        :desc "Move out ()'s'" :n "M-]" #'sp-up-sexp)
+        :desc "Move out ()'s'" :n "M-]" #'backward-list)
+
+(map!
+        :g "C-M-b" nil
+        :desc "Move below" :n "C-M-f" #'sp-forward-symbol)
+
+(map!
+        :g "M-b" nil
+        :desc "Move up" :n "M-f" #'sp-backward-symbol)
 #+end_src
 **** Same depth movement
 #+begin_src emacs-lisp
@@ -495,6 +503,10 @@ information retrieved from files created by the keychain script."
 (map!
         :g "C-M-n" nil
         :desc "previous in context" :n "C-M-n" #'sp-beginning-of-next-sexp)
+
+(map!
+        :g "M-s" nil
+        :desc "end of actual context" :n "M-s" #'sp-beginning-of-previous-sexp)
 #+end_src
 
 **** Symbol jumping
@@ -504,11 +516,11 @@ information retrieved from files created by the keychain script."
         :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
 (map!
         :g "C-M-r" nil
-        :desc "next symbol" :n "C-M-r" #'sp-next-sexp)
+        :desc "next symbol" :n "C-M-r" #'down-list)
 
 (map!
         :g "M-r" nil
-        :desc "prev symbol" :n "M-r" #'sp-backward-sexp)
+        :desc "prev symbol" :n "M-r" #'up-list)
 
 #+end_src
 
