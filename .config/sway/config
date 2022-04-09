@@ -36,7 +36,7 @@ set $lockman exec bash ~/.config/sway/lockman.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec_always 'swaybg -i ~/.config/Wallpaper/macDead.png -m fill'
+bindsym $mod+Ctrl+w exec 'swaybg -i $HOME/.config/Wallpaper/macDead.png -m fill'
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
@@ -74,13 +74,14 @@ input "type:touchpad" {
       dwt enabled
       tap_button_map lrm
 }
+#TODO code
 
 input "type:keyboard" {
 repeat_delay 150
 repeat_rate 50
 
       xkb_layout dvorak,us
-      xkb_options ctrl:swapcaps,grp:alt_space_toggle,compose:ralt
+      xkb_options ctrl:swapcaps,grp:win_space_toggle,compose:ralt
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -368,7 +369,6 @@ bindsym $mod+Ctrl+d exec (swaymsg "[app_id=notes] scratchpad show") || exec $ter
 bindsym $mod+Ctrl+n exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
 bindsym $mod+Ctrl+t exec (swaymsg "[app_id=monitor] scratchpad show") || exec $term -a monitor
 bindsym $mod+Ctrl+f exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term -a dropdown
-
 for_window [app_id="dropdown"] floating enable, \
     border pixel 5, \
     resize set 50 ppt 60 ppt, \
@@ -400,6 +400,7 @@ for_window [app_id="monitor"] floating enable, \
     mark "monitor", \
     move to scratchpad, \
     [con_mark="monitor"]  scratchpad show
+
 for_window [title="YouTube"] inhibit_idle focus
 for_window [title="Meet"] inhibit_idle focus
 #
