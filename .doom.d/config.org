@@ -650,9 +650,9 @@ information retrieved from files created by the keychain script."
 **** Folding
 #+begin_src emacs-lisp
 (map!
-        :desc "fold-close" :n "z g" #'+fold/open )
+        :desc "fold-close" :n "z g" #'+fold/toggle )
 (map!
-        :desc "fold-open" :n "z G")
+        :desc "fold-open" :n "z G" #'+fold/close)
 #+end_src
 *** Mode interface
 #+begin_src emacs-lisp
