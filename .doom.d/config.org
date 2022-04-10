@@ -66,31 +66,59 @@
 ** Agenda
 #+begin_src elisp
 
-(defun my-open-calendar ()
-  (interactive)
-  (cfw:open-calendar-buffer
-   :contents-sources
-   (list
-    (cfw:org-create-source "Green")  ; org-agenda source
-    (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-    )))
+(use-package! org-super-agenda
+  :commands org-super-agenda-mode)
 
-(use-package org-gtd
-  :after org
-  :demand t
-  :custom
-  (org-gtd-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/")
-  (org-edna-use-inheritance t)
-  :config
-  (org-edna-mode)
-  :bind
-  (("C-c d c" . org-gtd-capture)
-   ("C-c d e" . org-gtd-engage)
-   ("C-c d p" . org-gtd-process-inbox)
-   ("C-c d n" . org-gtd-show-all-next)
-   ("C-c d s" . org-gtd-show-stuck-projects)
-   :map org-gtd-process-map
-   ("C-c c" . org-gtd-choose)))
+(after! org-agenda
+  (org-super-agenda-mode))
+
+(setq org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-include-deadlines t
+      org-agenda-block-separator nil
+      org-agenda-tags-column 100 ;; from testing this seems to be a good value
+      org-agenda-compact-blocks t)
+(defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
+(setq org-agenda-custom-commands
+      '(("o" "Overview"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next to do"
+                           :todo "NEXT"
+                           :order 1)
+                          (:name "Important"
+                           :tag "Important"
+                           :priority "A"
+                           :order 6)
+                          (:name "Due Today"
+                           :deadline today
+                           :order 2)
+                          (:name "Meeting"
+                           :and(:scheduled future :tag "MEETING")
+                           ;; :deadline future
+                           :order 8)
+                          (:name "Overdue"
+                           :deadline past
+                           :face error
+                           :order 7
+                           :discard (:anything t))))))))))
+
+      (defun my-open-calendar ()
+        (interactive)
+        (cfw:open-calendar-buffer
+         :contents-sources
+         (list
+          (cfw:org-create-source "Green")  ; org-agenda source
+          (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+          )))
 #+end_src
 ** Roam
 #+begin_src elisp
