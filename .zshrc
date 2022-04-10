@@ -106,6 +106,7 @@ plugins=(firewalld
          zsh-autosuggestions
          git
          asdf
+         zfm
          )
 
 source $ZSH/oh-my-zsh.sh
@@ -137,6 +138,7 @@ source $ZSH/oh-my-zsh.sh
 # keybinds
 bindkey -v
 enable-fzf-tab
+export ZFM_NO_BINDINGS=1
 # zoxide
 # =============================================================================
 #
