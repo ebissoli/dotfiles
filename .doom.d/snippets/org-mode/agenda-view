@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: agenda-view
+# key: av
+# --
+("${1:_}" "${2:name}"
+         (
+         (org-ql-block '(${3:logic}
+                            )
+                            ((org-ql-block-header "${4:header}")))
+          ))

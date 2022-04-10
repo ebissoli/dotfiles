@@ -1,0 +1,10 @@
+# key: httpreq
+# name: newHTTPrequest
+# condition: t
+# --
+${1:GET} ${2:http://localhost}:${3:3000}/${4:aluno}/
+Content-Type: ${5:application/json}
+
+{
+    ${0:CONTENT_HERE}
+}

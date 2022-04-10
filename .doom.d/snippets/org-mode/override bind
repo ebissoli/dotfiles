@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: override bind
+# key: ovbin
+# --
+:g "$0" nil
