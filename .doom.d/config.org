@@ -50,7 +50,69 @@
 #+begin_src elisp
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
 #+end_src
+** Org Capture
+#+begin_src emacs-lisp
+(setq org-capture-templates
+      (doct '(("UNI" :keys "u"
+               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :prepend t
+               :template ("* %{todo-state} %?"
+                          "%i %a")
+               :children (("Eng Software"  :keys "e"
+                           :headline   "engSoftware"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"Eng Software\" selected.")))
+                          ("GDI " :keys "g"
+                           :headline   "GDI"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"GDI\" selected.")))
+                          ("PLC "  :keys "p"
+                           :headline   "PLC"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"PLC\" selected.")))
+                          ("histComp "  :keys "h"
+                           :headline   "histComp"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"histComp\" selected.")))
+                          ("infraCOM "  :keys "c"
+                           :headline   "histComp"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"infraCOM\" selected.")))
+                          ("infraSW "  :keys "s"
+                           :headline   "histComp"
+                           :todo-state "TODO"
+                           :hook (lambda () (message "\"infraSW\" selected.")))
+                          ))
+              ("Bookmarks" :keys "b"
+               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/org/20220409134224-bookmarks.org"
+               :append t
+               :type entry
+               :template ("* %^{Description} %?"
+                          "%i"))
+              ("Appointments" :keys "p"
+               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :append t
+               :headline "Appointments"
+               :type entry
+               :template ("* %^{Description} %?"
+                          "%i"))
+              ("Projects" :keys "P"
+               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :append t
+               :headline "Projects"
+               :type entry
+               :template ("* %^{Description} %?"
+                          "%i"))
+              ("Later" :keys "l"
+               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :append t
+               :headline "Later"
+               :type entry
+               :template ("* %^{Description} %?"
+                          "%i"))
+              )))
 
+#+end_src
 ** Deft
 #+begin_src elisp
 (use-package deft
