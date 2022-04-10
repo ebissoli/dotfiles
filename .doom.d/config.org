@@ -83,19 +83,40 @@
 (setq org-agenda-custom-commands
       '(("o" "Overview of the day"
          (
-          (org-ql-block '(and (tags "MEETING")
-                              (scheduled :to "1")
-                              )
-                        ((org-ql-block-header "Meetings for tomorrow")))
-          (org-ql-block '(and (inherited-tags "UFPE")
-                              (deadline :to "7"))
-                        ((org-ql-block-header "CIN stuff")))
-          (org-ql-block '(and (inherited-tags "RECUR")
-                              (scheduled :on today))
-                        ((org-ql-block-header "Recurrent Tasks")))
-          (org-ql-block '(and (inherited-tags "EVENTS")
-                              (scheduled :to "7"))
-                        ((org-ql-block-header "Events in the future")))
+
+          (org-ql-block '(and
+                          (deadline :from "6" :to "7")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Deadline in 6-7 days")))
+          (org-ql-block '(and
+                          (scheduled :from "6" :to "7")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Scheduled in 6-7 days")))
+
+          (org-ql-block '(and
+                          (scheduled :from "3" :to "5")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Scheduled in 3-5 days")))
+
+          (org-ql-block '(and
+                          (deadline :from "3" :to "5")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Deadline in 3-5 days")))
+          (org-ql-block '(and
+                          (deadline :from "1" :to "2")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Deadline in 1-2 days")))
+          (org-ql-block '(and
+                          (scheduled :from "1" :to "2")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Scheduled in 1-2 days")))
+
           (agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today Tasks"
@@ -106,7 +127,105 @@
                           :order 1
                           :discard (:anything t))))))
           )
-         )))
+         )
+        ("U1" "Uni stuff for the month"
+         (
+          (org-ql-block '(and
+                          (ancestors (h "engSoftware"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "Eng Software month planning")))
+          (org-ql-block '(and
+                          (ancestors (h "GDI"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "GDI month planning")))
+          (org-ql-block '(and
+                          (ancestors (h "histComp"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "histComp month planning")))
+          (org-ql-block '(and
+                          (ancestors (h "PLC"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "PLC month planning")))
+          (org-ql-block '(and
+                          (ancestors (h "infraCOM"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "infraCOM month planning")))
+          (org-ql-block '(and
+                          (ancestors (h "infraSW"))
+                          (deadline :from "8" :to "30")
+                          (path "2021.2/"))
+                        ((org-ql-block-header "infraSW month planning")))
+          ))
+        ("U2" "Uni stuff for the next 3 months"
+        (
+        (org-ql-block '(and
+                        (ancestors (h "engSoftware"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "Eng Software month planning")))
+        (org-ql-block '(and
+                        (ancestors (h "GDI"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "GDI month planning")))
+        (org-ql-block '(and
+                        (ancestors (h "histComp"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "histComp month planning")))
+        (org-ql-block '(and
+                        (ancestors (h "PLC"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "PLC month planning")))
+        (org-ql-block '(and
+                        (ancestors (h "infraCOM"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "infraCOM month planning")))
+        (org-ql-block '(and
+                        (ancestors (h "infraSW"))
+                        (deadline :from "31" :to "90")
+                        (path "2021.2/"))
+                    ((org-ql-block-header "infraSW month planning")))
+        ))
+        ("P1" "Personal stuff for the next month"
+            ((org-ql-block '(and
+                            (ancestors (h "Appointments"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "Appointments month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Projects"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "Projects planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Emacs"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "Emacs planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Travel"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "Travel planning")))
+            (org-ql-block '(and
+                            (ancestors (h "People"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "People planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Later"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                        ((org-ql-block-header "Later month planning")))
+        ))))
 
 (defun my-open-calendar ()
   (interactive)
@@ -493,6 +612,13 @@ information retrieved from files created by the keychain script."
         :g "M-r" nil
         :desc "prev symbol" :n "M-r" #'up-list)
 
+(map!
+        :g "M-[" nil
+        :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
+
+(map!
+        :g "M-{" nil
+        :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
 #+end_src
 
 **** Killing sexp
@@ -519,6 +645,14 @@ information retrieved from files created by the keychain script."
         :g "C-M-y" nil
         :desc "acess the kill-ring" :n "C-M-y" #'yank-from-kill-ring)
 
+#+end_src
+
+**** Folding
+#+begin_src emacs-lisp
+(map!
+        :desc "fold-close" :n "z g" #'+fold/open )
+(map!
+        :desc "fold-open" :n "z G")
 #+end_src
 *** Mode interface
 #+begin_src emacs-lisp
