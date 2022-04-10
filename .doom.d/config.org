@@ -52,7 +52,8 @@
 #+end_src
 ** Org Capture
 #+begin_src emacs-lisp
-(setq org-capture-templates
+(after! (:or org-capture org-agenda org)
+    (setq org-capture-templates
       (doct '(("UNI" :keys "u"
                :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
                :prepend t
@@ -110,8 +111,7 @@
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
-              )))
-
+              ))))
 #+end_src
 ** Deft
 #+begin_src elisp
@@ -131,8 +131,8 @@
 (use-package! org-super-agenda
   :commands org-super-agenda-mode)
 
-(after! org-agenda
-  (org-super-agenda-mode))
+(after! (:or org-agenda org)
+  (org-super-agenda-mode)
 
 (setq org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
@@ -264,7 +264,6 @@
                         ((org-ql-block-header "Appointments month planning")))
             (org-ql-block '(and
                             (ancestors (h "Projects"))
-                            (deadline :from "8" :to "30")
                             (path "2021.2/"))
                         ((org-ql-block-header "Projects planning")))
             (org-ql-block '(and
@@ -284,10 +283,9 @@
                         ((org-ql-block-header "People planning")))
             (org-ql-block '(and
                             (ancestors (h "Later"))
-                            (deadline :from "8" :to "30")
                             (path "2021.2/"))
                         ((org-ql-block-header "Later month planning")))
-        ))))
+        )))))
 
 (defun my-open-calendar ()
   (interactive)
