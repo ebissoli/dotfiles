@@ -131,3 +131,4 @@
            :repo "akirakyle/emacs-webkit"))
 (package! mu4e-alert :disable t)
 (package! telega)
+(package! doct)
