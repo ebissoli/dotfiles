@@ -178,13 +178,17 @@
                           (path "2021.2/")
                           )
                         ((org-ql-block-header "Scheduled in 1-2 days")))
-
+            (org-ql-block '(and
+                          (deadline :from "-7" :to "-1")
+                          (path "2021.2/")
+                          )
+                        ((org-ql-block-header "Overdue tasks for the week")))
           (agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today Tasks"
                           :time-grid t
                           :date today
-                          :todo "TODAY"
+                          :todo ("TODAY" "STRT" "HOLD")
                           :scheduled today
                           :order 1
                           :discard (:anything t))))))
@@ -285,7 +289,7 @@
                             (ancestors (h "Later"))
                             (path "2021.2/"))
                         ((org-ql-block-header "Later month planning")))
-        )))))
+        ))))
 
 (defun my-open-calendar ()
   (interactive)
