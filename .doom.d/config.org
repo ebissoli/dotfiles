@@ -55,7 +55,7 @@
 (after! (:or org-capture org-agenda org)
     (setq org-capture-templates
       (doct '(("UNI" :keys "u"
-               :file "~/roam_notes/notes/UFPE/2021.2/2021.2.org"
+               :file "~/roam_notes/notes/agenda/2021.2/2021.2.org"
                :prepend t
                :template ("* %{todo-state} %?"
                           "%i %a")
@@ -91,21 +91,21 @@
                :template ("* %^{Description} %?"
                           "%i"))
               ("Appointments" :keys "p"
-               :file "~/Insync/roam_notes/notes/UFPE/2021.2/2021.2.org"
+               :file "~/roam_notes/notes/agenda/2021.2/2021.2.org"
                :append t
                :headline "Appointments"
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
               ("Projects" :keys "P"
-               :file "~/roamnotes/notes/UFPE/2021.2/2021.2.org"
+               :file "~/roamnotes/notes/agenda/2021.2/2021.2.org"
                :append t
                :headline "Projects"
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
               ("Later" :keys "l"
-               :file "~/roam_notes/notes/UFPE/2021.2/2021.2.org"
+               :file "~/roam_notes/notes/agenda/2021.2/2021.2.org"
                :append t
                :headline "Later"
                :type entry
@@ -293,7 +293,7 @@
    :contents-sources
    (list
     (cfw:org-create-source "Green")  ; org-agenda source
-    (cfw:org-create-file-source "cal" "~/roam_notes/notes/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+    (cfw:org-create-file-source "cal" "~/roam_notes/notes/agenda/2021.2/2021.2.org" "Blue")  ; other org source
     )))
 #+end_src
 ** Roam
