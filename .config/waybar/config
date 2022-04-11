@@ -37,7 +37,7 @@
         "format-alt": "{:%a, %d. %b  %H:%M}"
     },
     "network": {
-    "interface": "wlp2s0",
+    "interface": "wlp2s0b1",
     "format": "{ifname}",
     "format-wifi": "{essid} ({signalStrength}%) ",
     "format-ethernet": "{ifname} ",
