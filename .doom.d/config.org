@@ -44,18 +44,18 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
-(setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-directory "~/roam_notes/notes/")
 #+end_src
 ** Org noter
 #+begin_src elisp
-(setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
+(setq org-noter-notes-search-path '("~/roam_notes/notes/")) ;;basic org config
 #+end_src
 ** Org Capture
 #+begin_src emacs-lisp
 (after! (:or org-capture org-agenda org)
     (setq org-capture-templates
       (doct '(("UNI" :keys "u"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :file "~/roam_notes/notes/UFPE/2021.2/2021.2.org"
                :prepend t
                :template ("* %{todo-state} %?"
                           "%i %a")
@@ -85,27 +85,27 @@
                            :hook (lambda () (message "\"infraSW\" selected.")))
                           ))
               ("Bookmarks" :keys "b"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/org/20220409134224-bookmarks.org"
+               :file "~/"
                :append t
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
               ("Appointments" :keys "p"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :file "~/Insync/roam_notes/notes/UFPE/2021.2/2021.2.org"
                :append t
                :headline "Appointments"
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
               ("Projects" :keys "P"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :file "~/roamnotes/notes/UFPE/2021.2/2021.2.org"
                :append t
                :headline "Projects"
                :type entry
                :template ("* %^{Description} %?"
                           "%i"))
               ("Later" :keys "l"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+               :file "~/roam_notes/notes/UFPE/2021.2/2021.2.org"
                :append t
                :headline "Later"
                :type entry
@@ -121,7 +121,7 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
+  (deft-directory "~/roam_notes/notes/org/")) ;;notetaking-deft
 #+end_src
 
 ;; Function to calculate relative day to today
@@ -293,12 +293,12 @@
    :contents-sources
    (list
     (cfw:org-create-source "Green")  ; org-agenda source
-    (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+    (cfw:org-create-file-source "cal" "~/roam_notes/notes/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
     )))
 #+end_src
 ** Roam
 #+begin_src elisp
-(setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-roam-directory "~/roam_notes/notes/org/")
 (setq org-roam-completion-everywhere t)
 (require 'org-roam-protocol)
  (setq org-roam-capture-ref-templates
