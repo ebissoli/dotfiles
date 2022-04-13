@@ -39,9 +39,11 @@
   (setq org-fontify-quote-and-verse-blocks nil
         org-fontify-whole-heading-line nil
         ;; org-hide-leading-stars nil
-        org-startup-indented nil))
+        org-startup-indented nil)
+  (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "NEXT(n)" "|" "DONE(d)" "KILL(k)") (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)") (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")))
+  )
 
-;; If you use `org' and don't want your org files in the default location below,
+;;If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
 (setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
@@ -53,75 +55,75 @@
 ** Org Capture
 #+begin_src emacs-lisp
 (after! (:or org-capture org-agenda org)
-    (setq org-capture-templates
-      (doct '(("UNI" :keys "u"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
-               :prepend t
-               :template ("* %{todo-state} %?"
-                          "%i %a")
-               :children (("Eng Software"  :keys "e"
-                           :headline   "engSoftware"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"Eng Software\" selected.")))
-                          ("GDI " :keys "g"
-                           :headline   "GDI"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"GDI\" selected.")))
-                          ("PLC "  :keys "p"
-                           :headline   "PLC"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"PLC\" selected.")))
-                          ("histComp "  :keys "h"
-                           :headline   "histComp"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"histComp\" selected.")))
-                          ("infraCOM "  :keys "c"
-                           :headline   "histComp"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"infraCOM\" selected.")))
-                          ("infraSW "  :keys "s"
-                           :headline   "histComp"
-                           :todo-state "TODO"
-                           :hook (lambda () (message "\"infraSW\" selected.")))
-                          ))
-              ("Bookmarks" :keys "b"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/org/20220409134224-bookmarks.org"
-               :append t
-               :type entry
-               :template ("* %^{Description} %?"
-                          "%i"))
-              ("Appointments" :keys "p"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
-               :append t
-               :headline "Appointments"
-               :type entry
-               :template ("* %^{Description} %?"
-                          "%i"))
-              ("Projects" :keys "P"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
-               :append t
-               :headline "Projects"
-               :type entry
-               :template ("* %^{Description} %?"
-                          "%i"))
-              ("Later" :keys "l"
-               :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
-               :append t
-               :headline "Later"
-               :type entry
-               :template ("* %^{Description} %?"
-                          "%i"))
-              ))))
+(setq org-capture-templates
+(doct '(("UNI" :keys "u"
+:file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+:prepend t
+    :template ("* %{todo-state} %?"
+                "%i %a")
+    :children (("Eng Software"  :keys "e"
+                :headline   "engSoftware"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"Eng Software\" selected.")))
+                ("GDI " :keys "g"
+                :headline   "GDI"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"GDI\" selected.")))
+                ("PLC "  :keys "p"
+                :headline   "PLC"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"PLC\" selected.")))
+                ("histComp "  :keys "h"
+                :headline   "histComp"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"histComp\" selected.")))
+                ("infraCOM "  :keys "c"
+                :headline   "histComp"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"infraCOM\" selected.")))
+                ("infraSW "  :keys "s"
+                :headline   "histComp"
+                :todo-state "TODO"
+                :hook (lambda () (message "\"infraSW\" selected.")))
+                ))
+    ("Bookmarks" :keys "b"
+    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/org/20220409134224-bookmarks.org"
+    :append t
+    :type entry
+    :template ("* %^{Description} %?"
+                "%i"))
+    ("Appointments" :keys "p"
+    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :append t
+    :headline "Appointments"
+    :type entry
+    :template ("* %^{Description} %?"
+                "%i"))
+    ("Projects" :keys "P"
+    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :append t
+    :headline "Projects"
+    :type entry
+    :template ("* %^{Description} %?"
+                "%i"))
+    ("Later" :keys "l"
+    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :append t
+    :headline "Later"
+    :type entry
+    :template ("* %^{Description} %?"
+                "%i"))
+    ))))
 #+end_src
 ** Deft
 #+begin_src elisp
 (use-package deft
-  :after org
-  :custom
-  (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
+:after org
+:custom
+(deft-recursive t)
+(deft-use-filter-string-for-filename t)
+(deft-default-extension "org")
+(deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
 #+end_src
 
 ;; Function to calculate relative day to today
@@ -129,225 +131,231 @@
 #+begin_src elisp
 
 (use-package! org-super-agenda
-  :commands org-super-agenda-mode)
+:commands org-super-agenda-mode)
 
 (after! (:or org-agenda org)
-  (org-super-agenda-mode)
+(org-super-agenda-mode)
 
-  (setq org-agenda-skip-scheduled-if-done t
-        org-agenda-skip-deadline-if-done t
-        org-agenda-include-deadlines t
-        org-agenda-block-separator 61
-        org-agenda-tags-column 100 ;; from testing this seems to be a good value
-        org-agenda-compact-blocks nil
-        org-agenda-start-day nil) ;today
-  (defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
-  (setq org-agenda-custom-commands
-        '(("o" "Overview of the day"
-           (
+(setq org-agenda-skip-scheduled-if-done t
+org-agenda-skip-deadline-if-done t
+org-agenda-include-deadlines t
+org-agenda-block-separator 61
+org-agenda-tags-column 100 ;; from testing this seems to be a good value
+org-agenda-compact-blocks nil
+org-agenda-start-day nil) ;today
+(defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
+(setq org-agenda-custom-commands
+'(("o" "Overview of the day"
+(
 
-            (org-ql-block '(and
-                            (deadline :from "6" :to "7")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Deadline in 6-7 days")))
-            (org-ql-block '(and
-                            (scheduled :from "6" :to "7")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Scheduled in 6-7 days")))
+(org-ql-block '(and
+                (deadline :from "6" :to "7")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Deadline in 6-7 days")))
+(org-ql-block '(and
+                (scheduled :from "6" :to "7")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Scheduled in 6-7 days")))
 
-            (org-ql-block '(and
-                            (scheduled :from "3" :to "5")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Scheduled in 3-5 days")))
+(org-ql-block '(and
+                (scheduled :from "3" :to "5")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Scheduled in 3-5 days")))
 
-            (org-ql-block '(and
-                            (deadline :from "3" :to "5")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Deadline in 3-5 days")))
-            (org-ql-block '(and
-                            (deadline :from "1" :to "2")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Deadline in 1-2 days")))
-            (org-ql-block '(and
-                            (scheduled :from "1" :to "2")
-                            (path "2021.2/")
-                            )
-                          ((org-ql-block-header "Scheduled in 1-2 days")))
+(org-ql-block '(and
+                (deadline :from "3" :to "5")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Deadline in 3-5 days")))
+(org-ql-block '(and
+                (deadline :from "1" :to "2")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Deadline in 1-2 days")))
+(org-ql-block '(and
+                (scheduled :from "1" :to "2")
+                (path "2021.2/")
+                )
+                ((org-ql-block-header "Scheduled in 1-2 days")))
+(org-ql-block '(or (and
+                (priority "A")
+                (path "2021.2/"))
+                (and (tags "RECUR")
+                     (not (ancestors (tags "RECUR")))
+                ))
+                ((org-ql-block-header "For Today")))
+(agenda "" ((org-agenda-span 'day)
+            (org-super-agenda-groups
+                '((:name "Today Tasks"
+                :time-grid t
+                :date today
+                :tag "TODAY"
+                :scheduled today
+                :order 1
+                :discard (:anything t))))))
+)
+)
+("U1" "Uni stuff for the month"
+(
+(org-ql-block '(and
+                (ancestors (h "engSoftware"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "Eng Software month planning")))
+(org-ql-block '(and
+                (ancestors (h "GDI"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "GDI month planning")))
+(org-ql-block '(and
+                (ancestors (h "histComp"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "histComp month planning")))
+(org-ql-block '(and
+                (ancestors (h "PLC"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "PLC month planning")))
+(org-ql-block '(and
+                (ancestors (h "infraCOM"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "infraCOM month planning")))
+(org-ql-block '(and
+                (ancestors (h "infraSW"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "infraSW month planning")))
+))
+("U2" "Uni stuff for the next 3 months"
+(
+(org-ql-block '(and
+                (ancestors (h "engSoftware"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "Eng Software month planning")))
+(org-ql-block '(and
+                (ancestors (h "GDI"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "GDI month planning")))
+(org-ql-block '(and
+                (ancestors (h "histComp"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "histComp month planning")))
+(org-ql-block '(and
+                (ancestors (h "PLC"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "PLC month planning")))
+(org-ql-block '(and
+                (ancestors (h "infraCOM"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "infraCOM month planning")))
+(org-ql-block '(and
+                (ancestors (h "infraSW"))
+                (deadline :from "31" :to "90")
+                (path "2021.2/"))
+                ((org-ql-block-header "infraSW month planning")))
+))
+("P1" "Personal stuff for the next month"
+((org-ql-block '(and
+                (ancestors (h "Appointments"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "Appointments month planning")))
+(org-ql-block '(and
+                (ancestors (h "Projects"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Projects planning")))
+(org-ql-block '(and
+                (ancestors (h "Emacs"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "Emacs planning")))
+(org-ql-block '(and
+                (ancestors (h "Travel"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "Travel planning")))
+(org-ql-block '(and
+                (ancestors (h "People"))
+                (deadline :from "8" :to "30")
+                (path "2021.2/"))
+                ((org-ql-block-header "People planning")))
+(org-ql-block '(and
+                (ancestors (h "Later"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Later month planning")))
+))
+("PO" "Personal stuff List"
+((org-ql-block '(and
+                (ancestors (h "Appointments"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Appointments List")))
+(org-ql-block '(and
+                (ancestors (h "Projects"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Projects List")))
+(org-ql-block '(and
+                (ancestors (h "Emacs"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Emacs List")))
+(org-ql-block '(and
+                (ancestors (h "Travel"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Travel List")))
+(org-ql-block '(and
+                (ancestors (h "People"))
+                (path "2021.2/"))
+                ((org-ql-block-header "People List")))
+(org-ql-block '(and
+                (ancestors (h "Later"))
+                (path "2021.2/"))
+                ((org-ql-block-header "Later List")))
+))
+)))
 
-            (agenda "" ((org-agenda-span 'day)
-                        (org-super-agenda-groups
-                         '((:name "Today Tasks"
-                            :time-grid t
-                            :date today
-                            :todo "TODAY"
-                            :scheduled today
-                            :order 1
-                            :discard (:anything t))))))
-            )
-           )
-          ("U1" "Uni stuff for the month"
-           (
-            (org-ql-block '(and
-                            (ancestors (h "engSoftware"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Eng Software month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "GDI"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "GDI month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "histComp"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "histComp month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "PLC"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "PLC month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraCOM"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraCOM month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraSW"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraSW month planning")))
-            ))
-          ("U2" "Uni stuff for the next 3 months"
-           (
-            (org-ql-block '(and
-                            (ancestors (h "engSoftware"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Eng Software month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "GDI"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "GDI month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "histComp"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "histComp month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "PLC"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "PLC month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraCOM"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraCOM month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraSW"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraSW month planning")))
-            ))
-          ("P1" "Personal stuff for the next month"
-           ((org-ql-block '(and
-                            (ancestors (h "Appointments"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Appointments month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Projects"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Projects planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Emacs"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Emacs planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Travel"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Travel planning")))
-            (org-ql-block '(and
-                            (ancestors (h "People"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "People planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Later"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Later month planning")))
-            ))
-          ("PO" "Personal stuff List"
-           ((org-ql-block '(and
-                            (ancestors (h "Appointments"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Appointments List")))
-            (org-ql-block '(and
-                            (ancestors (h "Projects"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Projects List")))
-            (org-ql-block '(and
-                            (ancestors (h "Emacs"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Emacs List")))
-            (org-ql-block '(and
-                            (ancestors (h "Travel"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Travel List")))
-            (org-ql-block '(and
-                            (ancestors (h "People"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "People List")))
-            (org-ql-block '(and
-                            (ancestors (h "Later"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Later List")))
-            ))
-          )))
-
-  (defun my-open-calendar ()
-    (interactive)
-    (cfw:open-calendar-buffer
-     :contents-sources
-     (list
-      (cfw:org-create-source "Green")  ; org-agenda source
-      (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-      )))
+(defun my-open-calendar ()
+(interactive)
+(cfw:open-calendar-buffer
+:contents-sources
+(list
+(cfw:org-create-source "Green")  ; org-agenda source
+(cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+)))
 #+end_src
 ** Roam
 #+begin_src elisp
 (setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
 (setq org-roam-completion-everywhere t)
 (require 'org-roam-protocol)
- (setq org-roam-capture-ref-templates
-	'(("i" "internet" plain #'org-roam-capture--get-point "%?"
-	   :file-name "float/%<%Y%m%d%H%M>-${slug}"
-	   :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_tags: bookmark"
-	   :unnarrowed t)))
+(setq org-roam-capture-ref-templates
+'(("i" "internet" plain #'org-roam-capture--get-point "%?"
+    :file-name "float/%<%Y%m%d%H%M>-${slug}"
+    :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_tags: bookmark"
+    :unnarrowed t)))
 
 (use-package! websocket
-    :after org-roam)
+:after org-roam)
 
 (use-package! org-roam-ui
-    :after org-roam ;; or :after org
+:after org-roam ;; or :after org
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;         a hookable mode anymore, you're advised to pick something yourself
 ;;         if you don't care about startup time, use
 ;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+:config
+(setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 #+end_src
 ** Pomodoro
 #+begin_src elisp
