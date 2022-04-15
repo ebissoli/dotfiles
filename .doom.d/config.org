@@ -131,205 +131,213 @@
 #+begin_src elisp
 
 (use-package! org-super-agenda
-:commands org-super-agenda-mode)
+  :commands org-super-agenda-mode)
 
 (after! (:or org-agenda org)
-(org-super-agenda-mode)
+  (org-super-agenda-mode)
 
-(setq org-agenda-skip-scheduled-if-done t
-org-agenda-skip-deadline-if-done t
-org-agenda-include-deadlines t
-org-agenda-block-separator 61
-org-agenda-tags-column 100 ;; from testing this seems to be a good value
-org-agenda-compact-blocks nil
-org-agenda-start-day nil) ;today
-(defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
-(setq org-agenda-custom-commands
-'(("o" "Overview of the day"
-(
+  (setq org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-block-separator 61
+        org-agenda-tags-column 100 ;; from testing this seems to be a good value
+        org-agenda-compact-blocks nil
+        org-agenda-start-day nil) ;today
+  (defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
+  (setq org-agenda-custom-commands
+        '(("o" "Overview of the day"
+           (
 
-(org-ql-block '(and
-                (deadline :from "6" :to "7")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Deadline in 6-7 days")))
-(org-ql-block '(and
-                (scheduled :from "6" :to "7")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Scheduled in 6-7 days")))
+            (org-ql-block '(and
+                            (deadline :from "6" :to "7")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Deadline in 6-7 days")))
+            (org-ql-block '(and
+                            (scheduled :from "6" :to "7")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Scheduled in 6-7 days")))
 
-(org-ql-block '(and
-                (scheduled :from "3" :to "5")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Scheduled in 3-5 days")))
+            (org-ql-block '(and
+                            (scheduled :from "3" :to "5")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Scheduled in 3-5 days")))
 
-(org-ql-block '(and
-                (deadline :from "3" :to "5")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Deadline in 3-5 days")))
-(org-ql-block '(and
-                (deadline :from "1" :to "2")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Deadline in 1-2 days")))
-(org-ql-block '(and
-                (scheduled :from "1" :to "2")
-                (path "2021.2/")
-                )
-                ((org-ql-block-header "Scheduled in 1-2 days")))
-(org-ql-block '(or (and
-                (priority "A")
-                (path "2021.2/"))
-                (and (tags "RECUR")
-                     (not (ancestors (tags "RECUR")))
-                ))
-                ((org-ql-block-header "For Today")))
-(agenda "" ((org-agenda-span 'day)
-            (org-super-agenda-groups
-                '((:name "Today Tasks"
-                :time-grid t
-                :date today
-                :tag "TODAY"
-                :scheduled today
-                :order 1
-                :discard (:anything t))))))
-)
-)
-("U1" "Uni stuff for the month"
-(
-(org-ql-block '(and
-                (ancestors (h "engSoftware"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "Eng Software month planning")))
-(org-ql-block '(and
-                (ancestors (h "GDI"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "GDI month planning")))
-(org-ql-block '(and
-                (ancestors (h "histComp"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "histComp month planning")))
-(org-ql-block '(and
-                (ancestors (h "PLC"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "PLC month planning")))
-(org-ql-block '(and
-                (ancestors (h "infraCOM"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "infraCOM month planning")))
-(org-ql-block '(and
-                (ancestors (h "infraSW"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "infraSW month planning")))
-))
-("U2" "Uni stuff for the next 3 months"
-(
-(org-ql-block '(and
-                (ancestors (h "engSoftware"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "Eng Software month planning")))
-(org-ql-block '(and
-                (ancestors (h "GDI"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "GDI month planning")))
-(org-ql-block '(and
-                (ancestors (h "histComp"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "histComp month planning")))
-(org-ql-block '(and
-                (ancestors (h "PLC"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "PLC month planning")))
-(org-ql-block '(and
-                (ancestors (h "infraCOM"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "infraCOM month planning")))
-(org-ql-block '(and
-                (ancestors (h "infraSW"))
-                (deadline :from "31" :to "90")
-                (path "2021.2/"))
-                ((org-ql-block-header "infraSW month planning")))
-))
-("P1" "Personal stuff for the next month"
-((org-ql-block '(and
-                (ancestors (h "Appointments"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "Appointments month planning")))
-(org-ql-block '(and
-                (ancestors (h "Projects"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Projects planning")))
-(org-ql-block '(and
-                (ancestors (h "Emacs"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "Emacs planning")))
-(org-ql-block '(and
-                (ancestors (h "Travel"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "Travel planning")))
-(org-ql-block '(and
-                (ancestors (h "People"))
-                (deadline :from "8" :to "30")
-                (path "2021.2/"))
-                ((org-ql-block-header "People planning")))
-(org-ql-block '(and
-                (ancestors (h "Later"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Later month planning")))
-))
-("PO" "Personal stuff List"
-((org-ql-block '(and
-                (ancestors (h "Appointments"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Appointments List")))
-(org-ql-block '(and
-                (ancestors (h "Projects"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Projects List")))
-(org-ql-block '(and
-                (ancestors (h "Emacs"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Emacs List")))
-(org-ql-block '(and
-                (ancestors (h "Travel"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Travel List")))
-(org-ql-block '(and
-                (ancestors (h "People"))
-                (path "2021.2/"))
-                ((org-ql-block-header "People List")))
-(org-ql-block '(and
-                (ancestors (h "Later"))
-                (path "2021.2/"))
-                ((org-ql-block-header "Later List")))
-))
-)))
+            (org-ql-block '(and
+                            (deadline :from "3" :to "5")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Deadline in 3-5 days")))
+            (org-ql-block '(and
+                            (deadline :from "1" :to "2")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Deadline in 1-2 days")))
+            (org-ql-block '(and
+                            (scheduled :from "1" :to "2")
+                            (path "2021.2/")
+                            )
+                          ((org-ql-block-header "Scheduled in 1-2 days")))
+            (org-ql-block '(or (and
+                                (priority "A")
+                                (path "2021.2/"))
+                               (and (tags "RECUR")
+                                    (not (ancestors (tags "RECUR")))
+                                    ))
+                          ((org-ql-block-header "For Today")))
+            (agenda "" ((org-agenda-span 'day)
+                        (org-super-agenda-groups
+                         '((:name "Today Tasks"
+                            :time-grid t
+                            :date today
+                            :tag "TODAY"
+                            :scheduled today
+                            :order 1
+                            :discard (:anything t))))))
+            )
+           )
+          ("U1" "Uni stuff for the month"
+           (
+            (org-ql-block '(and
+                            (ancestors (h "engSoftware"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Eng Software month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "GDI"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "GDI month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "histComp"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "histComp month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "PLC"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "PLC month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "infraCOM"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "infraCOM month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "infraSW"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "infraSW month planning")))
+            ))
+          ("U2" "Uni stuff for the next 3 months"
+           (
+            (org-ql-block '(and
+                            (ancestors (h "engSoftware"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Eng Software month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "GDI"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "GDI month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "histComp"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "histComp month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "PLC"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "PLC month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "infraCOM"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "infraCOM month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "infraSW"))
+                            (deadline :from "31" :to "90")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "infraSW month planning")))
+            ))
+          ("P1" "Personal stuff for the next month"
+           ((org-ql-block '(and
+                            (ancestors (h "Appointments"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Appointments month planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Projects"))
+                            (not (todo "DONE"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Projects planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Emacs"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Emacs planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Travel"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Travel planning")))
+            (org-ql-block '(and
+                            (ancestors (h "People"))
+                            (deadline :from "8" :to "30")
+                            (path "2021.2/"))
+                          ((org-ql-block-header "People planning")))
+            (org-ql-block '(and
+                            (ancestors (h "Later"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Later month planning")))
+            ))
+          ("PO" "Personal stuff List"
+           ((org-ql-block '(and
+                            (ancestors (h "Appointments"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Appointments List")))
+            (org-ql-block '(and
+                            (ancestors (h "Projects"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Projects List")))
+            (org-ql-block '(and
+                            (ancestors (h "Emacs"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Emacs List")))
+            (org-ql-block '(and
+                            (ancestors (h "Travel"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Travel List")))
+            (org-ql-block '(and
+                            (ancestors (h "People"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "People List")))
+            (org-ql-block '(and
+                            (ancestors (h "Later"))
+                            (not (todo "DONE"))
+                            (path "2021.2/"))
+                          ((org-ql-block-header "Later List")))
+            ))
+          )))
 
 (defun my-open-calendar ()
-(interactive)
-(cfw:open-calendar-buffer
-:contents-sources
-(list
-(cfw:org-create-source "Green")  ; org-agenda source
-(cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-)))
+  (interactive)
+  (cfw:open-calendar-buffer
+   :contents-sources
+   (list
+    (cfw:org-create-source "Green")  ; org-agenda source
+    (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+    )))
 #+end_src
 ** Roam
 #+begin_src elisp
