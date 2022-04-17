@@ -144,27 +144,27 @@ repeat_rate 50
 # Workspaces:
 #
     # # Switch to workspace
-    bindsym $mod+1 workspace 1ℰ
-    bindsym $mod+2 workspace 2B
-    bindsym $mod+3 workspace 3W
-    bindsym $mod+4 workspace 4M
-    bindsym $mod+5 workspace 5D
-    bindsym $mod+6 workspace 6E
-    bindsym $mod+7 workspace 7R
-    bindsym $mod+8 workspace 8C
-    bindsym $mod+9 workspace 9F
-    bindsym $mod+0 workspace 0T
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 0
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1ℰ
-    bindsym $mod+Shift+2 move container to workspace 2B
-    bindsym $mod+Shift+3 move container to workspace 3W
-    bindsym $mod+Shift+4 move container to workspace 4M
-    bindsym $mod+Shift+5 move container to workspace 5D
-    bindsym $mod+Shift+6 move container to workspace 6E
-    bindsym $mod+Shift+7 move container to workspace 7R
-    bindsym $mod+Shift+8 move container to workspace 8C
-    bindsym $mod+Shift+9 move container to workspace 9F
-    bindsym $mod+Shift+0 move container to workspace 0T
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 0
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
@@ -383,23 +383,23 @@ for_window [app_id="notes"] floating enable, \
     move position center, \
     mark "notes", \
     move to scratchpad, \
-    [con_mark="notes"]  scratchpad show
+[con_mark="notes"]  scratchpad show
 
 for_window [app_id="calendar"] floating enable, \
-    border pixel 5, \
-    resize set 50 ppt 60 ppt, \
-    move position center, \
-    mark "calendar", \
-    move to scratchpad, \
-    [con_mark="calendar"]  scratchpad show
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "calendar", \
+move to scratchpad, \
+[con_mark="calendar"]  scratchpad show
 
 for_window [app_id="monitor"] floating enable, \
-    border pixel 5, \
-    resize set 50 ppt 60 ppt, \
-    move position center, \
-    mark "monitor", \
-    move to scratchpad, \
-    [con_mark="monitor"]  scratchpad show
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "monitor", \
+move to scratchpad, \
+[con_mark="monitor"]  scratchpad show
 
 for_window [title="YouTube"] inhibit_idle focus
 for_window [title="Meet"] inhibit_idle focus
@@ -420,5 +420,5 @@ bar {
     #    inactive_workspace #32323200 #32323200 #5c5c5c
    # }
 }
-exec 'swaybg -i $HOME/.config/Wallpaper/macDead.png -m fill'
+exec 'swaybg -i $HOME/.config/Wallpaper/catGhost.jpg -m fill'
 include /etc/sway/config.d/*
