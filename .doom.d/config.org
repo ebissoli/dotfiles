@@ -841,6 +841,14 @@ _h_ decrease width    _l_ increase width
 (setq telega-directory "~/.telega")
 #+end_src
 
+** Emms
+#+begin_src emacs-lisp
+(setq emms-player-list '(emms-player-mpd))
+(setq emms-player-mpd-server-name "localhost")
+(setq emms-player-mpd-server-port "6600")
+(setq emms-player-mpd-music-directory "~/Music")
+#+end_src
+
 * EVIL mode
 
 ** Text objects
