@@ -27,7 +27,7 @@
 ** Company
 #+begin_src emacs-lisp
 (after! company
-  (setq company-idle-delay nil))
+  (setq company-idle-delay 0.3))
 #+end_src
 
 * ORG
