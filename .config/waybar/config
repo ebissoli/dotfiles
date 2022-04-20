@@ -3,10 +3,10 @@
     "width": "2",
     "margin": "0",
     "margin-right": "0",
-    "position": "bottom",
+    "position": "top",
     "modules-left": ["sway/workspaces"],
-    "modules-center": ["idle_inhibitor","cpu","memory","tray"],
-    "modules-right": ["network","temperature","pulseaudio","backlight","battery","clock"],
+    "modules-center": ["sway/window","mpd"],
+    "modules-right": ["idle_inhibitor","cpu","memory","tray","network","temperature","pulseaudio","backlight","battery","clock"],
 
     "sway/window": {
         "max-length": 50
@@ -108,5 +108,12 @@
             "icon-size": 21,
             "spacing": 10
     },
+
+    "mpd": {
+        "format": "{title}",
+        "format-disconnected": "",
+        "format-stopped":"",
+        "interval": 10,
+},
 
 }
