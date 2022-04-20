@@ -5,8 +5,9 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Aesthetics
-gaps outer 2
-gaps inner 2
+gaps outer 0
+gaps inner 0
+default_border pixel 2
 
 
 ### Variables
