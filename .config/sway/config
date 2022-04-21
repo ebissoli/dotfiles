@@ -9,7 +9,6 @@ gaps outer 0
 gaps inner 0
 default_border pixel 2
 
-
 ### Variables
 # Logo key. Use Mod1 for Alt.
 #
@@ -112,7 +111,7 @@ repeat_rate 50
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' ' mpc stop | killall mpd | swaymsg exit'
 
 
 #
@@ -328,6 +327,7 @@ bindsym $mod+p exec 'pkill -USR1 gammastep || gammastep -O 4000'
 #
 #
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec 'systemctl enable --user mpd.service | mpd'
 exec 'eval "$(ssh-agent -s)"'
 exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
