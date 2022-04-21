@@ -259,7 +259,7 @@ repeat_rate 50
     bindsym $mod+Ctrl+grave+6 mark "dropdown", move scratchpad
     bindsym $mod+Ctrl+grave+7 mark "emacs", move scratchpad
     bindsym $mod+Ctrl+grave+8 mark "htop", move scratchpad
-    bindsym $mod+Ctrl+grave+9 mark "extra4", move scratchpad
+    bindsym $mod+Ctrl+grave+9 mark "debug", move scratchpad
 
     bindsym $mod+Ctrl+1 [con_mark="music"] scratchpad show
     bindsym $mod+Ctrl+2 [con_mark="social"] scratchpad show
@@ -269,7 +269,7 @@ repeat_rate 50
     bindsym $mod+Ctrl+6 [con_mark="dropdown"] scratchpad show
     bindsym $mod+Ctrl+7 [con_mark="emacs"] scratchpad show
     bindsym $mod+Ctrl+8 [con_mark="htop"] scratchpad show
-    bindsym $mod+Ctrl+9 [con_mark="extra4"] scratchpad show
+    bindsym $mod+Ctrl+9 [con_mark="debug"] scratchpad show
 
 
 #
@@ -401,6 +401,14 @@ move position center, \
 mark "monitor", \
 move to scratchpad, \
 [con_mark="monitor"]  scratchpad show
+
+for_window [title="foot-debug"] floating enable, \
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "debug", \
+move to scratchpad, \
+[con_mark="debug"]  scratchpad show
 
 for_window [title="YouTube"] inhibit_idle focus
 for_window [title="Meet"] inhibit_idle focus
