@@ -901,12 +901,12 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-music-directory "~/Music")
 #+end_src
 
-** Projectile
-#+begin_src emacs-lisp
-(after! projectile (setq projectile-project-root-files-bottom-up (remove
-     ".git" projectile-project-root-files-bottom-up)))
-#+end_src
 
+** Folds
+#+begin_src emacs-lisp
+(add-hook! '(sh-mode-hook conf-mode-hook python-mode-hook c-mode-hook typescript-mode-hook)
+    (vimish-fold-mode 1))
+#+end_src
 * EVIL mode
 
 ** Text objects
