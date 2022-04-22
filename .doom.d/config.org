@@ -15,7 +15,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two
-(setq doom-font (font-spec :family "JetBrainsMono" :size 12 :weight 'light) ;; use :weight parameter for something other than regular
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12 :weight 'light) ;; use :weight parameter for something other than regular
       doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13 ))
 
 ;; (setq doom-unicode-font (font-spec :family "DM Mono"))
@@ -374,9 +374,8 @@
 (setq org-pomodoro-short-break-length 5)
 (setq org-pomodoro-long-break-length 25)
 (setq org-pomodoro-clock-break 60)
-(setq org-pomodoro-long-break-frequency 6)
+(setq org-pomodoro-long-break-frequency 8)
 (setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
-#+end_src
 #+end_src
 * EMAIL
 #+begin_src elisp
@@ -900,7 +899,6 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
 #+end_src
-
 
 ** Folds
 #+begin_src emacs-lisp
