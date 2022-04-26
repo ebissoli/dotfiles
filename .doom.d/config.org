@@ -837,9 +837,10 @@ information retrieved from files created by the keychain script."
 *** Mode interface
 #+begin_src emacs-lisp
 (map!
- :leader
- :prefix "o"
- :desc "Interface for org-gtd" "g" #'org-gtd-capture)
+        :desc "Don't show line numbers" :n "z ," #'menu-bar--display-line-numbers-mode-none)
+
+(map!
+        :desc "Show line numbers" :n "z '" #'menu-bar--display-line-numbers-mode-absolute)
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
