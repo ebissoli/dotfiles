@@ -15,8 +15,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 12 :weight 'light) ;; use :weight parameter for something other than regular
-      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13 ))
+(setq doom-font (font-spec :family "PragmataPro" :size 12) ;; use :weight parameter for something other than regular
+      doom-variable-pitch-font (font-spec :family "PragmataPro" :size 13 ))
 
 ;; (setq doom-unicode-font (font-spec :family "DM Mono"))
 ;; There are two ways to load a theme. Both assume the theme is installed and
