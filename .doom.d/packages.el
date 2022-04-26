@@ -132,3 +132,5 @@
 (package! mu4e-alert :disable t)
 (package! telega)
 (package! doct)
+(package! flyspell-correct-popup)
+(package! annotate)
