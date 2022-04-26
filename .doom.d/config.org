@@ -915,6 +915,17 @@ _h_ decrease width    _l_ increase width
 (add-hook! '(sh-mode-hook conf-mode-hook python-mode-hook c-mode-hook typescript-mode-hook)
     (vimish-fold-mode 1))
 #+end_src
+
+** Modus-theme
+#+begin_src emacs-lisp
+(setq   modus-themes-inhibit-reload nil
+        modus-themes-bold-constructs t
+        modus-themes-italic-constructs t
+        modus-themes-syntax '(alt-syntax)
+        modus-themes-mixed-fonts t
+        modus-themes-links '(neutral-underline faint background italic)
+        modus-themes-prompts '(intense))
+#+end_src
 * EVIL mode
 
 ** Text objects
