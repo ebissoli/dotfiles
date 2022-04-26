@@ -57,8 +57,7 @@ exec swayidle -w \
          timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && playerctl -a play' \
          timeout 3600 'systemctl suspend' \
          before-sleep 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
-         after-resume 'swaymsg "output * dpms on"' \
-         unlock 'playerctl -a play'
+         after-resume 'swaymsg "output * dpms on"'
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -340,7 +339,6 @@ exec mako
 exec 'lxpolkit'
 exec '~/.cargo/bin/swayrd'
 
-
 #
 # Swayr
 #
@@ -429,5 +427,7 @@ bar {
     #    inactive_workspace #32323200 #32323200 #5c5c5c
    # }
 }
+#
+# Post launch routine
 exec 'swaybg -i $HOME/.config/Wallpaper/catGhost.jpg -m fill'
 include /etc/sway/config.d/*
