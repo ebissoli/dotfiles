@@ -720,6 +720,28 @@ information retrieved from files created by the keychain script."
         :desc "Quick window switch" :n "z" #'ace-window)
 
 #+end_src
+**** Quickly swap windows
+#+begin_src emacs-lisp
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state down" :n "C-M-j" #'windmove-swap-states-down)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state up" :n "C-M-k" #'windmove-swap-states-up)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state left" :n "C-M-h" #'windmove-swap-states-left)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state right" :n "C-M-l" #'windmove-swap-states-right)
+#+end_src
 **** Acess elfeed-mode
 #+begin_src elisp
 (map!
@@ -908,6 +930,7 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-name "localhost")
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
+(setq emms-add-directory-tree "~/Music")
 #+end_src
 
 ** Folds
