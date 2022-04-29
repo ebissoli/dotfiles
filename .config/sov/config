@@ -2,7 +2,7 @@
 anchor center
 
 # margin, distance from edges if anchor is set
-margin 0
+margin 20
 
 # show timeout in millisecs
 timeout 200
@@ -11,13 +11,15 @@ timeout 200
 gap 20
 
 # columns
-columns 5
+columns 3
+
+rows 2
 
 # thumbnail to workspace ratio
 ratio 8
 
 # font face, use any string that is output by fc-list
-font_face DejaVu Sans Mono:style=Bold
+font_face PragmataPro Mono:style=Regular
 
 # margin size around text
 text_margin_size 7
@@ -44,7 +46,7 @@ text_workspace_size 18
 text_workspace_color #FFFFFFFF
 
 # workspace number x shift
-text_workspace_xshift 11
+text_workspace_xshift 5
 
 # workspace number y shift
 text_workspace_yshift -17
