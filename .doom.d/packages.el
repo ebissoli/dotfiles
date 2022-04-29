@@ -134,3 +134,4 @@
 (package! doct)
 (package! flyspell-correct-popup)
 (package! annotate)
+(package! cucumber)
