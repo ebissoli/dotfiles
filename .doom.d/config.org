@@ -760,18 +760,21 @@ information retrieved from files created by the keychain script."
 **** Move outer of inner of function
 #+begin_src emacs-lisp
 (map!
+    :g "C-M-v" nil
+    :desc "Move out function hierarchy" :n "M-v" #'sp-backward-up-sexp)
+(map!
     :g "M-v" nil
-    :desc "Move into function hierarchy" :n "M-v" #'sp-backward-up-sexp)
+    :desc "Move into function hierarchy" :n "M-v" #'sp-down-sexp)
 
 (map!
-        :g "C-M-v" nil
-        :desc "Move outside of function hierarchy" :n "C-M-v" #'sp-backward-down-sexp)
+        :g "C-M-r" nil
+        :desc "Move outside of function hierarchy" :n "C-M-r" #'sp-backward-down-sexp)
 (map!
-        :g "C-M-]" nil
-        :desc "previous in context" :n "C-M-]" #'sp-beginning-of-next-sexp)
+        :g "C-M-/" nil
+        :desc "previous in context" :n "C-M-/" #'evil-backward-paragraph)
 (map!
-        :g "M-]"
-        :desc "next context" :n "M-]" #'sp-end-of-previous-sexp)
+        :g "C-/"
+        :desc "next context" :n "C-/" #'evil-forward-paragraph)
 
 (map!
         :g "C-M-f" nil
@@ -834,11 +837,18 @@ information retrieved from files created by the keychain script."
 
  (map!
   :g "M-a" nil
-  :desc "transpose sexp" :no "M-a" #'sp-transpose-sexp)
+  :desc "transpose sexp" :no "M-a" #'evil-beginning-of-line)
 
  (map!
-  :g "C-a" nil
-  :desc "copy mark" :no "C-a" #'sp-copy-sexp)
+  :g "M-e" nil
+  :desc "copy mark" :no "M-e" #'evil-end-of-line-or-visual-line)
+
+(map!
+    :g "M-j" nil
+    :desc "Move sexp below" :n "M-j"#'sp-push-hybrid-sexp)
+(map!
+    :g "M-k" nil
+    :desc "Move sexp up" :n "M-k"#'sp-transpose-hybrid-sexp)
 #+end_src
 
 **** Yanking
