@@ -826,11 +826,37 @@ information retrieved from files created by the keychain script."
  :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
 
 (map!
-        :g "M-{" nil
-        :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
+ :g "M-o" nil
+ :desc "swap back to cursor" :n "M-o" #'evil-jump-backward-swap)
+
+(map!
+ :g "C-M-o" nil
+ :desc "mark pos to quick return" :n "C-M-o" #'better-jumper-set-jump)
+(defun my-cool-jump ()
+  (interactive)
+  ( progn
+    (back-to-indentation)
+    (evil-end-of-line-or-visual-line)
+    (sp-next-sexp) ))
+(map!
+ :g "C-o" nil
+ :desc "Jmp to function defs" :n "C-o" #'my-cool-jump)
+(defun my-2-cool-jump ()
+  (interactive)
+  (progn
+    (evil-beginning-of-line)
+    (sp-backward-down-sexp)
+    (sp-backward-up-sexp)
+    (back-to-indentation)))
+(map!
+ :g "C-a" nil
+ :desc "mark pos to quick return" :n "C-a" #'my-2-cool-jump)
+(map!
+ :g "C-s" nil
+ :desc "search symbol at point" :n "C-s" #'isearch-forward-symbol-at-point)
 #+end_src
 
-**** Killing sexp
+**** Readonly manipulation sexp
 #+begin_src elisp
 (map!
  :g "C-M-k" nil
