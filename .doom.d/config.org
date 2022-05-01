@@ -761,28 +761,32 @@ information retrieved from files created by the keychain script."
 #+begin_src emacs-lisp
 (map!
     :g "C-M-v" nil
-    :desc "Move out function hierarchy" :n "M-v" #'sp-backward-up-sexp)
+    :desc "Move out function hierarchy" :n "C-M-v" #'sp-backward-up-sexp)
 (map!
     :g "M-v" nil
     :desc "Move into function hierarchy" :n "M-v" #'sp-down-sexp)
-
+(evil-define-motion evil-prev-close-brackets (count)
+"Go to [count] next unmatched '}'."
+:type exclusive
+(evil-up-paren ?\} ?\) (- (or count 1)))
+)
 (map!
         :g "C-M-r" nil
-        :desc "Move outside of function hierarchy" :n "C-M-r" #'sp-backward-down-sexp)
+        :desc "Move outside of function hierarchy" :n "C-M-r" #'evil-prev-close-brackets)
 (map!
         :g "C-M-/" nil
         :desc "previous in context" :n "C-M-/" #'evil-backward-paragraph)
 (map!
-        :g "C-/"
+        :g "M-/"
         :desc "next context" :n "C-/" #'evil-forward-paragraph)
 
 (map!
-        :g "C-M-f" nil
-        :desc "Move below" :n "C-M-f" #'sp-forward-symbol)
+        :g "C-M-n" nil
+        :desc "Move below" :n "C-M-n" #'sp-backward-symbol)
 
 (map!
-        :g "M-f" nil
-        :desc "Move up" :n "M-f" #'sp-backward-symbol)
+        :g "M-n" nil
+        :desc "Move up" :n "M-n" #'sp-forward-symbol)
 #+end_src
 **** Same depth movement
 #+begin_src emacs-lisp
@@ -809,10 +813,18 @@ information retrieved from files created by the keychain script."
 (map!
  :g "C-M-s" nil
  :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
-;; (map!
-;;         :g "C-M-r" nil
-;;         :desc "next symbol" :n "C-M-r" #'evil-previous-open-brace)
-
+(map!
+        :g "C-M-c" nil
+        :desc "next symbol" :n "C-M-c" #'evil-previous-open-brace)
+(evil-define-motion evil-next-open-paren (count)
+"Go to [count] next unmatched '{'."
+:type exclusive
+(forward-char)
+(evil-up-paren ?\{ ?\{ (or count 1))
+)
+(map!
+        :g "M-c" nil
+        :desc "prev parethesis" :n "M-c" #'evil-next-open-paren)
 (map!
  :g "M-r" nil
  :desc "prev context" :n "M-r" #'evil-next-close-brace)
@@ -895,6 +907,14 @@ information retrieved from files created by the keychain script."
         :desc "fold-toggle" :n "z g" #'+fold/toggle )
 (map!
         :desc "fold-open" :n "z G" #'+fold/close)
+#+end_src
+
+**** Buffering :)
+#+begin_src emacs-lisp
+(map! :g "M->" nil
+      :desc "buffer-next" :n "M->" #'switch-to-prev-buffer)
+(map! :g "M-<" nil
+      :desc "buffer-next" :n "M-<" #'switch-to-next-buffer)
 #+end_src
 *** Mode interface
 #+begin_src emacs-lisp
