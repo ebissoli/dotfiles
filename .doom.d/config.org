@@ -807,19 +807,23 @@ information retrieved from files created by the keychain script."
 **** Symbol jumping
 #+begin_src emacs-lisp
 (map!
-        :g "C-M-s" nil
-        :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
-(map!
-        :g "C-M-r" nil
-        :desc "next symbol" :n "C-M-r" #'down-list)
+ :g "C-M-s" nil
+ :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
+;; (map!
+;;         :g "C-M-r" nil
+;;         :desc "next symbol" :n "C-M-r" #'evil-previous-open-brace)
 
 (map!
-        :g "M-r" nil
-        :desc "prev symbol" :n "M-r" #'up-list)
+ :g "M-r" nil
+ :desc "prev context" :n "M-r" #'evil-next-close-brace)
 
 (map!
-        :g "M-[" nil
-        :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
+ :g "M-[" nil
+ :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
+
+(map!
+ :g "M-{" nil
+ :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
 
 (map!
         :g "M-{" nil
