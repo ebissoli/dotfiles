@@ -433,6 +433,14 @@ mark "monitor", \
 move to scratchpad, \
 [con_mark="monitor"]  scratchpad show
 
+for_window [app_id="audiomanagement"] floating enable, \
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "audiomanagement", \
+move to scratchpad, \
+[con_mark="audiomanagement"]  scratchpad show
+
 for_window [title="foot-debug"] floating enable, \
 border pixel 5, \
 resize set 50 ppt 60 ppt, \
