@@ -375,7 +375,7 @@ for_window [app_id="brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default"] {
 }
 
 bindsym $mod+Ctrl+d exec (swaymsg "[app_id=notes] scratchpad show") || exec $term -a notes
-bindsym $mod+Ctrl+n exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
+bindsym $mod+Ctrl+r exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
 bindsym $mod+Ctrl+t exec (swaymsg "[app_id=monitor] scratchpad show") || exec $term -a monitor
 bindsym $mod+Ctrl+f exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term -a dropdown
 for_window [app_id="dropdown"] floating enable, \
