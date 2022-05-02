@@ -238,7 +238,7 @@ repeat_rate 50
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
 
 
 #
