@@ -358,11 +358,8 @@ exec '~/.cargo/bin/swayrd'
 #
 bindsym $mod+period exec '$switcher switch-window'
 bindsym $mod+Tab exec '$switcher switch-to-urgent-or-lru-window'
-bindsym $mod+bracketright exec '$switcher next-window'
-bindsym $mod+bracketleft exec '$switcher prev-window'
-bindsym $mod+Ctrl+Space exec '$switcher switch-workspace-or-window'
 bindsym $mod+c exec '$switcher execute-swayr-command'
-
+bindsym $mod+Shift+r exec '$switcher swap-focused-with'
 
 #
 # Automation
