@@ -934,11 +934,13 @@ information retrieved from files created by the keychain script."
 
 (map!
         :map magit-mode-map
-        :desc "Stage with s" :vi "s" 'magit-stage)
+        :desc "Stage with s" :vi "s" #'magit-stage)
 
 (map!
         :map magit-mode-map
-        :desc "Unstage with u" :vi "u" 'magit-unstage)
+        :desc "Unstage with u" :vi "u" #'magit-unstage)
+(map!
+        :g "Paste with p" :in "C-S-v" #'evil-paste-after)
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
