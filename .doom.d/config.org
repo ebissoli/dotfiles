@@ -1010,6 +1010,19 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
 (setq emms-add-directory-tree "~/Music")
+(map! :map emms-playlist-mode-map
+      :n "r" #'emms-random)
+(map! (:map emms-browser-mode-map
+      :n "r" #'emms-random
+      :n "h" #'emms-browser-collapse-all
+      :n "3" #'emms-browser-expand-to-level-3
+      :n "2" #'emms-browser-expand-to-level-2
+      :n "4" #'emms-browser-expand-to-level-4
+      :n "l" #'emms-browser-expand-one-level
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :n "g" #'emms-browse-by-genre
+      :n "a" #'emms-browse-by-artist
+      :n "A" #'emms-browse-by-album))
 #+end_src
 
 ** Folds
