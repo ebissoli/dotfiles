@@ -135,3 +135,5 @@
 (package! flyspell-correct-popup)
 (package! annotate)
 (package! cucumber)
+(package! elmacro)
+(package! zones)
