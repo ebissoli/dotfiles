@@ -1055,6 +1055,7 @@ _h_ decrease width    _l_ increase width
 #+end_src
 ** Text maps
 #+begin_src emacs-lisp
+(evil-set-initial-state 'magit-status-mode 'normal)
 #+end_src
 ** Preferences
 #+begin_src emacs-lisp
