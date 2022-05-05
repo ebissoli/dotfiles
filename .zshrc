@@ -100,7 +100,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 #plugins=(firewalld zsh-syntax-highlighting zsh-autosuggestions git)
 #
 plugins=(firewalld
-         zsh-vi-mode
+         #zsh-vi-mode
          fzf-tab
          zsh-syntax-highlighting
          zsh-autosuggestions
