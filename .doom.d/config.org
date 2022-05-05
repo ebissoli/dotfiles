@@ -1041,6 +1041,12 @@ _h_ decrease width    _l_ increase width
         modus-themes-links '(neutral-underline faint background italic)
         modus-themes-prompts '(intense))
 #+end_src
+** Emojis
+#+begin_src emacs-lisp
+(after! emojify
+  (setq emojify-display-style 'ascii))
+#+end_src
+
 * EVIL mode
 
 ** Text objects
