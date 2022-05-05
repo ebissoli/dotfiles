@@ -49,7 +49,7 @@
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       Zen               ; Distraction-free coding or writing
+       zen               ; Distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
