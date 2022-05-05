@@ -931,6 +931,14 @@ information retrieved from files created by the keychain script."
 
 (map!
         :desc "Show line numbers" :n "z '" #'menu-bar--display-line-numbers-mode-absolute)
+
+(map!
+        :map magit-mode-map
+        :desc "Stage with s" :vi "s" 'magit-stage)
+
+(map!
+        :map magit-mode-map
+        :desc "Unstage with u" :vi "u" 'magit-unstage)
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
