@@ -299,7 +299,7 @@ alias rm="gomi"
 alias btm="btm --battery --mem_as_value"
 
 edit() {
-    zi $1 && vim $(fzf --query "$2") && cd 
+    zi $1 && vims $(fzf --query "$2") && cd
 }
 restart-emacs() {
     killall "emacs" && emacs --daemon && emacsclient -t $1
@@ -352,3 +352,5 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f "/home/enzobissoli/.ghcup/env" ] && source "/home/enzobissoli/.ghcup/env" # ghcup-env
+if [ -e /home/enzobissoli/.nix-profile/etc/profile.d/nix.sh ]; then . /home/enzobissoli/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
