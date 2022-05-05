@@ -840,6 +840,14 @@ information retrieved from files created by the keychain script."
 (map!
  :g "M-o" nil
  :desc "swap back to cursor" :n "M-o" #'evil-jump-backward-swap)
+(map!
+ :g "M-," nil
+ :desc "jmp next arg" :n "M-," #'evil-jump-forward)
+
+(map!
+ :g "C-M-," nil
+ :desc "jmp next arg" :n "C-M-," #'evil-jump-backward)
+
 
 (map!
  :g "C-M-o" nil
