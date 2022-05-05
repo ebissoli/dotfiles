@@ -323,6 +323,9 @@ profile_status() {
     gdbus introspect --system --dest net.hadess.PowerProfiles --object-path /net/hadess/PowerProfiles
 }
 
+rgn() {
+    rg $1 --no-ignore
+}
 # plugin config
 
 # disable sort when completing `git checkout`
