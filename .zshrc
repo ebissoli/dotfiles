@@ -100,7 +100,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 #plugins=(firewalld zsh-syntax-highlighting zsh-autosuggestions git)
 #
 plugins=(firewalld
-         zsh-vi-mode
+         #zsh-vi-mode
          fzf-tab
          zsh-syntax-highlighting
          zsh-autosuggestions
@@ -135,6 +135,7 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+alias ncmpcpp='ncmpcpp -b .config/ncmpcpp/bindings'
 # keybinds
 bindkey -v
 enable-fzf-tab
@@ -298,7 +299,7 @@ alias rm="gomi"
 alias btm="btm --battery --mem_as_value"
 
 edit() {
-    zi $1 && vim $(fzf --query "$2") && cd 
+    zi $1 && vims $(fzf --query "$2") && cd
 }
 restart-emacs() {
     killall "emacs" && emacs --daemon && emacsclient -t $1
@@ -322,6 +323,9 @@ profile_status() {
     gdbus introspect --system --dest net.hadess.PowerProfiles --object-path /net/hadess/PowerProfiles
 }
 
+rgn() {
+    rg $1 --no-ignore
+}
 # plugin config
 
 # disable sort when completing `git checkout`
@@ -348,3 +352,10 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f "/home/enzobissoli/.ghcup/env" ] && source "/home/enzobissoli/.ghcup/env" # ghcup-env
+if [ -e /home/enzobissoli/.nix-profile/etc/profile.d/nix.sh ]; then . /home/enzobissoli/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+bindkey -e
+eval "$(direnv hook zsh)"

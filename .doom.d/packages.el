@@ -59,8 +59,8 @@
 ; (unpin! bibtex-completion helm-bibtex ivy-bibtex)
 
 
-(package! mathpix.el
-  :recipe (:host github :repo "jethrokuan/mathpix.el"))
+;; (package! mathpix.el
+;;   :recipe (:host github :repo "jethrokuan/mathpix.el"))
 ;  :custom ((mathpix-app-id "enzogurgel15_gmail_com_46b290_4aff5e")
 ;           (mathpix-app-key "b27089134db4c80fef3b"))
 ;  :bind
@@ -72,7 +72,7 @@
 ;; (package! literate-calc-mode)
 (package! keycast-mode
   :recipe (:host github :repo "tarsius/keycast"))
-(package! auto-yasnippet)
+;; (package! auto-yasnippet)
 
 (package! verilog-mode)
 (package! spice-mode
@@ -81,7 +81,7 @@
   :recipe (:host github :repo "fpiper/ob-spice"))
 (package! matlab-mode)
 (package! nov)
-(package! persist)
+;;(package! persist)
 ;; (package! org-gcal)
 (package! request)
 (package! alert)
@@ -123,12 +123,17 @@
 (package! graphviz-dot-mode)
 (unpin! org-roam)
 (package! org-roam-ui)
-(package! org-notify)
-(package! csv-mode)
-(package! xwwp)
-(package! webkit
-  :recipe (:host github
-           :repo "akirakyle/emacs-webkit"))
+;;(package! org-notify)
+;;(package! csv-mode)
+;;(package! xwwp)
+;;(package! webkit
+;;  :recipe (:host github
+;;           :repo "akirakyle/emacs-webkit"))
 (package! mu4e-alert :disable t)
 (package! telega)
 (package! doct)
+(package! flyspell-correct-popup)
+(package! annotate)
+(package! cucumber)
+(package! elmacro)
+(package! zones)

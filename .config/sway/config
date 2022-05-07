@@ -5,9 +5,9 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Aesthetics
-gaps outer 2
-gaps inner 2
-
+gaps outer 0
+gaps inner 0
+default_border pixel 2
 
 ### Variables
 # Logo key. Use Mod1 for Alt.
@@ -57,8 +57,7 @@ exec swayidle -w \
          timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && playerctl -a play' \
          timeout 3600 'systemctl suspend' \
          before-sleep 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
-         after-resume 'swaymsg "output * dpms on"' \
-         unlock 'playerctl -a play'
+         after-resume 'swaymsg "output * dpms on"'
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -111,7 +110,7 @@ repeat_rate 50
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' ' mpc stop | killall mpd | swaymsg exit'
 
 
 #
@@ -144,27 +143,39 @@ repeat_rate 50
 # Workspaces:
 #
     # # Switch to workspace
-    bindsym $mod+1 workspace 1ℰ
-    bindsym $mod+2 workspace 2B
-    bindsym $mod+3 workspace 3W
-    bindsym $mod+4 workspace 4M
-    bindsym $mod+5 workspace 5D
-    bindsym $mod+6 workspace 6E
-    bindsym $mod+7 workspace 7R
-    bindsym $mod+8 workspace 8C
-    bindsym $mod+9 workspace 9F
-    bindsym $mod+0 workspace 0T
+    bindsym --no-repeat $mod+1 workspace 1; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+2 workspace 2 ; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+3 workspace 3 ; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+4 workspace 4 ; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+5 workspace 5 ; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+6 workspace 6 ; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+7 workspace 7; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+8 workspace 8; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+9 workspace 9; exec "echo 1 > /tmp/sovpipe"
+    bindsym --no-repeat $mod+0 workspace 10; exec "echo 1 > /tmp/sovpipe"
+
+    bindsym --release $mod+1 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+2 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+3 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+4 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+5 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+6 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+7 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+8 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+9 exec "echo 0 > /tmp/sovpipe"
+    bindsym --release $mod+0 exec "echo 0 > /tmp/sovpipe"
+
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1ℰ
-    bindsym $mod+Shift+2 move container to workspace 2B
-    bindsym $mod+Shift+3 move container to workspace 3W
-    bindsym $mod+Shift+4 move container to workspace 4M
-    bindsym $mod+Shift+5 move container to workspace 5D
-    bindsym $mod+Shift+6 move container to workspace 6E
-    bindsym $mod+Shift+7 move container to workspace 7R
-    bindsym $mod+Shift+8 move container to workspace 8C
-    bindsym $mod+Shift+9 move container to workspace 9F
-    bindsym $mod+Shift+0 move container to workspace 0T
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 0
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
@@ -227,7 +238,7 @@ repeat_rate 50
     bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
 
 
 #
@@ -258,7 +269,7 @@ repeat_rate 50
     bindsym $mod+Ctrl+grave+6 mark "dropdown", move scratchpad
     bindsym $mod+Ctrl+grave+7 mark "emacs", move scratchpad
     bindsym $mod+Ctrl+grave+8 mark "htop", move scratchpad
-    bindsym $mod+Ctrl+grave+9 mark "extra4", move scratchpad
+    bindsym $mod+Ctrl+grave+9 mark "debug", move scratchpad
 
     bindsym $mod+Ctrl+1 [con_mark="music"] scratchpad show
     bindsym $mod+Ctrl+2 [con_mark="social"] scratchpad show
@@ -268,7 +279,7 @@ repeat_rate 50
     bindsym $mod+Ctrl+6 [con_mark="dropdown"] scratchpad show
     bindsym $mod+Ctrl+7 [con_mark="emacs"] scratchpad show
     bindsym $mod+Ctrl+8 [con_mark="htop"] scratchpad show
-    bindsym $mod+Ctrl+9 [con_mark="extra4"] scratchpad show
+    bindsym $mod+Ctrl+9 [con_mark="debug"] scratchpad show
 
 
 #
@@ -306,9 +317,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec 'playerctl play-pause | mpc toggle'
+bindsym XF86AudioNext exec 'playerctl next | mpc next'
+bindsym XF86AudioPrev exec 'playerctl previous | mpc prev'
 bindsym XF86Search exec bemenu-run
 # Screenshot keybinds
 bindsym Print exec grim
@@ -317,16 +328,18 @@ bindsym Shift+Print exec grim -g "$(slurp)"
 bindsym $mod+BackSpace exec 'makoctl dismiss'
 bindsym $mod+Delete exec $lockman
 # Aplications Keybinds
-bindsym $mod+n exec brave-browser
+bindsym $mod+g exec brave-browser
 bindsym $mod+F10 exec 'wf-recorder -g "$(slurp)"'
 bindsym $mod+F11 exec 'killall -s INT "wf-recorder"'
-bindsym $mod+p exec 'pkill -USR1 gammastep || gammastep -O 4000'
+bindsym $mod+z exec 'pkill -USR1 gammastep || gammastep -O 4000'
 
 #
 # Auto startup
 #
 #
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec 'systemctl enable --user mpd.service | mpd'
+exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov
 exec 'eval "$(ssh-agent -s)"'
 exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
@@ -339,18 +352,14 @@ exec mako
 exec 'lxpolkit'
 exec '~/.cargo/bin/swayrd'
 
-
 #
 # Swayr
 #
 #
 bindsym $mod+period exec '$switcher switch-window'
 bindsym $mod+Tab exec '$switcher switch-to-urgent-or-lru-window'
-bindsym $mod+bracketright exec '$switcher next-window'
-bindsym $mod+bracketleft exec '$switcher prev-window'
-bindsym $mod+Ctrl+Space exec '$switcher switch-workspace-or-window'
 bindsym $mod+c exec '$switcher execute-swayr-command'
-
+bindsym $mod+Shift+r exec '$switcher swap-focused-with'
 
 #
 # Automation
@@ -366,9 +375,32 @@ for_window [app_id="brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default"] {
 }
 
 bindsym $mod+Ctrl+d exec (swaymsg "[app_id=notes] scratchpad show") || exec $term -a notes
-bindsym $mod+Ctrl+n exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
-bindsym $mod+Ctrl+t exec (swaymsg "[app_id=monitor] scratchpad show") || exec $term -a monitor
+bindsym $mod+Ctrl+g exec (swaymsg "[app_id=audiomanagement] scratchpad show") || exec $term -a audiomanagement
+bindsym $mod+Ctrl+r exec (swaymsg "[app_id=calendar] scratchpad show") || exec $term -a calendar
+bindsym $mod+Ctrl+b exec (swaymsg "[app_id=monitor] scratchpad show") || exec $term -a monitor
 bindsym $mod+Ctrl+f exec (swaymsg "[app_id=dropdown] scratchpad show") || exec $term -a dropdown
+#
+# Marks
+#
+bindsym $mod+Ctrl+a mark --toggle 'a'
+bindsym $mod+a exec '$switcher switch-to-mark-or-urgent-or-lru-window a'
+bindsym $mod+Shift+A swap container with mark 'a'
+bindsym $mod+Ctrl+o mark --toggle 'o'
+bindsym $mod+o exec '$switcher switch-to-mark-or-urgent-or-lru-window o'
+bindsym $mod+Shift+O swap container with mark 'o'
+bindsym $mod+Ctrl+q mark --toggle 'q'
+bindsym $mod+q exec '$switcher switch-to-mark-or-urgent-or-lru-window q'
+bindsym $mod+Shift+Q swap container with mark 'q'
+bindsym $mod+Ctrl+t mark --toggle 't'
+bindsym $mod+t exec '$switcher switch-to-mark-or-urgent-or-lru-window t'
+bindsym $mod+Shift+T swap container with mark 't'
+bindsym $mod+Ctrl+n mark --toggle 'n'
+bindsym $mod+n exec '$switcher switch-to-mark-or-urgent-or-lru-window n'
+bindsym $mod+Shift+N swap container with mark 'n'
+bindsym $mod+Ctrl+m mark --toggle 'm'
+bindsym $mod+m exec '$switcher switch-to-mark-or-urgent-or-lru-window m'
+bindsym $mod+Shift+M swap container with mark 'm'
+
 for_window [app_id="dropdown"] floating enable, \
     border pixel 5, \
     resize set 50 ppt 60 ppt, \
@@ -383,23 +415,39 @@ for_window [app_id="notes"] floating enable, \
     move position center, \
     mark "notes", \
     move to scratchpad, \
-    [con_mark="notes"]  scratchpad show
+[con_mark="notes"]  scratchpad show
 
 for_window [app_id="calendar"] floating enable, \
-    border pixel 5, \
-    resize set 50 ppt 60 ppt, \
-    move position center, \
-    mark "calendar", \
-    move to scratchpad, \
-    [con_mark="calendar"]  scratchpad show
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "calendar", \
+move to scratchpad, \
+[con_mark="calendar"]  scratchpad show
 
 for_window [app_id="monitor"] floating enable, \
-    border pixel 5, \
-    resize set 50 ppt 60 ppt, \
-    move position center, \
-    mark "monitor", \
-    move to scratchpad, \
-    [con_mark="monitor"]  scratchpad show
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "monitor", \
+move to scratchpad, \
+[con_mark="monitor"]  scratchpad show
+
+for_window [app_id="audiomanagement"] floating enable, \
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "audiomanagement", \
+move to scratchpad, \
+[con_mark="audiomanagement"]  scratchpad show
+
+for_window [title="foot-debug"] floating enable, \
+border pixel 5, \
+resize set 50 ppt 60 ppt, \
+move position center, \
+mark "debug", \
+move to scratchpad, \
+[con_mark="debug"]  scratchpad show
 
 for_window [title="YouTube"] inhibit_idle focus
 for_window [title="Meet"] inhibit_idle focus
@@ -420,5 +468,7 @@ bar {
     #    inactive_workspace #32323200 #32323200 #5c5c5c
    # }
 }
-exec 'swaybg -i $HOME/.config/Wallpaper/macDead.png -m fill'
+#
+# Post launch routine
+exec 'swaybg -i $HOME/.config/Wallpaper/catGhost.jpg -m fill'
 include /etc/sway/config.d/*

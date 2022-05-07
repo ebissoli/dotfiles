@@ -3,10 +3,10 @@
     "width": "2",
     "margin": "0",
     "margin-right": "0",
-    "position": "bottom",
-    "modules-left": ["sway/workspaces","sway/window"],
-    "modules-center": ["idle_inhibitor","cpu","memory","tray"],
-    "modules-right": ["network","temperature","pulseaudio","backlight","battery","clock"],
+    "position": "top",
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["sway/window","mpd"],
+    "modules-right": ["idle_inhibitor","cpu","memory","tray","network","temperature","pulseaudio","backlight","battery","clock"],
 
     "sway/window": {
         "max-length": 50
@@ -19,11 +19,15 @@
     "all-outputs": true,
     "format": "{name}: {icon}",
     "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
+        "1": "Emacs",
+        "2": "Browser",
+        "3": "Work",
+        "4": "Monitor",
+        "5": "Draw",
+        "6": "Email",
+        "7": "RSS",
+        "8": "PDF",
+        "9": "Timetable",
         "urgent": "",
         "focused": "",
         "default": ""
@@ -104,5 +108,12 @@
             "icon-size": 21,
             "spacing": 10
     },
+
+    "mpd": {
+        "format": "{title}",
+        "format-disconnected": "",
+        "format-stopped":"",
+        "interval": 10,
+},
 
 }

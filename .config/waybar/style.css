@@ -4,15 +4,15 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: DM Mono;
+    font-family: PragamaPro Mono;
     font-size: 12px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(0, 8, 20, 1.0);
+    background-color: rgba(240, 240, 240, 1.0);
     border-bottom: 3px solid rgba(0, 53, 102, 0.5);
-    color: #ffffff;
+    color: #000000;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -31,7 +31,7 @@ window#waybar {
 	color: @dark;
 }
 #window {
-	color: @greenish;
+	color: rgba(0,0,0,0.5);
 	border-radius: 10px;
 	padding: 0px 8px 0px 8px;
 }
@@ -44,14 +44,14 @@ window#waybar {
 	background-color: @darker;
 	box-shadow: inherit;
 	/* color: @yellow; */
-  color: #ffffff;
+  color: #000000;
   opacity:0.5;
 }
 #workspaces button.focused, #tags button.focused {
 	/* background-color: ; */
   font-weight:bold;
 	/* color: @yellow; */
-  color: #ffffff;
+  color: #000000;
 }
 #tags button.focused {
   font-weight: 600;

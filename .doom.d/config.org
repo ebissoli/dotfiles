@@ -15,16 +15,19 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two
-(setq doom-font (font-spec :family "Anonymice Nerd Font" :size 14 :weight 'regular) ;; use :weight parameter for something other than regular
-      doom-variable-pitch-font (font-spec :family "Anonymice Nerd Font" :size 14 :weight 'regular))
+(setq doom-font (font-spec :family "PragmataPro" :size 12) ;; use :weight parameter for something other than regular
+      doom-variable-pitch-font (font-spec :family "PragmataPro" :size 13 ))
 
-(setq doom-unicode-font (font-spec :family "DM Mono"))
+(setq doom-unicode-font (font-spec :family "PragmataPro Mono"))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'modus-operandi)
-
-(setq display-line-numbers-type t)
+(setq doom-theme 'doom-meltbus)
+#+end_src
+** Company
+#+begin_src emacs-lisp
+(after! company
+  (setq company-idle-delay 0.3))
 #+end_src
 
 * ORG
@@ -46,18 +49,18 @@
 ;;If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
-(setq org-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-directory "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")
 #+end_src
 ** Org noter
 #+begin_src elisp
-(setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;basic org config
+(setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")) ;;basic org config
 #+end_src
 ** Org Capture
 #+begin_src emacs-lisp
 (after! (:or org-capture org-agenda org)
 (setq org-capture-templates
 (doct '(("UNI" :keys "u"
-:file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+:file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
 :prepend t
     :template ("* %{todo-state} %?"
                 "%i %a")
@@ -87,27 +90,27 @@
                 :hook (lambda () (message "\"infraSW\" selected.")))
                 ))
     ("Bookmarks" :keys "b"
-    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/org/20220409134224-bookmarks.org"
+    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/20220409134224-bookmarks.org"
     :append t
     :type entry
     :template ("* %^{Description} %?"
                 "%i"))
     ("Appointments" :keys "p"
-    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
     :append t
     :headline "Appointments"
     :type entry
     :template ("* %^{Description} %?"
                 "%i"))
     ("Projects" :keys "P"
-    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
     :append t
     :headline "Projects"
     :type entry
     :template ("* %^{Description} %?"
                 "%i"))
     ("Later" :keys "l"
-    :file "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org"
+    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
     :append t
     :headline "Later"
     :type entry
@@ -115,16 +118,16 @@
                 "%i"))
     ))))
 #+end_src
-** Deft
-#+begin_src elisp
-(use-package deft
-:after org
-:custom
-(deft-recursive t)
-(deft-use-filter-string-for-filename t)
-(deft-default-extension "org")
-(deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
-#+end_src
+# ** Deft
+# #+begin_src elisp
+# (use-package deft
+# :after org
+# :custom
+# (deft-recursive t)
+# (deft-use-filter-string-for-filename t)
+# (deft-default-extension "org")
+# (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
+# #+end_src
 
 ;; Function to calculate relative day to today
 ** Agenda
@@ -330,18 +333,18 @@
             ))
           )))
 
-(defun my-open-calendar ()
-  (interactive)
-  (cfw:open-calendar-buffer
-   :contents-sources
-   (list
-    (cfw:org-create-source "Green")  ; org-agenda source
-    (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-    )))
+;; (defun my-open-calendar ()
+;;   (interactive)
+;;   (cfw:open-calendar-buffer
+;;    :contents-sources
+;;    (list
+;;     (cfw:org-create-source "Green")  ; org-agenda source
+;;     (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
+;;     )))
 #+end_src
 ** Roam
 #+begin_src elisp
-(setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")
+(setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")
 (setq org-roam-completion-everywhere t)
 (require 'org-roam-protocol)
 (setq org-roam-capture-ref-templates
@@ -371,9 +374,8 @@
 (setq org-pomodoro-short-break-length 5)
 (setq org-pomodoro-long-break-length 25)
 (setq org-pomodoro-clock-break 60)
-(setq org-pomodoro-long-break-frequency 6)
+(setq org-pomodoro-long-break-frequency 8)
 (setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
-#+end_src
 #+end_src
 * EMAIL
 #+begin_src elisp
@@ -415,6 +417,56 @@
 #+end_src
 
 * PROGRAMMING
+** LSP
+#+begin_src emacs-lisp
+(after! lsp-mode
+  (setq lsp-enable-symbol-highlighting nil
+        lsp-enable-suggest-server-download nil))
+(after! lsp-ui-mode
+  (setq lsp-ui-sideline-enable nil
+        lsp-ui-doc-enable nil))
+#+end_src
+*** DAP
+#+begin_src emacs-lisp
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"          "n" #'dap-next
+      :desc "dap step in"       "i" #'dap-step-in
+      :desc "dap step out"      "o" #'dap-step-out
+      :desc "dap continue"      "c" #'dap-continue
+      :desc "dap hydra"         "h" #'dap-hydra
+      :desc "dap debug restart" "r" #'dap-debug-restart
+      :desc "dap debug"         "s" #'dap-debug
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent"  "r" #'dap-debug-recent
+      :desc "dap debug last"    "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+(use-package dap-mode
+  :custom
+  ;; (lsp-enable-dap-auto-configure nil)
+  (dap-external-terminal '("foot" "-T" "foot-debug" "--hold" "-e" "sh" "-c" "exec {command}"))
+  :config
+  (setq dap-auto-configure-features '(locals tooltip sessions expressions))
+  )
+
+#+end_src
 ** Org-Babel
 #+begin_src elisp
 ;; active Babel languages
@@ -432,6 +484,15 @@
    (haskell .t)
    )
  ) ;; programming -org-babel
+#+end_src
+** SQL
+#+begin_src emacs-lisp
+(add-hook 'sql-mode-hook 'lsp)
+(setq lsp-sqls-workspace-config-path nil)
+(setq lsp-sqls-connections
+    '(((driver . "mysql") (dataSourceName . "yyoncho:local@tcp(localhost:3306)/foo"))
+      ((driver . "mssql") (dataSourceName . "Server=localhost;Database=sammy;User Id=yyoncho;Password=hunter2;"))
+      ((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=ebissoli dbname=gdiProj sslmode=disable"))))
 #+end_src
 ** Latex
 #+begin_src elisp
@@ -479,7 +540,18 @@ latter - its output."
 (setq lsp-julia-package-dir nil)
 (setq lsp-julia-default-environment "~/.julia/environments/v1.0") ;; programming - julia
 #+end_src
-
+** Python
+#+begin_src emacs-lisp
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy)
+      (setq dap-python-terminal "foot -e python")
+  (setq dap-python-executable "python"))
+#+end_src
+** Typescript/Node/Js
+#+begin_src emacs-lisp
+(require 'dap-chrome)
+(require 'dap-node)
+#+end_src
 ** Zig
 #+begin_src elisp
 (use-package! zig-mode
@@ -633,6 +705,11 @@ information retrieved from files created by the keychain script."
     "-s "))
 #+end_src
 
+** Disable line-numbers fix
+#+begin_src emacs-lisp
+(setq display-line-numbers-type nil)
+#+end_src
+
 * KEYBINDS
 *** Windows
 **** Quickly change windows
@@ -642,6 +719,28 @@ information retrieved from files created by the keychain script."
         :prefix "w"
         :desc "Quick window switch" :n "z" #'ace-window)
 
+#+end_src
+**** Quickly swap windows
+#+begin_src emacs-lisp
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state down" :n "C-M-j" #'windmove-swap-states-down)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state up" :n "C-M-k" #'windmove-swap-states-up)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state left" :n "C-M-h" #'windmove-swap-states-left)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state right" :n "C-M-l" #'windmove-swap-states-right)
 #+end_src
 **** Acess elfeed-mode
 #+begin_src elisp
@@ -661,26 +760,33 @@ information retrieved from files created by the keychain script."
 **** Move outer of inner of function
 #+begin_src emacs-lisp
 (map!
+    :g "C-M-v" nil
+    :desc "Move out function hierarchy" :n "C-M-v" #'sp-backward-up-sexp)
+(map!
     :g "M-v" nil
-    :desc "Move into function hierarchy" :n "M-v" #'sp-backward-up-sexp)
+    :desc "Move into function hierarchy" :n "M-v" #'sp-down-sexp)
+(evil-define-motion evil-prev-close-brackets (count)
+"Go to [count] next unmatched '}'."
+:type exclusive
+(evil-up-paren ?\} ?\) (- (or count 1)))
+)
+(map!
+        :g "C-M-r" nil
+        :desc "Move outside of function hierarchy" :n "C-M-r" #'evil-prev-close-brackets)
+(map!
+        :g "C-M-/" nil
+        :desc "previous in context" :n "C-M-/" #'evil-backward-paragraph)
+(map!
+        :g "M-/"
+        :desc "next context" :n "C-/" #'evil-forward-paragraph)
 
 (map!
-        :g "C-M-v" nil
-        :desc "Move outside of function hierarchy" :n "C-M-v" #'sp-backward-down-sexp)
-(map!
-        :g "C-M-]" nil
-        :desc "previous in context" :n "C-M-]" #'sp-beginning-of-next-sexp)
-(map!
-        :g "M-]"
-        :desc "next context" :n "M-]" #'sp-end-of-previous-sexp)
+        :g "C-M-n" nil
+        :desc "Move below" :n "C-M-n" #'sp-backward-symbol)
 
 (map!
-        :g "C-M-f" nil
-        :desc "Move below" :n "C-M-f" #'sp-forward-symbol)
-
-(map!
-        :g "M-f" nil
-        :desc "Move up" :n "M-f" #'sp-backward-symbol)
+        :g "M-n" nil
+        :desc "Move up" :n "M-n" #'sp-forward-symbol)
 #+end_src
 **** Same depth movement
 #+begin_src emacs-lisp
@@ -705,26 +811,72 @@ information retrieved from files created by the keychain script."
 **** Symbol jumping
 #+begin_src emacs-lisp
 (map!
-        :g "C-M-s" nil
-        :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
+ :g "C-M-s" nil
+ :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
 (map!
-        :g "C-M-r" nil
-        :desc "next symbol" :n "C-M-r" #'down-list)
+        :g "C-M-c" nil
+        :desc "next symbol" :n "C-M-c" #'evil-previous-open-brace)
+(evil-define-motion evil-next-open-paren (count)
+"Go to [count] next unmatched '{'."
+:type exclusive
+(forward-char)
+(evil-up-paren ?\{ ?\{ (or count 1))
+)
+(map!
+        :g "M-c" nil
+        :desc "prev parethesis" :n "M-c" #'evil-next-open-paren)
+(map!
+ :g "M-r" nil
+ :desc "prev context" :n "M-r" #'evil-next-close-brace)
 
 (map!
-        :g "M-r" nil
-        :desc "prev symbol" :n "M-r" #'up-list)
+ :g "M-[" nil
+ :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
 
 (map!
-        :g "M-[" nil
-        :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
+ :g "M-{" nil
+ :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
 
 (map!
-        :g "M-{" nil
-        :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
+ :g "M-o" nil
+ :desc "swap back to cursor" :n "M-o" #'evil-jump-backward-swap)
+(map!
+ :g "M-," nil
+ :desc "jmp next arg" :n "M-," #'evil-jump-forward)
+
+(map!
+ :g "C-M-," nil
+ :desc "jmp next arg" :n "C-M-," #'evil-jump-backward)
+
+
+(map!
+ :g "C-M-o" nil
+ :desc "mark pos to quick return" :n "C-M-o" #'better-jumper-set-jump)
+(defun my-cool-jump ()
+  (interactive)
+  ( progn
+    (back-to-indentation)
+    (evil-end-of-line-or-visual-line)
+    (sp-next-sexp) ))
+(map!
+ :g "C-o" nil
+ :desc "Jmp to function defs" :n "C-o" #'my-cool-jump)
+(defun my-2-cool-jump ()
+  (interactive)
+  (progn
+    (evil-beginning-of-line)
+    (sp-backward-down-sexp)
+    (sp-backward-up-sexp)
+    (back-to-indentation)))
+(map!
+ :g "C-a" nil
+ :desc "mark pos to quick return" :n "C-a" #'my-2-cool-jump)
+(map!
+ :g "C-s" nil
+ :desc "search symbol at point" :n "C-s" #'evil-ex-search-word-forward)
 #+end_src
 
-**** Killing sexp
+**** Readonly manipulation sexp
 #+begin_src elisp
 (map!
  :g "C-M-k" nil
@@ -735,11 +887,18 @@ information retrieved from files created by the keychain script."
 
  (map!
   :g "M-a" nil
-  :desc "transpose sexp" :no "M-a" #'sp-transpose-sexp)
+  :desc "transpose sexp" :no "M-a" #'evil-beginning-of-line)
 
  (map!
-  :g "C-a" nil
-  :desc "copy mark" :no "C-a" #'sp-copy-sexp)
+  :g "M-e" nil
+  :desc "copy mark" :no "M-e" #'evil-end-of-line-or-visual-line)
+
+(map!
+    :g "M-j" nil
+    :desc "Move sexp below" :n "M-j"#'sp-push-hybrid-sexp)
+(map!
+    :g "M-k" nil
+    :desc "Move sexp up" :n "M-k"#'sp-transpose-hybrid-sexp)
 #+end_src
 
 **** Yanking
@@ -757,12 +916,78 @@ information retrieved from files created by the keychain script."
 (map!
         :desc "fold-open" :n "z G" #'+fold/close)
 #+end_src
+
+**** Buffering :)
+#+begin_src emacs-lisp
+(map! :g "M->" nil
+      :desc "buffer-next" :n "M->" #'switch-to-prev-buffer)
+(map! :g "M-<" nil
+      :desc "buffer-next" :n "M-<" #'switch-to-next-buffer)
+#+end_src
 *** Mode interface
 #+begin_src emacs-lisp
 (map!
- :leader
- :prefix "o"
- :desc "Interface for org-gtd" "g" #'org-gtd-capture)
+        :desc "Don't show line numbers" :n "z ," #'menu-bar--display-line-numbers-mode-none)
+
+(map!
+        :desc "Show line numbers" :n "z '" #'menu-bar--display-line-numbers-mode-absolute)
+
+(map!
+        :map magit-mode-map
+        :desc "Stage with s" :vi "s" #'magit-stage)
+
+(map!
+        :map magit-mode-map
+        :desc "Unstage with u" :vi "u" #'magit-unstage)
+(map!
+        :map (minibuffer-local-map minibuffer-local-ns-map minibuffer-local-completion-map minibuffer-local-must-match-map minibuffer-local-isearch-map read-expression-map)
+        :desc "Paste with p" :ineg "C-S-v" #'evil-paste-after)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "show outline" :n "o" #'pdf-outline)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "show search buffer, occur" :n "C-s" #'pdf-occur)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "Zoom in the pdf" :n "=" #'pdf-view-enlarge)
+(map!
+ :map (pdf-view-mode-map
+       :n "_" nil
+ :desc "Zoom out the pdf" :n "_" #'pdf-view-shrink))
+
+(map!
+ :map pdf-view-mode-map
+ :desc "register page the pdf" :n "m" #'pdf-view-position-to-register)
+(map!
+ :map pdf-view-mode-map
+ :desc "register jump page the pdf" :n "`" #'pdf-view-jump-to-register)
+(map!
+ :map pdf-outline-buffer-mode-map
+ :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill)
+(map!
+ :map pdf-outline-buffer-mode-map
+ :desc "  select content view" :n "RET" #'pdf-outline-display-link)
+(map!
+ :map pdf-occur-buffer-mode-map
+ :desc "go to selection view" :n "RET" #'pdf-occur-goto-occurrence)
+(map!
+ :map pdf-occur-buffer-mode-map
+ :desc "view selection " :n "M-RET" #'pdf-occur-view-occurrence)
+(map!
+ :map pdf-view-mode-map
+ :desc "register macro  " :n "q" #'evil-record-macro)
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
@@ -812,6 +1037,9 @@ _h_ decrease width    _l_ increase width
 (setq delete-by-moving-to-trash t) ;; emergency trash can
 
 (after! ranger (setq ranger-override-dired-mode t))
+
+(map! :map dired-mode-map
+      :n "-" 'dired-up-directory)
 #+end_src
 
 ** Forge
@@ -822,6 +1050,50 @@ _h_ decrease width    _l_ increase width
 ** Telega
 #+begin_src elisp
 (setq telega-directory "~/.telega")
+#+end_src
+
+** Emms
+#+begin_src emacs-lisp
+(setq emms-player-list '(emms-player-mpd))
+(setq emms-player-mpd-server-name "localhost")
+(setq emms-player-mpd-server-port "6600")
+(setq emms-player-mpd-music-directory "~/Music")
+(setq emms-add-directory-tree "~/Music")
+(map! :map emms-playlist-mode-map
+      :n "r" #'emms-random)
+(map! (:map emms-browser-mode-map
+      :n "r" #'emms-random
+      :n "h" #'emms-browser-collapse-all
+      :n "3" #'emms-browser-expand-to-level-3
+      :n "2" #'emms-browser-expand-to-level-2
+      :n "4" #'emms-browser-expand-to-level-4
+      :n "l" #'emms-browser-expand-one-level
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :n "g" #'emms-browse-by-genre
+      :n "a" #'emms-browse-by-artist
+      :n "A" #'emms-browse-by-album))
+#+end_src
+
+** Folds
+#+begin_src emacs-lisp
+(add-hook! '(sh-mode-hook conf-mode-hook python-mode-hook c-mode-hook typescript-mode-hook)
+    (vimish-fold-mode 1))
+#+end_src
+
+** Modus-theme
+#+begin_src emacs-lisp
+(setq   modus-themes-inhibit-reload nil
+        modus-themes-bold-constructs t
+        modus-themes-italic-constructs t
+        modus-themes-syntax '(alt-syntax)
+        modus-themes-mixed-fonts t
+        modus-themes-links '(neutral-underline faint background italic)
+        modus-themes-prompts '(intense))
+#+end_src
+** Emojis
+#+begin_src emacs-lisp
+(after! emojify
+  (setq emojify-display-style 'ascii))
 #+end_src
 
 * EVIL mode
@@ -838,4 +1110,13 @@ _h_ decrease width    _l_ increase width
 #+end_src
 ** Text maps
 #+begin_src emacs-lisp
+(evil-set-initial-state 'magit-status-mode 'normal)
+(evil-set-initial-state 'pdf-view-mode 'normal)
+(evil-set-initial-state 'pdf-outline-mode 'normal)
+#+end_src
+** Preferences
+#+begin_src emacs-lisp
+(setq evil-ex-substitute-global t)
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)
 #+end_src
