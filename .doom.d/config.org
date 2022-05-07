@@ -940,7 +940,9 @@ information retrieved from files created by the keychain script."
         :map magit-mode-map
         :desc "Unstage with u" :vi "u" #'magit-unstage)
 (map!
-        :g "Paste with p" :in "C-S-v" #'evil-paste-after)
+        :map (minibuffer-local-map minibuffer-local-ns-map minibuffer-local-completion-map minibuffer-local-must-match-map minibuffer-local-isearch-map read-expression-map)
+        :desc "Paste with p" :ineg "C-S-v" #'evil-paste-after)
+
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
