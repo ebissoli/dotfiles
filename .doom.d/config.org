@@ -873,7 +873,7 @@ information retrieved from files created by the keychain script."
  :desc "mark pos to quick return" :n "C-a" #'my-2-cool-jump)
 (map!
  :g "C-s" nil
- :desc "search symbol at point" :n "C-s" #'isearch-forward-symbol-at-point)
+ :desc "search symbol at point" :n "C-s" #'evil-ex-search-word-forward)
 #+end_src
 
 **** Readonly manipulation sexp
