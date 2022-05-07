@@ -943,6 +943,51 @@ information retrieved from files created by the keychain script."
         :map (minibuffer-local-map minibuffer-local-ns-map minibuffer-local-completion-map minibuffer-local-must-match-map minibuffer-local-isearch-map read-expression-map)
         :desc "Paste with p" :ineg "C-S-v" #'evil-paste-after)
 
+(map!
+ :map pdf-view-mode-map
+ :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "show outline" :n "o" #'pdf-outline)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "show search buffer, occur" :n "C-s" #'pdf-occur)
+
+(map!
+ :map pdf-view-mode-map
+ :desc "Zoom in the pdf" :n "=" #'pdf-view-enlarge)
+(map!
+ :map (pdf-view-mode-map
+       :n "_" nil
+ :desc "Zoom out the pdf" :n "_" #'pdf-view-shrink))
+
+(map!
+ :map pdf-view-mode-map
+ :desc "register page the pdf" :n "m" #'pdf-view-position-to-register)
+(map!
+ :map pdf-view-mode-map
+ :desc "register jump page the pdf" :n "`" #'pdf-view-jump-to-register)
+(map!
+ :map pdf-outline-buffer-mode-map
+ :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill)
+(map!
+ :map pdf-outline-buffer-mode-map
+ :desc "  select content view" :n "RET" #'pdf-outline-display-link)
+(map!
+ :map pdf-occur-buffer-mode-map
+ :desc "go to selection view" :n "RET" #'pdf-occur-goto-occurrence)
+(map!
+ :map pdf-occur-buffer-mode-map
+ :desc "view selection " :n "M-RET" #'pdf-occur-view-occurrence)
+(map!
+ :map pdf-view-mode-map
+ :desc "register macro  " :n "q" #'evil-record-macro)
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
