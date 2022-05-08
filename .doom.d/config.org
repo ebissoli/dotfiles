@@ -1118,6 +1118,9 @@ _h_ decrease width    _l_ increase width
       :ni "p" #'emms-browser-add-tracks-and-play
       :n "g" #'emms-browse-by-genre
       :n "a" #'emms-browse-by-artist
+      :n "RET" #'emms-playlist-mode-play-smart
+      :n "S-<return>" #'emms-pause
+      :n "C-<return>" #'emms-stop
       :n "A" #'emms-browse-by-album))
 #+end_src
 
