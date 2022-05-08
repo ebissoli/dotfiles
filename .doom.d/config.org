@@ -945,16 +945,18 @@ information retrieved from files created by the keychain script."
         :desc "Paste with p" :ineg "C-S-v" #'evil-paste-after)
 
 (map!
- :map pdf-view-mode-map
- :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page)
+ (:map pdf-view-mode-map
+ :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page
+  :desc "Scrool up in pdftools" :nm "<double-wheel-down>" #'pdf-view-scroll-down-or-previous-page))
+(map!
+ (:map pdf-view-mode-map
+ :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page
+   :desc "Scrool up in pdftools" :nm "<double-wheel-up>" #'pdf-view-scroll-up-or-next-page))
 
 (map!
- :map pdf-view-mode-map
- :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page)
-
-(map!
- :map pdf-view-mode-map
- :desc "show outline" :n "o" #'pdf-outline)
+ (:map pdf-view-mode-map
+ :desc "show outline" :n "o" #'pdf-outline
+  :desc "show outline" :n "<mouse-9>" #'pdf-outline))
 
 (map!
  :map pdf-view-mode-map
@@ -962,11 +964,22 @@ information retrieved from files created by the keychain script."
 
 (map!
  :map pdf-view-mode-map
+ :desc "search links in pdf" :n "C-M-s" #'pdf-links-isearch-link)
+(map!
+ :map pdf-view-mode-map
+ :desc "go to links, like vimium" :n "f" #'pdf-links-action-perform)
+(map!
+ :map pdf-view-mode-map
+ :desc "Go bookmark page forward" :n "C-j" #'pdf-history-backward)
+(map!
+ :map pdf-view-mode-map
+ :desc "Go bookmark page backward" :n "C-k" #'pdf-history-backward)
+(map!
+ :map pdf-view-mode-map
  :desc "Zoom in the pdf" :n "=" #'pdf-view-enlarge)
 (map!
- :map (pdf-view-mode-map
-       :n "_" nil
- :desc "Zoom out the pdf" :n "_" #'pdf-view-shrink))
+ :map pdf-view-mode-map
+ :desc "Zoom out the pdf" :n "-" #'pdf-view-shrink)
 
 (map!
  :map pdf-view-mode-map
@@ -975,8 +988,9 @@ information retrieved from files created by the keychain script."
  :map pdf-view-mode-map
  :desc "register jump page the pdf" :n "`" #'pdf-view-jump-to-register)
 (map!
- :map pdf-outline-buffer-mode-map
- :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill)
+ (:map pdf-outline-buffer-mode-map
+ :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill
+  :desc " quit toc view" :n "<mouse-8>" #'pdf-outline-quit-and-kill))
 (map!
  :map pdf-outline-buffer-mode-map
  :desc "  select content view" :n "RET" #'pdf-outline-display-link)
@@ -989,6 +1003,30 @@ information retrieved from files created by the keychain script."
 (map!
  :map pdf-view-mode-map
  :desc "register macro  " :n "q" #'evil-record-macro)
+(map!
+ (:map pdf-view-mode-map
+ :desc " First page " :n "g g" #'pdf-view-first-page
+ :desc " First page " :n "<triple-mouse-9>" #'pdf-view-first-page
+ ))
+(map!
+ :map pdf-view-mode-map
+ :desc " Last page " :n "G" #'pdf-view-last-page
+  :desc " Last page " :n "<triple-mouse-8>" #'pdf-view-last-page)
+(map!
+ :map dired-mode-map
+ :desc "go to end line " :n "G" #'evil-goto-line)
+(map!
+ :map dired-mode-map
+ :desc "go to first line" :n "g g" #'evil-goto-first-line)
+(map!
+ :map dired-mode-map
+ :desc "go to next search" :n "n" #'evil-ex-search-next)
+(map!
+ :map dired-mode-map
+ :desc "go to prev search" :n "n" #'evil-ex-search-previous)
+(map!
+ (:map (pdf-view-mode-map pdf-outline-buffer-mode-map)
+ :desc "toogle subtree" :n "<double-mouse-9>" #'pdf-outline-toggle-subtree))
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
