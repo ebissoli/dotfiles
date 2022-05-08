@@ -1062,6 +1062,14 @@ _h_ decrease width    _l_ increase width
   ("q" nil))
 #+end_src
 
+** Global minor modes
+#+begin_src emacs-lisp
+(define-globalized-minor-mode global-pixel-precision pixel-scroll-precision-mode
+  (lambda () (pixel-scroll-precision-mode 1)))
+
+(global-pixel-precision 1)
+#+end_src
+
 * PREFERENCES
 ** Elfeed
 #+begin_src elisp
