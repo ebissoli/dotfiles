@@ -482,6 +482,7 @@
    (jupyter .t)
    (sml . t)
    (haskell .t)
+   (ein .t)
    )
  ) ;; programming -org-babel
 #+end_src
