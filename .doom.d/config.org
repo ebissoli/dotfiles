@@ -1163,6 +1163,7 @@ _h_ decrease width    _l_ increase width
 (evil-set-initial-state 'magit-status-mode 'normal)
 (evil-set-initial-state 'pdf-view-mode 'normal)
 (evil-set-initial-state 'pdf-outline-mode 'normal)
+(evil-set-initial-state 'emms-playlist-mode 'normal)
 #+end_src
 ** Preferences
 #+begin_src emacs-lisp
