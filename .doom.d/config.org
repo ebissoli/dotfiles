@@ -757,6 +757,14 @@ information retrieved from files created by the keychain script."
     (:prefix "w"
       :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
 #+end_src
+**** Quickly move between windows
+#+begin_src emacs-lisp
+(map!
+        :g "M-`" nil
+        :desc "Prev window config" :niv "M-`" #'winner-undo
+        :g "C-M-`" nil
+        :desc "Next window config" :niv "C-M-`" #'winner-redo)
+#+end_src
 *** Movement
 **** Move outer of inner of function
 #+begin_src emacs-lisp
