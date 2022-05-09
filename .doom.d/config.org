@@ -1121,6 +1121,17 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
 (setq emms-add-directory-tree "~/Music")
+(map! :g "<f5>" #'emms-previous
+      :g "<f6>" #'emms-pause
+      :g "<S-f5>" #'emms-seek-backward
+      :g "<f7>" #'emms-next
+      :g "<S-f7>" #'emms-seek-forward
+      :g "S-<f6>" #'emms-random
+      :g "C-<f6>" #'emms-stop
+      :g "M-<f6>" #'emms-browser
+      :g "M-<f8>" #'emms-score-toggle
+      :g "S-<f8>" #'emms-score-set-playing
+      :g "C-<f8>" #'emms-score-set-tolerance)
 (map! :map emms-playlist-mode-map
       :n "r" #'emms-random)
 (map! (:map (emms-browser-mode-map emms-playlist-mode-map)
@@ -1131,8 +1142,13 @@ _h_ decrease width    _l_ increase width
       :n "4" #'emms-browser-expand-to-level-4
       :n "l" #'emms-browser-expand-one-level
       :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
       :n "g" #'emms-browse-by-genre
+      :n "C-g" #'emms-playlist-limit-to-info-genre
       :n "a" #'emms-browse-by-artist
+      :n "C-a" #'emms-playlist-limit-to-info-artist
+      :n "M-a" #'emms-playlist-sort-by-info-artist
       :n "RET" #'emms-playlist-mode-play-smart
       :n "S-<return>" #'emms-pause
       :n "C-<return>" #'emms-stop
