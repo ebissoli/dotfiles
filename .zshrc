@@ -29,6 +29,7 @@ export PATH=$LOCAL/spicetify-cli:$PATH
 export PATH=$LOCAL/zls:$PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export PATH=$PATH:~/.platformio/penv/bin
+export PATH=$PATH:~/Downloads/BINs:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 
 
