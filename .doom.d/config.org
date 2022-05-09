@@ -933,6 +933,13 @@ information retrieved from files created by the keychain script."
 (map! :g "M-<" nil
       :desc "buffer-next" :n "M-<" #'switch-to-next-buffer)
 #+end_src
+*** EVIL magic
+#+begin_src emacs-lisp
+(map!
+        (:map evil-surround-mode-map
+        :gv "<visual-state> D" #'evil-surround-delete
+        :ogv "<visual-state> C" #'evil-surround-change))
+#+end_src
 *** Mode interface
 #+begin_src emacs-lisp
 (map!
