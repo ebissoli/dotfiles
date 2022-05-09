@@ -29,6 +29,8 @@ export PATH=$LOCAL/spicetify-cli:$PATH
 export PATH=$LOCAL/zls:$PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export PATH=$PATH:~/.platformio/penv/bin
+export PATH=$PATH:~/Downloads/BINs:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -113,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -359,3 +362,4 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 bindkey -e
 eval "$(direnv hook zsh)"
+eval "$(pyenv init -)"

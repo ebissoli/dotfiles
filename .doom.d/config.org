@@ -482,6 +482,7 @@
    (jupyter .t)
    (sml . t)
    (haskell .t)
+   (ein .t)
    )
  ) ;; programming -org-babel
 #+end_src
@@ -756,6 +757,14 @@ information retrieved from files created by the keychain script."
     (:prefix "w"
       :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
 #+end_src
+**** Quickly move between windows
+#+begin_src emacs-lisp
+(map!
+        :g "M-`" nil
+        :desc "Prev window config" :niv "M-`" #'winner-undo
+        :g "C-M-`" nil
+        :desc "Next window config" :niv "C-M-`" #'winner-redo)
+#+end_src
 *** Movement
 **** Move outer of inner of function
 #+begin_src emacs-lisp
@@ -924,6 +933,13 @@ information retrieved from files created by the keychain script."
 (map! :g "M-<" nil
       :desc "buffer-next" :n "M-<" #'switch-to-next-buffer)
 #+end_src
+*** EVIL magic
+#+begin_src emacs-lisp
+(map!
+        (:map evil-surround-mode-map
+        :gv "<visual-state> D" #'evil-surround-delete
+        :ogv "<visual-state> C" #'evil-surround-change))
+#+end_src
 *** Mode interface
 #+begin_src emacs-lisp
 (map!
@@ -944,16 +960,18 @@ information retrieved from files created by the keychain script."
         :desc "Paste with p" :ineg "C-S-v" #'evil-paste-after)
 
 (map!
- :map pdf-view-mode-map
- :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page)
+ (:map pdf-view-mode-map
+ :desc "Scrool up in pdftools" :nm "j" #'pdf-view-scroll-up-or-next-page
+  :desc "Scrool up in pdftools" :nm "<double-wheel-down>" #'pdf-view-scroll-down-or-previous-page))
+(map!
+ (:map pdf-view-mode-map
+ :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page
+   :desc "Scrool up in pdftools" :nm "<double-wheel-up>" #'pdf-view-scroll-up-or-next-page))
 
 (map!
- :map pdf-view-mode-map
- :desc "Scrool down in pdftools" :nm "k" #'pdf-view-scroll-down-or-previous-page)
-
-(map!
- :map pdf-view-mode-map
- :desc "show outline" :n "o" #'pdf-outline)
+ (:map pdf-view-mode-map
+ :desc "show outline" :n "o" #'pdf-outline
+  :desc "show outline" :n "<mouse-9>" #'pdf-outline))
 
 (map!
  :map pdf-view-mode-map
@@ -961,11 +979,22 @@ information retrieved from files created by the keychain script."
 
 (map!
  :map pdf-view-mode-map
+ :desc "search links in pdf" :n "C-M-s" #'pdf-links-isearch-link)
+(map!
+ :map pdf-view-mode-map
+ :desc "go to links, like vimium" :n "f" #'pdf-links-action-perform)
+(map!
+ :map pdf-view-mode-map
+ :desc "Go bookmark page forward" :n "C-j" #'pdf-history-backward)
+(map!
+ :map pdf-view-mode-map
+ :desc "Go bookmark page backward" :n "C-k" #'pdf-history-backward)
+(map!
+ :map pdf-view-mode-map
  :desc "Zoom in the pdf" :n "=" #'pdf-view-enlarge)
 (map!
- :map (pdf-view-mode-map
-       :n "_" nil
- :desc "Zoom out the pdf" :n "_" #'pdf-view-shrink))
+ :map pdf-view-mode-map
+ :desc "Zoom out the pdf" :n "-" #'pdf-view-shrink)
 
 (map!
  :map pdf-view-mode-map
@@ -974,8 +1003,9 @@ information retrieved from files created by the keychain script."
  :map pdf-view-mode-map
  :desc "register jump page the pdf" :n "`" #'pdf-view-jump-to-register)
 (map!
- :map pdf-outline-buffer-mode-map
- :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill)
+ (:map pdf-outline-buffer-mode-map
+ :desc " quit toc view" :n "q" #'pdf-outline-quit-and-kill
+  :desc " quit toc view" :n "<mouse-8>" #'pdf-outline-quit-and-kill))
 (map!
  :map pdf-outline-buffer-mode-map
  :desc "  select content view" :n "RET" #'pdf-outline-display-link)
@@ -988,6 +1018,30 @@ information retrieved from files created by the keychain script."
 (map!
  :map pdf-view-mode-map
  :desc "register macro  " :n "q" #'evil-record-macro)
+(map!
+ (:map pdf-view-mode-map
+ :desc " First page " :n "g g" #'pdf-view-first-page
+ :desc " First page " :n "<triple-mouse-9>" #'pdf-view-first-page
+ ))
+(map!
+ :map pdf-view-mode-map
+ :desc " Last page " :n "G" #'pdf-view-last-page
+  :desc " Last page " :n "<triple-mouse-8>" #'pdf-view-last-page)
+(map!
+ :map dired-mode-map
+ :desc "go to end line " :n "G" #'evil-goto-line)
+(map!
+ :map dired-mode-map
+ :desc "go to first line" :n "g g" #'evil-goto-first-line)
+(map!
+ :map dired-mode-map
+ :desc "go to next search" :n "n" #'evil-ex-search-next)
+(map!
+ :map dired-mode-map
+ :desc "go to prev search" :n "n" #'evil-ex-search-previous)
+(map!
+ (:map (pdf-view-mode-map pdf-outline-buffer-mode-map)
+ :desc "toogle subtree" :n "<double-mouse-9>" #'pdf-outline-toggle-subtree))
 #+end_src
 * FUNCTIONS
 ** Notify me in x minutes
@@ -1021,6 +1075,14 @@ _h_ decrease width    _l_ increase width
   ("l" evil-window-increase-width)
 
   ("q" nil))
+#+end_src
+
+** Global minor modes
+#+begin_src emacs-lisp
+(define-globalized-minor-mode global-pixel-precision pixel-scroll-precision-mode
+  (lambda () (pixel-scroll-precision-mode 1)))
+
+(global-pixel-precision 1)
 #+end_src
 
 * PREFERENCES
@@ -1059,9 +1121,20 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
 (setq emms-add-directory-tree "~/Music")
+(map! :g "<f5>" #'emms-previous
+      :g "<f6>" #'emms-pause
+      :g "<S-f5>" #'emms-seek-backward
+      :g "<f7>" #'emms-next
+      :g "<S-f7>" #'emms-seek-forward
+      :g "S-<f6>" #'emms-random
+      :g "C-<f6>" #'emms-stop
+      :g "M-<f6>" #'emms-browser
+      :g "M-<f8>" #'emms-score-toggle
+      :g "S-<f8>" #'emms-score-set-playing
+      :g "C-<f8>" #'emms-score-set-tolerance)
 (map! :map emms-playlist-mode-map
       :n "r" #'emms-random)
-(map! (:map emms-browser-mode-map
+(map! (:map (emms-browser-mode-map emms-playlist-mode-map)
       :n "r" #'emms-random
       :n "h" #'emms-browser-collapse-all
       :n "3" #'emms-browser-expand-to-level-3
@@ -1069,8 +1142,16 @@ _h_ decrease width    _l_ increase width
       :n "4" #'emms-browser-expand-to-level-4
       :n "l" #'emms-browser-expand-one-level
       :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
       :n "g" #'emms-browse-by-genre
+      :n "C-g" #'emms-playlist-limit-to-info-genre
       :n "a" #'emms-browse-by-artist
+      :n "C-a" #'emms-playlist-limit-to-info-artist
+      :n "M-a" #'emms-playlist-sort-by-info-artist
+      :n "RET" #'emms-playlist-mode-play-smart
+      :n "S-<return>" #'emms-pause
+      :n "C-<return>" #'emms-stop
       :n "A" #'emms-browse-by-album))
 #+end_src
 
@@ -1113,6 +1194,7 @@ _h_ decrease width    _l_ increase width
 (evil-set-initial-state 'magit-status-mode 'normal)
 (evil-set-initial-state 'pdf-view-mode 'normal)
 (evil-set-initial-state 'pdf-outline-mode 'normal)
+(evil-set-initial-state 'emms-playlist-mode 'normal)
 #+end_src
 ** Preferences
 #+begin_src emacs-lisp
