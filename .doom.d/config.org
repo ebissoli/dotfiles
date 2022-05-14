@@ -1127,7 +1127,7 @@ _h_ decrease width    _l_ increase width
       :g "<S-f7>" #'emms-seek-forward
       :g "S-<f6>" #'emms-random
       :g "C-<f6>" #'emms-stop
-      :g "M-<f6>" #'emms-browser
+      :g "M-<f6>" #'emms-smart-browse
       :g "M-<f8>" #'emms-score-toggle
       :g "S-<f8>" #'emms-score-set-playing
       :g "C-<f8>" #'emms-score-set-tolerance)
