@@ -491,9 +491,8 @@
 (add-hook 'sql-mode-hook 'lsp)
 (setq lsp-sqls-workspace-config-path nil)
 (setq lsp-sqls-connections
-    '(((driver . "mysql") (dataSourceName . "yyoncho:local@tcp(localhost:3306)/foo"))
-      ((driver . "mssql") (dataSourceName . "Server=localhost;Database=sammy;User Id=yyoncho;Password=hunter2;"))
-      ((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=ebissoli dbname=gdiProj sslmode=disable"))))
+    '(
+      ((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=ebissoli dbname=cinema sslmode=disable"))))
 #+end_src
 ** Latex
 #+begin_src elisp
