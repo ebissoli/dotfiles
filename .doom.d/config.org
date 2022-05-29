@@ -676,12 +676,19 @@ information retrieved from files created by the keychain script."
 (setq evil-move-cursor-back nil)
 #+end_src
 
-** Change projectile root dir
-#+begin_src elisp
-(defun change-projectile-root ()
-  "Change the root dir for projectile"
-  (interactive)
-  (setq projectile-project-root (read-directory-name "Default project root: ")))
+# ** Change projectile root dir
+# #+begin_src elisp
+# (defun projectile-vc-root-dir (dir)
+#   "Retrieve the root directory of the project at DIR using `vc-root-dir'."
+#   (let ((default-directory dir))
+#     (vc-root-dir)))
+# (defun change-projectile-root ()
+#   "Change the root dir for projectile"
+#   (interactive)
+#   (setq projectile-project-root-functions '(projectile-vc-root-dir)))
+;; we need this wrapper to match Projectile's API
+
+
 #+end_src
 
 ** platformio-fix
