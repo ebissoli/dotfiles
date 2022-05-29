@@ -1175,6 +1175,19 @@ _h_ decrease width    _l_ increase width
 (after! emojify
   (setq emojify-display-style 'ascii))
 #+end_src
+** CalibreDB
+#+begin_src emacs-lisp
+(use-package calibredb
+  :defer t
+  :config
+  (setq calibredb-root-dir "~/Calibre")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
+  )
+(setq calibredb-virtual-library-alist '(("Angular" . "Angular")))
+(map! (:map calibredb-search-mode-map
+      :n  "." #'calibredb-dispatch
+      )) ;;TODO
+#+end_src
 
 * EVIL mode
 
