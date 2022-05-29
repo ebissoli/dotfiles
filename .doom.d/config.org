@@ -895,7 +895,7 @@ information retrieved from files created by the keychain script."
 
  (map!
   :g "M-a" nil
-  :desc "transpose sexp" :no "M-a" #'evil-beginning-of-line)
+  :desc "Beggining of ident" :no "M-a" #'back-to-indentation)
 
  (map!
   :g "M-e" nil
