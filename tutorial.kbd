@@ -249,6 +249,9 @@
                 (defalias
                 super (layer-toggle superlayer))
 
+                (defalias
+                lsft (layer-toggle lsftlayer))
+
                         (defalias
                         c/ (tap-macro-release /))
 
@@ -307,7 +310,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  @chsym    w    e    r    t    y    u    i    o    p    @chnumber ]    \
   @chcaps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft @chutils    x    c    v    b    n    m    ,    .    @chfn    rsft
+  @lsft @chutils    x    c    v    b    n    m    ,    .    @chfn    rsft
   lctl @super @ch           spc            ralt rmet cmp  rctl
 )
 
@@ -317,6 +320,14 @@
   caps RC-a    RC-s    RC-d    RC-f    RC-g   RC-h     RC-j   RC-k     down  RC-;    RC-'    RC-ret
   lsft  RC-z   RC-x    RC-c    RC-v    RC-b    RC-n    RC-m    RC-,    RC-.    RC-z    RC-rsft
   lctl @super RC-@meta           RC-spc            ralt rmet cmp  rctl
+)
+
+(deflayer lsftlayer
+  grv  S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-9    S-0    S--    S-=    bspc
+  tab  S-q    S-w    S-e    up    S-t    S-y    esc    S-i    S-o     S-p   S-[  S-]    S-\
+  caps S-a    S-s    S-d    S-f    S-g   S-h     S-j   S-k     down  S-;    S-'    S-ret
+  lsft  S-z   S-x    S-c    S-v    S-b    S-n    S-m    S-,    S-.    S-/    S-rsft
+  lctl @super RC-@meta           S-spc            ralt rmet cmp  rctl
 )
 
 (deflayer superlayer
