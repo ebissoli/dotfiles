@@ -222,11 +222,16 @@
         (defalias
         ba (layer-switch base))
 
+                ;; (defalias
+                ;; vi (layer-toggle vibliss))
+
+                ;; (defalias
+                ;; vi2 (layer-toggle vibliss2))
                 (defalias
-                vi (layer-switch vibliss))
+                  ink (layer-switch inklayer))
 
                 (defalias
-                vi2 (layer-toggle vibliss2))
+                  def (layer-switch base))
 
                 (defalias
                 meta (layer-toggle metabliss))
@@ -273,30 +278,70 @@
                         (defalias
                         ntap (tap-macro-release l))
 
+                        (defalias
+                        fb (tap-macro RC-q 0 ))
+
+                        (defalias
+                        bb (tap-macro RC-q 1 ))
+
+                        (defalias
+                        fc (tap-macro RC-q 2 ))
+
+                        (defalias
+                        bc (tap-macro RC-q 3 ))
+
+                        (defalias
+                        fp (tap-macro RC-q 4 ))
+
+                        (defalias
+                        bp (tap-macro RC-q 5 ))
+
+                        (defalias
+                        bcc (tap-macro RC-q 6 ))
+
+                        (defalias
+                        fcc (tap-macro RC-q 7 ))
+
+                        (defalias
+                        bl (tap-macro RC-q 8 ))
+
+                        (defalias
+                        fl (tap-macro RC-q 9 ))
+
+                        (defalias
+                        bccc (tap-macro RC-q r ))
+
+                        (defalias
+                        fccc (tap-macro RC-q c ))
+
+                        (defalias
+                        bC (tap-macro RC-q RC-p RC-0 ))
+
+                        (defalias
+                        fC (tap-macro RC-q RC-p RC-1 ))
                                 (defalias
-                                chsym (tap-next @cq @symbol))
+                                chsym (tap-hold-next-release 250 @cq @symbol))
 
                                 (defalias
-                                chnumber (tap-next @c[ @number))
+                                chnumber (tap-hold-next-release 250 @c[ @number))
 
                                 (defalias
-                                chutils (tap-next @cz @utils))
+                                chutils (tap-hold-next-release 250 @cz @utils))
 
                                 (defalias
-                                chfn (tap-next @c/ @fn))
+                                chfn (tap-hold-next-release 250 @c/ @fn))
 
                                 (defalias
-                                ch (tap-next @vi @meta))
+                                ch (layer-toggle metabliss))
 
                                 (defalias
-                                  chcaps (tap-next @ccap @caps))
+                                  chcaps (tap-hold-next-release 250 @ccap @caps))
 
                                 (defalias
-                                  chptap (tap-next @ptap c))
+                                  chptap (tap-hold-next-release 250 @ptap c))
 
                                 (defalias
-                                  chntap (tap-next @ntap v))
-                                
+                                  chntap (tap-hold-next-release 250 @ntap v))
 
 (defsrc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -322,10 +367,18 @@
   lctl @super RC-@meta           RC-spc            ralt rmet cmp  rctl
 )
 
+(deflayer inklayer
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @def  '    RC-left    RC-up    ]    t    y    esc    i    o     p   [  ]    \
+  RC-@caps ret    s    RC-down    RC-right    g   h     j   k     down  ;    '    ret
+  lsft  z   x    c    v    b    n    m    ,    .    z    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
+)
+
 (deflayer lsftlayer
   grv  S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-9    S-0    S--    S-=    bspc
-  tab  S-q    S-w    S-e    up    S-t    S-y    esc    S-i    S-o     S-p   S-[  S-]    S-\
-  caps S-a    S-s    S-d    S-f    S-g   S-h     S-j   S-k     down  S-;    S-'    S-ret
+  S-tab  S-q    S-w    S-e    S-r    S-t    S-y    S-u    S-i    S-o     S-p   S-[  S-]    S-\
+  caps S-a    S-s    S-d    S-f    S-g   S-h     S-j   S-k     S-l  S-;    S-'    S-ret
   lsft  S-z   S-x    S-c    S-v    S-b    S-n    S-m    S-,    S-.    S-/    S-rsft
   lctl @super RC-@meta           S-spc            ralt rmet cmp  rctl
 )
@@ -340,10 +393,18 @@
 
 (deflayer symbolayer
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  _    left    up   g    _    !    @    #    $    \)     =   S-+   \
-  caps  left    esc    right    down    _    [    \(    -   S-\_  '  bspc  ret
-  lsft _    esc    esc   _    _    %    ^      &    *    _    rsft
+  tab  _    left    up   _    _                 _  @bccc    @bb   @fb     @fccc  @    ret
+  caps  left    _    _    down    right    _    @bC    @bc   @bp       @fp    @fc  @fC
+  lsft _    _    _   esc    g             _         @bl      @bcc    @fcc    @fl  `    rsft
   lctl lmet @ch           spc            ralt rmet cmp  rctl
+)
+
+(deflayer numberlayer
+  grv  1    2    3    4    5          6    7    8    9    0    -    =    bspc
+  [  *    7    8   9    '           _   _     up   right   _  _ \
+  caps bspc    4    5    6    S-]      ret   left    down   _  _  _  _ _
+  lsft 0    1    2   3    e   _      _    _    g    esc  rsft
+  lctl lmet @ch           spc               ralt rmet cmp  rctl
 )
 
 (deflayer utilslayer
@@ -351,14 +412,6 @@
   tab  _    _    _    _    _    _    sys    slck    pause   _     _   _   \
   caps _    _    _    _    _    S-sys    ins           home     pageup  _  _     ret
   lsft _    _    _    _    _    _    del            end     pagedown    _    rsft
-  lctl lmet @ch           spc            ralt rmet cmp  rctl
-)
-
-(deflayer numberlayer
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  [  bspc    7    8    9    w    _    _   g   up    right     _  _    \
-  % 4    5    6    0    '    _    _    down    left    esc    esc    ret
-  ^ 1    2    3    S-]    e      _    esc   esc    esc    _    rsft
   lctl lmet @ch           spc            ralt rmet cmp  rctl
 )
 
@@ -370,21 +423,21 @@
   lctl lmet @ch           spc            ralt rmet cmp  rctl
 )
 
-(deflayer vibliss
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    RC-u    i    o    right    [    ]    \
-  @chcaps a    s    d    f    g    h    left    k    l    ;    '    ret
-  @vi2 z    x    down    up    b    n    m    ,    .    @chfn    rsft
-  lctl lmet @ba           spc            ralt rmet cmp  rctl
-)
+;; (deflayer vibliss
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+;;   tab  q    left        r    t    y    RC-u    i    o    right    [    ]    \
+;;   @chcaps a    s    d    f    g    h    left    k    l    ;    '    ret
+;;   @vi2 z    x    down    up    b    n    m    ,    .    @chfn    rsft
+;;   lctl lmet @ba           spc            ralt rmet cmp  rctl
+;; )
 
-(deflayer vibliss2
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  Q    W    E    R    T    Y    U    I    O    P    S-[    S-]    S-\
-  caps A    S    D    F    G    H    J    K    L    S-;    S-'    ret
-  lsft Z    X    C    V    B    N    M    S-,  S-.  S-/    rsft
-  lctl lmet lalt           spc            ralt rmet cmp  rctl
-)
+;; (deflayer vibliss2
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+;;   tab  Q    W    E    R    T    Y    U    I    O    P    S-[    S-]    S-\
+;;   caps A    S    D    F    G    H    J    K    L    S-;    S-'    ret
+;;   lsft Z    X    C    V    B    N    M    S-,  S-.  S-/    rsft
+;;   lctl lmet lalt           spc            ralt rmet cmp  rctl
+;; )
 
 (deflayer metabliss
   grv  A-1    A-2    A-3    A-4    A-5    A-6    A-7    A-8    A-9    A-0    A--    A-=    A-bspc
