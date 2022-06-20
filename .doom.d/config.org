@@ -1,5 +1,6 @@
 #+title: Config
 * DOOM
+** Main
 #+begin_src elisp
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
 (setq user-full-name "Enzo Bissoli"
@@ -24,12 +25,11 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'modus-operandi)
 #+end_src
-** Company
-#+begin_src emacs-lisp
-(after! company
-  (setq company-idle-delay 0.3))
+# ** Company
+# #+begin_src emacs-lisp
+# (after! company
+#   (setq company-idle-delay 0.3))
 #+end_src
-
 * ORG
 ** Basic org
 #+begin_src elisp
@@ -55,82 +55,86 @@
 #+begin_src elisp
 (setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")) ;;basic org config
 #+end_src
-** Org Capture
+** Org Capture :CHANGE:
 #+begin_src emacs-lisp
 (after! (:or org-capture org-agenda org)
-(setq org-capture-templates
-(doct '(("UNI" :keys "u"
-:file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
-:prepend t
-    :template ("* %{todo-state} %?"
-                "%i %a")
-    :children (("Eng Software"  :keys "e"
-                :headline   "engSoftware"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"Eng Software\" selected.")))
-                ("GDI " :keys "g"
-                :headline   "GDI"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"GDI\" selected.")))
-                ("PLC "  :keys "p"
-                :headline   "PLC"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"PLC\" selected.")))
-                ("histComp "  :keys "h"
-                :headline   "histComp"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"histComp\" selected.")))
-                ("infraCOM "  :keys "c"
-                :headline   "histComp"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"infraCOM\" selected.")))
-                ("infraSW "  :keys "s"
-                :headline   "histComp"
-                :todo-state "TODO"
-                :hook (lambda () (message "\"infraSW\" selected.")))
-                ))
-    ("Bookmarks" :keys "b"
-    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/20220409134224-bookmarks.org"
-    :append t
-    :type entry
-    :template ("* %^{Description} %?"
-                "%i"))
-    ("Appointments" :keys "p"
-    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
-    :append t
-    :headline "Appointments"
-    :type entry
-    :template ("* %^{Description} %?"
-                "%i"))
-    ("Projects" :keys "P"
-    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
-    :append t
-    :headline "Projects"
-    :type entry
-    :template ("* %^{Description} %?"
-                "%i"))
-    ("Later" :keys "l"
-    :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/UFPE/2021.2/2021.2.org"
-    :append t
-    :headline "Later"
-    :type entry
-    :template ("* %^{Description} %?"
-                "%i"))
-    ))))
+    (setq org-capture-templates
+    (doct '(
+        ("UNI" :keys "u"
+        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/"
+        :prepend t
+            :template ("* %{todo-state} %?"
+                        "%i %a")
+            :children (("INFOTEORICA"  :keys "i"
+                        :headline   "infoTeorica"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/info.org"
+                        :todo-state "TODO"
+                        :hook (lambda () (message "\"InfoTeorica\" selected.")))
+                        ("GDI " :keys "g"
+                        :headline   "GDI"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/gdi.org"
+                        :hook (lambda () (message "\"GDI\" selected.")))
+                        ("MON "  :keys "m"
+                        :headline   "MonitoriaPLC"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/mon.org"
+                        :hook (lambda () (message "\"Monitoria PLC\" selected.")))
+                        ("IHS "  :keys "h"
+                        :headline   "interface hardware software"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ihs.org"
+                        :hook (lambda () (message "\"Interface hardware software\" selected.")))
+                        ("ING "  :keys "n"
+                        :headline   "Ingles"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ing.org"
+                        :hook (lambda () (message "\"ingles\" selected.")))
+                        ("Ste "  :keys "s"
+                        :headline   "Stellantis"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ste.org"
+                        :hook (lambda () (message "\"Stellantis\" selected.")))
+                        ))
+            ("Bookmarks" :keys "b"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/20220409134224-bookmarks.org"
+            :append t
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Appointments" :keys "p"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/appt.org"
+            :append t
+            ;:headline "Appointments"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Projects" :keys "P"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/proj.org"
+            :append t
+            ;:headline "Projects"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Later" :keys "l"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/later.org"
+            :append t
+            ;:headline "Later"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Event" :keys "e"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/evn.org"
+            :append t
+            ;:headline "Event"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+        ))))
 #+end_src
-# ** Deft
-# #+begin_src elisp
-# (use-package deft
-# :after org
-# :custom
-# (deft-recursive t)
-# (deft-use-filter-string-for-filename t)
-# (deft-default-extension "org")
-# (deft-directory "~/Insync/enzogurgel15@gmail.com/Google Drive/org/")) ;;notetaking-deft
-# #+end_src
 
 ;; Function to calculate relative day to today
-** Agenda
+** Agenda :CHANGE:
 #+begin_src elisp
 
 (use-package! org-super-agenda
@@ -148,44 +152,43 @@
         org-agenda-start-day nil) ;today
   (defun timeFrwd (timefrwd) (format-time-string "%Y-%m-%d" (org-read-date nil t (concat "+" timefrwd))))
   (setq org-agenda-custom-commands
-        '(("o" "Overview of the day"
+        '(("o" "Overview of the week"
            (
-
             (org-ql-block '(and
                             (deadline :from "6" :to "7")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Deadline in 6-7 days")))
             (org-ql-block '(and
                             (scheduled :from "6" :to "7")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Scheduled in 6-7 days")))
 
             (org-ql-block '(and
                             (scheduled :from "3" :to "5")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Scheduled in 3-5 days")))
 
             (org-ql-block '(and
                             (deadline :from "3" :to "5")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Deadline in 3-5 days")))
             (org-ql-block '(and
                             (deadline :from "1" :to "2")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Deadline in 1-2 days")))
             (org-ql-block '(and
                             (scheduled :from "1" :to "2")
-                            (path "2021.2/")
+                            (path "2022/")
                             )
                           ((org-ql-block-header "Scheduled in 1-2 days")))
             (org-ql-block '(or (and
                                 (priority "A")
-                                (path "2021.2/"))
+                                (path "2022/"))
                                (and (tags "RECUR")
                                     (not (ancestors (tags "RECUR")))
                                     ))
@@ -199,154 +202,69 @@
                             :scheduled today
                             :order 1
                             :discard (:anything t))))))
-            )
-           )
-          ("U1" "Uni stuff for the month"
+            ))
+          ("U" "Uni stuff List"
            (
             (org-ql-block '(and
-                            (ancestors (h "engSoftware"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Eng Software month planning")))
+                            (ancestors (h "INFOTEORICA"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
+                          ((org-ql-block-header "IT month planning")))
             (org-ql-block '(and
                             (ancestors (h "GDI"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
                           ((org-ql-block-header "GDI month planning")))
             (org-ql-block '(and
-                            (ancestors (h "histComp"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "histComp month planning")))
+                            (ancestors (h "IHS"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
+                          ((org-ql-block-header "IHS month planning")))
             (org-ql-block '(and
-                            (ancestors (h "PLC"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "PLC month planning")))
+                            (ancestors (h "MON"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
+                          ((org-ql-block-header "MON month planning")))
             (org-ql-block '(and
-                            (ancestors (h "infraCOM"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraCOM month planning")))
+                            (ancestors (h "ING"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
+                          ((org-ql-block-header "Ingles month planning")))
             (org-ql-block '(and
-                            (ancestors (h "infraSW"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraSW month planning")))
+                            (ancestors (h "STE"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
+                          ((org-ql-block-header "Stellantis month planning")))
             ))
-          ("U2" "Uni stuff for the next 3 months"
-           (
-            (org-ql-block '(and
-                            (ancestors (h "engSoftware"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Eng Software month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "GDI"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "GDI month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "histComp"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "histComp month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "PLC"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "PLC month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraCOM"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraCOM month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "infraSW"))
-                            (deadline :from "31" :to "90")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "infraSW month planning")))
-            ))
-          ("P1" "Personal stuff for the next month"
+          ("P" "Personal stuff List"
            ((org-ql-block '(and
                             (ancestors (h "Appointments"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
                           ((org-ql-block-header "Appointments month planning")))
             (org-ql-block '(and
                             (ancestors (h "Projects"))
                             (not (todo "DONE"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/"))
                           ((org-ql-block-header "Projects planning")))
             (org-ql-block '(and
-                            (ancestors (h "Emacs"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Emacs planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Travel"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Travel planning")))
-            (org-ql-block '(and
-                            (ancestors (h "People"))
-                            (deadline :from "8" :to "30")
-                            (path "2021.2/"))
-                          ((org-ql-block-header "People planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Later"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Later month planning")))
-            ))
-          ("PO" "Personal stuff List"
+                            (ancestors (h "Events"))
+                            (deadline :from "8" :to "120")
+                            (path "2022/")))))
+          ("L" "Later stuff List"
            ((org-ql-block '(and
-                            (ancestors (h "Appointments"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Appointments List")))
-            (org-ql-block '(and
-                            (ancestors (h "Projects"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Projects List")))
-            (org-ql-block '(and
-                            (ancestors (h "Emacs"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Emacs List")))
-            (org-ql-block '(and
-                            (ancestors (h "Travel"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Travel List")))
-            (org-ql-block '(and
-                            (ancestors (h "People"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "People List")))
-            (org-ql-block '(and
-                            (ancestors (h "Later"))
-                            (not (todo "DONE"))
-                            (path "2021.2/"))
-                          ((org-ql-block-header "Later List")))
-            ))
+                        (ancestors (h "Later"))
+                        (not (todo "DONE"))
+                        (path "2022/"))
+                        ((org-ql-block-header "Later List")))))
           )))
-
-;; (defun my-open-calendar ()
-;;   (interactive)
-;;   (cfw:open-calendar-buffer
-;;    :contents-sources
-;;    (list
-;;     (cfw:org-create-source "Green")  ; org-agenda source
-;;     (cfw:org-create-file-source "cal" "~/Insync/enzogurgel15@gmail.com/Google Drive/UFPE/2021.2/2021.2.org" "Blue")  ; other org source
-;;     )))
 #+end_src
 ** Roam
 #+begin_src elisp
 (setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")
 (setq org-roam-completion-everywhere t)
-(require 'org-roam-protocol)
+;;BUG happens if uncommented (require 'org-roam-protocol)
 (setq org-roam-capture-ref-templates
 '(("i" "internet" plain #'org-roam-capture--get-point "%?"
     :file-name "float/%<%Y%m%d%H%M>-${slug}"
@@ -354,8 +272,7 @@
     :unnarrowed t)))
 
 (use-package! websocket
-:after org-roam)
-
+   :after org-roam)
 (use-package! org-roam-ui
 :after org-roam ;; or :after org
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
@@ -465,10 +382,9 @@
   :config
   (setq dap-auto-configure-features '(locals tooltip sessions expressions))
   )
-
 #+end_src
-** Org-Babel
-#+begin_src elisp
+** Org-Babel :REMOVAL:
+#+begin_src emacs-lisp
 ;; active Babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -486,6 +402,7 @@
    )
  ) ;; programming -org-babel
 #+end_src
+
 ** SQL
 #+begin_src emacs-lisp
 (add-hook 'sql-mode-hook 'lsp)
@@ -497,7 +414,7 @@
       ((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=ebissoli dbname=plsqltranining sslmode=disable"))))
 #+end_src
 ** Latex
-#+begin_src elisp
+#+begin_src emacs-lisp
 (defun my-preview-latex ()
   "Preview LaTeX from the current cell in a separate buffer.
 
@@ -532,8 +449,6 @@ latter - its output."
        '((display-buffer-below-selected display-buffer-at-bottom)
          (inhibit-same-window . t)))
       (fit-window-to-buffer (window-in-direction 'below))))) ;;programming - auctex
-
-
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
 #+end_src
 ** Julia
@@ -546,8 +461,8 @@ latter - its output."
 #+begin_src emacs-lisp
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
-      (setq dap-python-terminal "foot -e python")
-  (setq dap-python-executable "python"))
+      (setq dap-python-terminal "foot -e python3")
+  (setq dap-python-executable "python3"))
 #+end_src
 ** Typescript/Node/Js
 #+begin_src emacs-lisp
@@ -635,7 +550,7 @@ information retrieved from files created by the keychain script."
                (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
                (setenv       "GPG_AGENT_INFO" (match-string 1 gpg))))))
 
-;;; _
+;; # ;;; _
 (provide 'keychain-environment)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
@@ -720,235 +635,50 @@ information retrieved from files created by the keychain script."
 #+end_src
 
 * KEYBINDS
-*** Windows
-**** Quickly change windows
-#+begin_src elisp
-(map!
-        :leader
-        :prefix "w"
-        :desc "Quick window switch" :n "z" #'ace-window)
-
-#+end_src
-**** Quickly swap windows
-#+begin_src emacs-lisp
-(map!
-        :leader
-        :prefix "w"
-        :desc "Swap state down" :n "C-M-j" #'windmove-swap-states-down)
-
-(map!
-        :leader
-        :prefix "w"
-        :desc "Swap state up" :n "C-M-k" #'windmove-swap-states-up)
-
-(map!
-        :leader
-        :prefix "w"
-        :desc "Swap state left" :n "C-M-h" #'windmove-swap-states-left)
-
-(map!
-        :leader
-        :prefix "w"
-        :desc "Swap state right" :n "C-M-l" #'windmove-swap-states-right)
-#+end_src
+*** Mode
 **** Acess elfeed-mode
 #+begin_src elisp
 (map!
         :leader
         :prefix "o"
         :desc "The elfeed" :n "e" #'elfeed)
-
 #+end_src
-**** Resize Windows
-#+begin_src elisp
-(map!
-    (:prefix "w"
-      :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body))
-#+end_src
-**** Quickly move between windows
+**** Emms
 #+begin_src emacs-lisp
-(map!
-        :g "M-`" nil
-        :desc "Prev window config" :niv "M-`" #'winner-undo
-        :g "C-M-`" nil
-        :desc "Next window config" :niv "C-M-`" #'winner-redo)
+(map! :g "<f5>" #'emms-previous
+      :g "<f6>" #'emms-pause
+      :g "<S-f5>" #'emms-seek-backward
+      :g "<f7>" #'emms-next
+      :g "<S-f7>" #'emms-seek-forward
+      :g "S-<f6>" #'emms-shuffle
+      :g "C-<f6>" #'emms-stop
+      :g "M-<f6>" #'emms-smart-browse
+      :g "M-<f8>" #'emms-score-toggle
+      :g "S-<f8>" #'emms-score-set-playing
+      :g "C-<f8>" #'emms-score-set-tolerance)
+(map! :map emms-playlist-mode-map
+      :n "r" #'emms-random)
+(map! (:map (emms-browser-mode-map emms-playlist-mode-map)
+      :n "r" #'emms-random
+      :n "h" #'emms-browser-collapse-all
+      :n "3" #'emms-browser-expand-to-level-3
+      :n "2" #'emms-browser-expand-to-level-2
+      :n "4" #'emms-browser-expand-to-level-4
+      :n "l" #'emms-browser-expand-one-level
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :ni "p" #'emms-browser-add-tracks-and-play
+      :n "g" #'emms-browse-by-genre
+      :n "C-g" #'emms-playlist-limit-to-info-genre
+      :n "a" #'emms-browse-by-artist
+      :n "C-a" #'emms-playlist-limit-to-info-artist
+      :n "M-a" #'emms-playlist-sort-by-info-artist
+      :n "RET" #'emms-playlist-mode-play-smart
+      :n "S-<return>" #'emms-pause
+      :n "C-<return>" #'emms-stop
+      :n "A" #'emms-browse-by-album))
 #+end_src
-*** Movement
-**** Move outer of inner of function
-#+begin_src emacs-lisp
-(map!
-    :g "C-M-v" nil
-    :desc "Move out function hierarchy" :n "C-M-v" #'sp-backward-up-sexp)
-(map!
-    :g "M-v" nil
-    :desc "Move into function hierarchy" :n "M-v" #'sp-down-sexp)
-(evil-define-motion evil-prev-close-brackets (count)
-"Go to [count] next unmatched '}'."
-:type exclusive
-(evil-up-paren ?\} ?\) (- (or count 1)))
-)
-(map!
-        :g "C-M-r" nil
-        :desc "Move outside of function hierarchy" :n "C-M-r" #'evil-prev-close-brackets)
-(map!
-        :g "C-M-/" nil
-        :desc "previous in context" :n "C-M-/" #'evil-backward-paragraph)
-(map!
-        :g "M-/"
-        :desc "next context" :n "C-/" #'evil-forward-paragraph)
-
-(map!
-        :g "C-M-n" nil
-        :desc "Move below" :n "C-M-n" #'sp-backward-symbol)
-
-(map!
-        :g "M-n" nil
-        :desc "Move up" :n "M-n" #'sp-forward-symbol)
-#+end_src
-**** Same depth movement
-#+begin_src emacs-lisp
-(map!
-        :g "C-M-p" nil
-        :desc "next in list" :n "C-M-p" #'sp-forward-parallel-sexp)
-(map!
-        :g "M-p" nil
-        :desc "previous in list" :n "M-p" #'sp-backward-parallel-sexp)
-(map!
-        :g "M-n" nil
-        :desc "Move out ()'s'" :n "M-n" #'backward-list)
-(map!
-        :g "C-M-n" nil
-        :desc "previous in context" :n "C-M-n" #'forward-list)
-
-(map!
-        :g "M-s" nil
-        :desc "end of actual context" :n "M-s" #'sp-beginning-of-previous-sexp)
-#+end_src
-
-**** Symbol jumping
-#+begin_src emacs-lisp
-(map!
- :g "C-M-s" nil
- :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
-(map!
-        :g "C-M-c" nil
-        :desc "next symbol" :n "C-M-c" #'evil-previous-open-brace)
-(evil-define-motion evil-next-open-paren (count)
-"Go to [count] next unmatched '{'."
-:type exclusive
-(forward-char)
-(evil-up-paren ?\{ ?\{ (or count 1))
-)
-(map!
-        :g "M-c" nil
-        :desc "prev parethesis" :n "M-c" #'evil-next-open-paren)
-(map!
- :g "M-r" nil
- :desc "prev context" :n "M-r" #'evil-next-close-brace)
-
-(map!
- :g "M-[" nil
- :desc "outside ()'s'" :n "M-[" #'sp-up-sexp)
-
-(map!
- :g "M-{" nil
- :desc "inside ()'s" :n "M-{" #'sp-down-sexp)
-
-(map!
- :g "M-o" nil
- :desc "swap back to cursor" :n "M-o" #'evil-jump-backward-swap)
-(map!
- :g "M-," nil
- :desc "jmp next arg" :n "M-," #'evil-jump-forward)
-
-(map!
- :g "C-M-," nil
- :desc "jmp next arg" :n "C-M-," #'evil-jump-backward)
-
-
-(map!
- :g "C-M-o" nil
- :desc "mark pos to quick return" :n "C-M-o" #'better-jumper-set-jump)
-(defun my-cool-jump ()
-  (interactive)
-  ( progn
-    (back-to-indentation)
-    (evil-end-of-line-or-visual-line)
-    (sp-next-sexp) ))
-(map!
- :g "C-o" nil
- :desc "Jmp to function defs" :n "C-o" #'my-cool-jump)
-(defun my-2-cool-jump ()
-  (interactive)
-  (progn
-    (evil-beginning-of-line)
-    (sp-backward-down-sexp)
-    (sp-backward-up-sexp)
-    (back-to-indentation)))
-(map!
- :g "C-a" nil
- :desc "mark pos to quick return" :n "C-a" #'my-2-cool-jump)
-(map!
- :g "C-s" nil
- :desc "search symbol at point" :n "C-s" #'evil-ex-search-word-forward)
-#+end_src
-
-**** Readonly manipulation sexp
-#+begin_src elisp
-(map!
- :g "C-M-k" nil
- :desc "kill whole line" :no "C-M-k" #'sp-kill-hybrid-sexp)
- (map!
-  :g "C-k" nil
-  :n "C-k" #'sp-mark-sexp)
-
- (map!
-  :g "M-a" nil
-  :desc "Beggining of ident" :no "M-a" #'back-to-indentation)
-
- (map!
-  :g "M-e" nil
-  :desc "copy mark" :no "M-e" #'evil-end-of-line-or-visual-line)
-
-(map!
-    :g "M-j" nil
-    :desc "Move sexp below" :n "M-j"#'sp-push-hybrid-sexp)
-(map!
-    :g "M-k" nil
-    :desc "Move sexp up" :n "M-k"#'sp-transpose-hybrid-sexp)
-#+end_src
-
-**** Yanking
-#+begin_src emacs-lisp
-(map!
-        :g "C-M-y" nil
-        :desc "acess the kill-ring" :n "C-M-y" #'yank-from-kill-ring)
-
-#+end_src
-
-**** Folding
-#+begin_src emacs-lisp
-(map!
-        :desc "fold-toggle" :n "z g" #'+fold/toggle )
-(map!
-        :desc "fold-open" :n "z G" #'+fold/close)
-#+end_src
-
-**** Buffering :)
-#+begin_src emacs-lisp
-(map! :g "M->" nil
-      :desc "buffer-next" :n "M->" #'switch-to-prev-buffer)
-(map! :g "M-<" nil
-      :desc "buffer-next" :n "M-<" #'switch-to-next-buffer)
-#+end_src
-*** EVIL magic
-#+begin_src emacs-lisp
-(map!
-        (:map evil-surround-mode-map
-        :gv "<visual-state> D" #'evil-surround-delete
-        :ogv "<visual-state> C" #'evil-surround-change))
-#+end_src
-*** Mode interface
+**** PDF mode
 #+begin_src emacs-lisp
 (map!
         :desc "Don't show line numbers" :n "z ," #'menu-bar--display-line-numbers-mode-none)
@@ -1051,6 +781,263 @@ information retrieved from files created by the keychain script."
  (:map (pdf-view-mode-map pdf-outline-buffer-mode-map)
  :desc "toogle subtree" :n "<double-mouse-9>" #'pdf-outline-toggle-subtree))
 #+end_src
+
+
+*** Windows
+**** Quickly change windows
+#+begin_src elisp
+(map!
+        :leader
+        :prefix "w"
+        :desc "Quick window switch" :n "z" #'ace-window)
+#+end_src
+**** Quickly swap windows
+#+begin_src emacs-lisp
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state down" :n "C-M-j" #'windmove-swap-states-down)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state up" :n "C-M-k" #'windmove-swap-states-up)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state left" :n "C-M-h" #'windmove-swap-states-left)
+
+(map!
+        :leader
+        :prefix "w"
+        :desc "Swap state right" :n "C-M-l" #'windmove-swap-states-right)
+#+end_src
+**** Quickly move between windows
+#+begin_src emacs-lisp
+(map!
+        :g "M-`" nil
+        :desc "Prev window config" :niv "M-`" #'winner-undo
+        :g "C-M-`" nil
+        :desc "Next window config" :niv "C-M-`" #'winner-redo)
+#+end_src
+**** Resize Windows
+#+begin_src elisp
+(map!
+    :prefix "w"
+    :desc "Hydra resize" :n "SPC" #'doom-window-resize-hydra/body)
+
+
+#+end_src
+*** Buffer
+**** Buffering
+#+begin_src emacs-lisp
+(map! :g "C-." nil
+      :desc "buffer-next" :n "C-." #'switch-to-prev-buffer)
+(map! :g "C-M-." nil
+      :desc "buffer-next" :n "C-M-." #'switch-to-next-buffer)
+(map! :g "C-b" nil
+      :desc "switch buffers":nvi "C-b C-b" #'+vertico/switch-workspace-buffer)
+(map! :g "C-b C-d" nil
+      :desc "switch buffers":nvi "C-b C-d" #'+workspace/close-window-or-workspace)
+#+end_src
+*** Cursor
+
+
+
+**** Move outer of inner of function
+#+begin_src emacs-lisp
+(map!
+ :g "C-M-/" nil
+ :desc "Redo" :n "C-M-/" #'evil-redo)
+(map!
+ :g "C-/"
+ :desc "Undo" :n "C-/" #'evil-undo)
+
+(map!
+ :g "M-h" nil
+ :desc "Move below" :n "C-M-n" #'sp-backward-symbol)
+
+(map!
+ :desc "function forward tree-sitter" :ngvi "C-' 0" #'+goto-function.outer
+ :desc "function backward" :ngvi "C-' 1" #'+goto-previous-function.outer
+ :desc "call forward" :ngvi "C-' 2" #'+goto-call.outer
+ :desc "call backward" :ngvi "C-' 3" #'+goto-previous-call.outer
+ :desc "parameter forward" :ngvi "C-' 4" #'+goto-parameter.outer
+ :desc "parameter backward" :ngvi "C-' 5" #'+goto-previous-parameter.outer
+ :desc "comment forward" :ngvi "C-' 6" #'+goto-comment.outer
+ :desc "comment backward" :ngvi "C-' 7" #'+goto-previous-comment.outer
+ :desc "loop forward" :ngvi "C-' 8" #'+goto-loop.outer
+ :desc "loop backward" :ngvi "C-' 9" #'+goto-previous-loop.outer
+ :desc "conditional forward" :ngvi "C-' p" #'+goto-conditional.outer
+ :desc "conditional backward" :ngvi "C-' j" #'+goto-previous-conditional.outer
+ :desc "class forward" :ngvi "C-' C-l C-1" #'+goto-class.outer
+ :desc "class backward" :ngvi "C-' C-l C-0" #'+goto-previous-class.outer)
+#+end_src
+**** Same depth movement
+#+begin_src emacs-lisp
+(map!
+        :g "C-M-p" nil
+        :desc "next in list" :n "C-M-p" #'sp-forward-parallel-sexp)
+(map!
+        :g "M-l" nil
+        :desc "previous in list" :n "M-l" #'evil-forward-WORD-end)
+(map!
+        :g "M-h" nil
+        :desc "Move out" :n "M-h" #'evil-backward-WORD-end)
+(map!
+        :g "M-p" nil
+        :desc "previous in context" :n "M-p" #'+goto-previous-function.outer)
+(map!
+        :g "M-n" nil
+        :desc "previous in context" :n "M-n" #'+goto-function.outer)
+(map!
+        :g "C-l" nil
+        :desc "next word" :n "C-l" #'evil-forward-WORD-begin)
+
+(map!
+        :g "C-h" nil
+        :desc "prev word" :n "C-h" #'evil-backward-WORD-begin)
+
+(map!
+        :g "C-p" nil
+        :desc "prev line" :ng "C-p" #'previous-line)
+
+(map!
+        :g "C-n" nil
+        :desc "next line" :ng "C-n" #'next-line)
+#+end_src
+
+**** Symbol jumping
+#+begin_src emacs-lisp
+(map!
+ :g "C-M-s" nil
+ :desc "map to next symbol" :n "C-M-s" #'evil-jump-item)
+(map!
+ :g "M-r" nil
+ :desc "prev context" :n "M-r" #'recenter-top-bottom)
+(map!
+ :g "C-r" nil
+ :desc "prev search" :n "C-r" #'isearch-backward)
+(map!
+ :g "C-s" nil
+ :desc "prev search" :n "C-s" #'isearch-forward)
+(map!
+ :g "M-o" nil
+ :desc "swap back to cursor" :n "M-o" #'evil-jump-backward-swap)
+(map!
+ :g "C-," nil
+ :desc "jmp next arg" :n "C-," #'evil-jump-forward)
+
+(map!
+ :g "C-M-," nil
+ :desc "jmp next arg" :n "C-M-," #'evil-jump-backward)
+#+end_src
+
+**** Readonly manipulation sexp
+#+begin_src elisp
+(map!
+ :g "C-k" nil
+ :desc "kill until mark" :no "C-k" #'sp-kill-hybrid-sexp)
+(map!
+ :g "C-M-k" nil
+ :desc "kill until mark" :no "C-M-k" #'sp-kill-region)
+ (map!
+  :g "M-C-l" nil
+  :nvi "M-C-l" #'mark-sexp)
+#+end_src
+
+**** Effective Movement
+#+begin_src emacs-lisp
+(map!
+ :g "C-a" nil
+ :desc "end of sentence" :nv "C-a" #'back-to-indentation)
+(map!
+ :g "C-e" nil
+ :desc "end of sentence" :nv "C-e" #'evil-end-of-visual-line)
+(map!
+ :g "C-s" nil
+ :desc "search symbol at point" :n "C-s" #'evil-ex-search-word-forward)
+(map!
+ :g "M-a" nil
+ :desc "Scroll up without removing cursor pos" :nvi "M-a" #'evil-scroll-line-up)
+(map!
+ :g "M-e" nil
+ :desc "Scroll down without removing cursor pos" :nvi "M-e" #'evil-scroll-line-down)
+(map!
+ :g "C-M-p" nil
+ :desc "Move to prev paragraph" :nvi "C-M-p" #'backward-paragraph)
+(map!
+ :g "C-M-n" nil
+ :desc "Move to next paragraph" :nvi "C-M-n" #'forward-paragraph)
+(map!
+ :g "M-P" nil
+ :desc "Move line up" :nvi "M-P" #'drag-stuff-up)
+(map!
+ :g "M-N" nil
+ :desc "Move line down" :nvi "M-N" #'drag-stuff-down)
+(map!
+ :g "M-N" nil
+ :desc "Move line down" :nvi "M-N" #'drag-stuff-down)
+(map!
+ :g "M-E" nil
+ :desc "Move buffer down" :nvi "M-E" #'evil-scroll-page-down)
+(map!
+ :g "M-A" nil
+ :desc "Move buffer down" :nvi "M-A" #'evil-scroll-page-up)
+(map!
+ :g "C-M-O" nil
+ :desc "create line above" :nvi "C-M-O" #'evil-open-above
+ :g "C-o" nil
+ :desc "Create line below" :nvi "C-o" #'evil-open-below)
+
+#+end_src
+
+**** Unbid annoyances
+#+begin_src emacs-lisp
+(map! :map (evil-normal-state-map evil-insert-state-map evil-visual-state-map evil-motion-state-map)
+    :g "C-u" nil
+    :g"C-d" nil
+    :g"C-b" nil
+    :g "C-M-g" #'doom/escape
+    :g "C-M-u" #'undo
+    :g "C-u" #'undo
+    :g "M-v" #'scroll-other-window-down
+    :g "C-M-d" #'kill-region)
+#+end_src
+
+**** Manipulating
+#+begin_src emacs-lisp
+(map!
+ :g "C-M-y" nil
+ :desc "acess the kill-ring" :n "C-M-y" #'yank-from-kill-ring)
+(map!
+ :g "C-y" nil
+ :desc "yank region" :nvi "C-y" #'kill-ring-save)
+(map!
+ :g "C-j" nil
+ :desc "paste region" :nvi "C-j" #'evil-paste-after)
+(map!
+ :g "C-M-j" nil
+ :desc "paste region" :nvi "C-M-j" #'evil-paste-before)
+(map!
+ :g "C-d" nil
+ :desc "delete region" :nvi "C-d" #'kill-region)
+(map!
+ :g "C-<backspace>" nil
+ :desc "delete region" :nvi "C-<backspace>" #'kill-word)
+#+end_src
+
+**** Folding
+#+begin_src emacs-lisp
+(map!
+        :desc "fold-toggle" :n "z g" #'+fold/toggle )
+(map!
+        :desc "fold-open" :n "z G" #'+fold/close)
+#+end_src
+
+*** Frame
+
 * FUNCTIONS
 ** Notify me in x minutes
 #+begin_src elisp
@@ -1087,10 +1074,10 @@ _h_ decrease width    _l_ increase width
 
 ** Global minor modes
 #+begin_src emacs-lisp
-(define-globalized-minor-mode global-pixel-precision pixel-scroll-precision-mode
-  (lambda () (pixel-scroll-precision-mode 1)))
-
-(global-pixel-precision 1)
+;;(define-globalized-minor-mode global-pixel-precision pixel-scroll-precision-mode
+;;  (lambda () (pixel-scroll-precision-mode 1)))
+;;
+;;(global-pixel-precision 1)
 #+end_src
 
 * PREFERENCES
@@ -1128,39 +1115,7 @@ _h_ decrease width    _l_ increase width
 (setq emms-player-mpd-server-name "localhost")
 (setq emms-player-mpd-server-port "6600")
 (setq emms-player-mpd-music-directory "~/Music")
-(setq emms-add-directory-tree "~/Music")
-(map! :g "<f5>" #'emms-previous
-      :g "<f6>" #'emms-pause
-      :g "<S-f5>" #'emms-seek-backward
-      :g "<f7>" #'emms-next
-      :g "<S-f7>" #'emms-seek-forward
-      :g "S-<f6>" #'emms-random
-      :g "C-<f6>" #'emms-stop
-      :g "M-<f6>" #'emms-smart-browse
-      :g "M-<f8>" #'emms-score-toggle
-      :g "S-<f8>" #'emms-score-set-playing
-      :g "C-<f8>" #'emms-score-set-tolerance)
-(map! :map emms-playlist-mode-map
-      :n "r" #'emms-random)
-(map! (:map (emms-browser-mode-map emms-playlist-mode-map)
-      :n "r" #'emms-random
-      :n "h" #'emms-browser-collapse-all
-      :n "3" #'emms-browser-expand-to-level-3
-      :n "2" #'emms-browser-expand-to-level-2
-      :n "4" #'emms-browser-expand-to-level-4
-      :n "l" #'emms-browser-expand-one-level
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :n "g" #'emms-browse-by-genre
-      :n "C-g" #'emms-playlist-limit-to-info-genre
-      :n "a" #'emms-browse-by-artist
-      :n "C-a" #'emms-playlist-limit-to-info-artist
-      :n "M-a" #'emms-playlist-sort-by-info-artist
-      :n "RET" #'emms-playlist-mode-play-smart
-      :n "S-<return>" #'emms-pause
-      :n "C-<return>" #'emms-stop
-      :n "A" #'emms-browse-by-album))
+(setq emms-add-rirectory-tree "~/Music")
 #+end_src
 
 ** Folds
@@ -1190,12 +1145,14 @@ _h_ decrease width    _l_ increase width
   :defer t
   :config
   (setq calibredb-root-dir "~/Calibre")
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  )
-(setq calibredb-virtual-library-alist '(("Angular" . "Angular")))
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
+(setq calibredb-virtual-library-alist '(("Angular" . "Angular")
+                                        ("Computer Vision" . "Computer\\ Graphics\\|Computer\\ Vision\\|Geometry")
+                                        ("Theory of computation" . "Mathematical\\ Logic\\|Logic\\|Proving\\|Computation\\|Computability\\|Automata\\|NP")
+                                        ("Learning the language of the gods" . "Lisp")
+                                        ("LaTeX books" . "LaTeX")))
 (map! (:map calibredb-search-mode-map
-      :n  "." #'calibredb-dispatch
-      )) ;;TODO
+      :n  "." #'calibredb-dispatch)) ;;TODO
 #+end_src
 
 * EVIL mode
@@ -1205,7 +1162,10 @@ _h_ decrease width    _l_ increase width
 #+end_src
 ** Text operators
 #+begin_src emacs-lisp
-
+(map!
+        (:map evil-surround-mode-map
+        :gv "<visual-state> D" #'evil-surround-delete
+        :ogv "<visual-state> C" #'evil-surround-change))
 #+end_src
 ** Text motions
 #+begin_src emacs-lisp
@@ -1222,4 +1182,5 @@ _h_ decrease width    _l_ increase width
 (setq evil-ex-substitute-global t)
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+(setq evil-disable-insert-state-bindings t)
 #+end_src
