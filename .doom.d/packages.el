@@ -136,4 +136,8 @@
 (package! annotate)
 (package! cucumber)
 (package! elmacro)
-(package! zones)
+;; (package! zones)
+;; (package! bookmark-plus)
+(package! kbd-mode
+  :recipe (:host github
+           :repo "kmonad/kbd-mode"))
