@@ -27,7 +27,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu fuzzel
+set $menu fuzzel --dpi-aware=no
 set $switcher '$HOME/.cargo/bin/swayr'
 set $lockman exec bash ~/.config/sway/lockman.sh
 # Start the app switcher
@@ -47,17 +47,18 @@ bindswitch --reload --locked lid:off output $laptop enable
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+  output * mode 1920x1080@60Hz scale 1
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
 exec swayidle -w \
          timeout 300 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
-         timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on" && playerctl -a play' \
+         timeout 500 'playerctl -a pause && swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on" && playerctl -a play' \
          timeout 3600 'systemctl suspend' \
          before-sleep 'swaylock -f -i "$HOME/.config/Wallpaper/dragon.png"' \
-         after-resume 'swaymsg "output * dpms on"'
+         after-resume 'swaymsg reload && sleep 0.5 && swaymsg "output * dpms on"'
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -328,7 +329,6 @@ bindsym $mod+z exec 'pkill -USR1 gammastep || gammastep -O 4000'
 #
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec 'systemctl enable --user mpd.service | mpd'
-exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov
 exec 'eval "$(ssh-agent -s)"'
 exec 'ssh-add ~/.ssh/id_ed25519'
 exec 'safeeyes'
