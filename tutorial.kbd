@@ -227,8 +227,8 @@
 
                 ;; (defalias
                 ;; vi2 (layer-toggle vibliss2))
-                (defalias
-                  ink (layer-switch inklayer))
+                ;; (defalias
+                ;;   ink (layer-switch inklayer))
 
                 (defalias
                   def (layer-switch base))
@@ -239,11 +239,11 @@
                 (defalias
                 symbol (layer-toggle symbolayer))
 
-                (defalias
-                number (layer-toggle numberlayer))
+                ;; (defalias
+                ;; number (layer-toggle numberlayer))
 
                 (defalias
-                utils (layer-toggle utilslayer))
+                utils (layer-switch utilslayer))
 
                 (defalias
                 fn (layer-toggle fnlayer))
@@ -254,8 +254,8 @@
                 (defalias
                 super (layer-toggle superlayer))
 
-                (defalias
-                lsft (layer-toggle lsftlayer))
+                ;; (defalias
+                ;; lsft (layer-toggle lsftlayer))
 
                         (defalias
                         c/ (tap-macro-release /))
@@ -267,7 +267,7 @@
                         cz (tap-macro-release z))
 
                         (defalias
-                        cq (tap-macro-release q))
+                        ctab (tap-macro-release tab))
 
                         (defalias
                         ccap (tap-macro-release esc))
@@ -320,13 +320,13 @@
                         (defalias
                         fC (tap-macro RC-q RC-p RC-1 ))
                                 (defalias
-                                chsym (tap-hold-next-release 250 @cq @symbol))
+                                chsym (tap-hold-next-release 250 @ctab @symbol))
+
+                                ;; (defalias
+                                ;; chnumber (tap-hold-next-release 250 @c[ @number))
 
                                 (defalias
-                                chnumber (tap-hold-next-release 250 @c[ @number))
-
-                                (defalias
-                                chutils (tap-hold-next-release 250 @cz @utils))
+                                chutils (tap-hold-next-release 250 @utils @meta))
 
                                 (defalias
                                 chfn (tap-hold-next-release 250 @c/ @fn))
@@ -353,10 +353,10 @@
 
 (deflayer base
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  @chsym    w    e    r    t    y    u    i    o    p    @chnumber ]    \
+  @chsym  q    w    e    r    t    y    u    i    o    p    [ ]    \
   @chcaps a    s    d    f    g    h    j    k    l    ;    '    ret
-  @lsft @chutils    x    c    v    b    n    m    ,    .    @chfn    rsft
-  lctl @super @ch           spc            ralt rmet cmp  rctl
+  lsft z    x    c    v    b    n    m    ,    .    @chfn    rsft
+  lctl lmet @chutils           spc            ralt rmet cmp  rctl
 )
 
 (deflayer capslayer
@@ -367,21 +367,21 @@
   lctl @super RC-@meta           RC-spc            ralt rmet cmp  rctl
 )
 
-(deflayer inklayer
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  @def  '    RC-left    RC-up    ]    t    y    esc    i    o     p   [  ]    \
-  RC-@caps ret    s    RC-down    RC-right    g   h     j   k     down  ;    '    ret
-  lsft  z   x    c    v    b    n    m    ,    .    z    rsft
-  lctl lmet lalt           spc            ralt rmet cmp  rctl
-)
+;; (deflayer inklayer
+;;   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+;;   @def  '    RC-left    RC-up    ]    t    y    esc    i    o     p   [  ]    \
+;;   RC-@caps ret    s    RC-down    RC-right    g   h     j   k     down  ;    '    ret
+;;   lsft  z   x    c    v    b    n    m    ,    .    z    rsft
+;;   lctl lmet lalt           spc            ralt rmet cmp  rctl
+;; )
 
-(deflayer lsftlayer
-  grv  S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-9    S-0    S--    S-=    bspc
-  S-tab  S-q    S-w    S-e    S-r    S-t    S-y    S-u    S-i    S-o     S-p   S-[  S-]    S-\
-  caps S-a    S-s    S-d    S-f    S-g   S-h     S-j   S-k     S-l  S-;    S-'    S-ret
-  lsft  S-z   S-x    S-c    S-v    S-b    S-n    S-m    S-,    S-.    S-/    S-rsft
-  lctl @super RC-@meta           S-spc            ralt rmet cmp  rctl
-)
+;; (deflayer lsftlayer
+;;   grv  S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-9    S-0    S--    S-=    bspc
+;;   S-tab  S-q    S-w    S-e    S-r    S-t    S-y    S-u    S-i    S-o     S-p   S-[  S-]    S-\
+;;   caps S-a    S-s    S-d    S-f    S-g   S-h     S-j   S-k     S-l  S-;    S-'    S-ret
+;;   lsft  S-z   S-x    S-c    S-v    S-b    S-n    S-m    S-,    S-.    S-/    S-rsft
+;;   lctl @super RC-@meta           S-spc            ralt rmet cmp  rctl
+;; )
 
 (deflayer superlayer
   M-grv  M-1    M-2    M-3    M-4    M-5    M-6    M-7    M-8    M-9    M-0    M--    M-=    M-bspc
@@ -393,34 +393,34 @@
 
 (deflayer symbolayer
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  _    left    up   _    _                 _  @bccc    @bb   @fb     @fccc  @    ret
+  tab  _    left    up   _    _                 _  @bccc    @bb   @fb     @fccc  _    ret
   caps  left    _    _    down    right    _    @bC    @bc   @bp       @fp    @fc  @fC
   lsft _    _    _   esc    g             _         @bl      @bcc    @fcc    @fl  `    rsft
   lctl lmet @ch           spc            ralt rmet cmp  rctl
 )
 
-(deflayer numberlayer
-  grv  1    2    3    4    5          6    7    8    9    0    -    =    bspc
-  [  *    7    8   9    '           _   _     up   right   _  _ \
-  caps bspc    4    5    6    S-]      ret   left    down   _  _  _  _ _
-  lsft 0    1    2   3    e   _      _    _    g    esc  rsft
-  lctl lmet @ch           spc               ralt rmet cmp  rctl
-)
+;; (deflayer numberlayer
+;;   grv  1    2    3    4    5          6    7    8    9    0    -    =    bspc
+;;   [  *    7    8   9    '           _   _     up   right   _  _ \
+;;   caps bspc    4    5    6    S-]      ret   left    down   _  _  _  _ _
+;;   lsft 0    1    2   3    e   _      _    _    g    esc  rsft
+;;   lctl lmet @ch           spc               ralt rmet cmp  rctl
+;; )
 
 (deflayer utilslayer
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  _    _    _    _    _    _    sys    slck    pause   _     _   _   \
-  caps _    _    _    _    _    S-sys    ins           home     pageup  _  _     ret
-  lsft _    _    _    _    _    _    del            end     pagedown    _    rsft
-  lctl lmet @ch           spc            ralt rmet cmp  rctl
+  @def  sys    slck    pause    _    _    _    @def    _    _   _     _   _   \
+  (around-next esc) S-sys    ins    pageup    _    _    _    _          _     _   _  _     ret
+  @def del    end    pagedown    _    _    _    del            _    _    _    rsft
+  lctl @def @def           spc            ralt rmet cmp  rctl
 )
 
 (deflayer fnlayer
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  f1    f2    f3    f4    f5    _    _    _    _    _     _  _    \
-  caps f6    f7    f8    f9    f10    f11    f12    _    _    _    _    ret
-  lsft 1    2    3    4    _      _    _    _    _    _    rsft
-  lctl lmet @ch           spc            ralt rmet cmp  rctl
+  caps  f1    f2    f3    f4    _    _    @def    _    _    _     _  _    \
+  (around-next esc) f5    f6    f7    f8    _    _    _    _    _    _    _    ret
+  lsft f9    f10   f11   f12    _      _    _    _    _    _    rsft
+  lctl lmet  lalt          spc            ralt rmet cmp  rctl
 )
 
 ;; (deflayer vibliss
