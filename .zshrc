@@ -96,11 +96,6 @@ z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
 autoload -Uz zmv
 
 # Define functions and completions.
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-#edit using $EDITOR
-function edit() { zi $1 && vims $(fzf --query "$2") && cd}
-function restart-emacs() {killall "emacs" && emacs --daemon && emacsclient -t $1}
-#auxfunction for stow
 function link() {
     rm -rf $2/$1 ; mkdir $2/$1 && stow -t $2/$1 -Rv $1;
         if [ -z "`ls -A $2/$1/`" ] # check if dir is empty
