@@ -70,16 +70,16 @@
  
 ;(package! org-roam-server)
 ;; (package! literate-calc-mode)
-(package! keycast-mode
-  :recipe (:host github :repo "tarsius/keycast"))
+;; (package! keycast-mode
+;;   :recipe (:host github :repo "tarsius/keycast"))
 ;; (package! auto-yasnippet)
 
-(package! verilog-mode)
-(package! spice-mode
-  :recipe (:host github :repo "emacsmirror/spice-mode"))
-(package! ob-spice
-  :recipe (:host github :repo "fpiper/ob-spice"))
-(package! matlab-mode)
+;; (package! verilog-mode)
+;; (package! spice-mode
+;;   :recipe (:host github :repo "emacsmirror/spice-mode"))
+;; (package! ob-spice
+;;   :recipe (:host github :repo "fpiper/ob-spice"))
+;; (package! matlab-mode)
 (package! nov)
 ;;(package! persist)
 ;; (package! org-gcal)
@@ -92,22 +92,22 @@
 
  ;; (package! evil-motion-trainer
  ;;   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
-(package! calibredb
-  :recipe (:host github :repo "chenyanming/calibredb.el"))
+;; (package! calibredb
+;;   :recipe (:host github :repo "chenyanming/calibredb.el"))
 ;; (package! org-xournalpp
 ;;   :recipe (:host gitlab
 ;;            :repo "vherrmann/org-xournalpp"
 ;;            :files ("resources" "*.el")))
 
-(package! ob-sml
-  :recipe (:host github :repo "swannodette/ob-sml"))
+;; (package! ob-sml
+;;   :recipe (:host github :repo "swannodette/ob-sml"))
 ;; (package! pyret
 ;;   :recipe (:host github :repo "brownplt/pyret-lang/tools/emacs/"
 ;;            :files ("pyret-debgu-mode.el" "pyret.el")))
 ;; (package! elcord)
 ;; (package! good-scroll)
 (package! platformio-mode)
-(package! burly)
+;; (package! burly)
  (package! org-ql)
 ;; (package! org-alert
 ;;   :recipe (:host github :repo "spegoraro/org-alert"))
@@ -129,7 +129,7 @@
 ;;(package! webkit
 ;;  :recipe (:host github
 ;;           :repo "akirakyle/emacs-webkit"))
-(package! mu4e-alert :disable t)
+;; (package! mu4e-alert :disable t)
 (package! telega)
 (package! doct)
 (package! flyspell-correct-popup)
@@ -138,6 +138,6 @@
 (package! elmacro)
 ;; (package! zones)
 ;; (package! bookmark-plus)
-(package! kbd-mode
-  :recipe (:host github
-           :repo "kmonad/kbd-mode"))
+;; (package! kbd-mode
+;;   :recipe (:host github
+;;            :repo "kmonad/kbd-mode"))

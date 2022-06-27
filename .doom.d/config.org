@@ -295,45 +295,6 @@
 (setq org-pomodoro-long-break-frequency 8)
 (setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
 #+end_src
-* EMAIL
-#+begin_src elisp
-(after! mu4e
-  (setq sendmail-program (executable-find "msmtp")
-        send-mail-function #'smtpmail-send-it
-        message-sendmail-f-is-evil t
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail))
-
-(set-email-account! "enzogurgel15@gmail.com"
-  '((mu4e-sent-folder       . "/Personal/Sent Mail")
-    (mu4e-drafts-folder     . "/Personal/Drafts")
-    (mu4e-trash-folder      . "/Personal/Trash")
-    (mu4e-refile-folder     . "/Personal/All Mail")
-    (smtpmail-smtp-user     . "enzogurgel15@gmail.com")
-    (mu4e-compose-signature . "---\n---/n/-------"))
-  t)
-
-(set-email-account! "egb2@cin.ufpe.br"
-  '((mu4e-sent-folder       . "/CIn/Sent Mail")
-    (mu4e-drafts-folder     . "/CIn/Drafts")
-    (mu4e-trash-folder      . "/CIn/Trash")
-    (mu4e-refile-folder     . "/CIn/All Mail")
-    (smtpmail-smtp-user     . "egb2@cin.ufpe.br")
-    (mu4e-compose-signature . "---\n Tenha um ótimo dia--"))
-  t)
-
-(setq +mu4e-gmail-accounts '(("enzogurgel15@gmail.com" . "/enzogurgel15")
-                             ("egb2@cin.ufpe.br" . "/egb2")))
-
-(setq mu4e-context-policy 'ask-if-none
-      mu4e-compose-context-policy 'always-ask)
-
-(setq mu4e-index-cleanup nil
-      ;; because gmail uses labels as folders we can use lazy check since
-      ;; messages don't really "move"
-      mu4e-index-lazy-check t)
-#+end_src
-
 * PROGRAMMING
 ** LSP
 #+begin_src emacs-lisp
@@ -452,12 +413,6 @@ latter - its output."
       (fit-window-to-buffer (window-in-direction 'below))))) ;;programming - auctex
 (setq +latex-viewers '(pdf-tools)) ;; programming -latex
 #+end_src
-** Julia
-#+begin_src elisp
-;; lsp-julia config
-(setq lsp-julia-package-dir nil)
-(setq lsp-julia-default-environment "~/.julia/environments/v1.0") ;; programming - julia
-#+end_src
 ** Python
 #+begin_src emacs-lisp
 (after! dap-mode
@@ -470,24 +425,6 @@ latter - its output."
 (require 'dap-chrome)
 (require 'dap-node)
 #+end_src
-** Zig
-#+begin_src elisp
-(use-package! zig-mode
-  :hook ((zig-mode . lsp-deferred))
-  :custom (zig-format-on-save nil)
-  :config
-  (after! lsp-mode
-    (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
-    (lsp-register-client
-      (make-lsp-client
-        :new-connection (lsp-stdio-connection "/home/enzobissoli/zls/zls")
-        :major-modes '(zig-mode)
-        :server-id 'zls)))) ;; programming zig, can remove?
-
-
-(setq lsp-zig-zls-executable "~/.local/bin/zls") ;; programming - zig
-#+end_src
-
 ** C/C++
 #+begin_src elisp
 (set-docsets! 'c-mode "C")
@@ -514,21 +451,8 @@ latter - its output."
 (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
 (setq imaxima-use-maxima-mode-flag t)
 (add-to-list 'auto-mode-alist '("\\.ma[cx]\\'" . maxima-mode))
-(matlab-cedet-setup) ;;programming -maxima
 #+end_src
 
-** SML
-#+begin_src elisp
-(setq exec-path (cons "/usr/local/SMLROOT/bin"  exec-path)) ;; programing sml
-#+end_src
-
-** MATLAB
-#+begin_src elisp
-(set-docsets! 'matlab-mode "MATLAB") ;; programming - misc, docsets?
-#+end_src
-
-
-#+end_src
 * HACKS
 ** autoinsert SSH key
 #+begin_src elisp
@@ -558,31 +482,6 @@ information retrieved from files created by the keychain script."
 ;; End:
 ;;; keychain-environment.el ends here
 (keychain-refresh-environment) ;; hacks --ssh
-#+end_src
-
-** Copy & paste in wayland
-#+begin_src elisp
-(custom-set-faces!
-  '(aw-leading-char-face
-    :foreground "white" :background "red"
-    :weight bold :height 2.5 :box (:line-width 10 :color "red"))) ;; hacks?
-
-(setq wl-copy-process nil)
-(defun wl-copy (text)
- (setq wl-copy-process (make-process :name "wl-copy"
-                                     :buffer nil
-                                     :command '("wl-copy" "-f" "-n")
-                                     :connection-type 'pipe))
- (process-send-string wl-copy-process text)
- (process-send-eof wl-copy-process))
-
-(defun wl-paste ()
- (if (and wl-copy-process (process-live-p wl-copy-process))
-     nil ; should return nil if we're the current paste owner
-   (shell-command-to-string "wl-paste -n | tr -d \r")))
-
-(setq interprogram-cut-function 'wl-copy)
-(setq interprogram-paste-function 'wl-paste) ;; hacks - wayland
 #+end_src
 
 ** Xwidget open dashdocs
@@ -643,41 +542,6 @@ information retrieved from files created by the keychain script."
         :leader
         :prefix "o"
         :desc "The elfeed" :n "e" #'elfeed)
-#+end_src
-**** Emms
-#+begin_src emacs-lisp
-(map! :g "<f5>" #'emms-previous
-      :g "<f6>" #'emms-pause
-      :g "<S-f5>" #'emms-seek-backward
-      :g "<f7>" #'emms-next
-      :g "<S-f7>" #'emms-seek-forward
-      :g "S-<f6>" #'emms-shuffle
-      :g "C-<f6>" #'emms-stop
-      :g "M-<f6>" #'emms-smart-browse
-      :g "M-<f8>" #'emms-score-toggle
-      :g "S-<f8>" #'emms-score-set-playing
-      :g "C-<f8>" #'emms-score-set-tolerance)
-(map! :map emms-playlist-mode-map
-      :n "r" #'emms-random)
-(map! (:map (emms-browser-mode-map emms-playlist-mode-map)
-      :n "r" #'emms-random
-      :n "h" #'emms-browser-collapse-all
-      :n "3" #'emms-browser-expand-to-level-3
-      :n "2" #'emms-browser-expand-to-level-2
-      :n "4" #'emms-browser-expand-to-level-4
-      :n "l" #'emms-browser-expand-one-level
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :ni "p" #'emms-browser-add-tracks-and-play
-      :n "g" #'emms-browse-by-genre
-      :n "C-g" #'emms-playlist-limit-to-info-genre
-      :n "a" #'emms-browse-by-artist
-      :n "C-a" #'emms-playlist-limit-to-info-artist
-      :n "M-a" #'emms-playlist-sort-by-info-artist
-      :n "RET" #'emms-playlist-mode-play-smart
-      :n "S-<return>" #'emms-pause
-      :n "C-<return>" #'emms-stop
-      :n "A" #'emms-browse-by-album))
 #+end_src
 **** PDF mode
 #+begin_src emacs-lisp
@@ -1105,20 +969,6 @@ _h_ decrease width    _l_ increase width
 (setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
 
-** Telega
-#+begin_src elisp
-(setq telega-directory "~/.telega")
-#+end_src
-
-** Emms
-#+begin_src emacs-lisp
-(setq emms-player-list '(emms-player-mpd))
-(setq emms-player-mpd-server-name "localhost")
-(setq emms-player-mpd-server-port "6600")
-(setq emms-player-mpd-music-directory "~/Music")
-(setq emms-add-rirectory-tree "~/Music")
-#+end_src
-
 ** Folds
 #+begin_src emacs-lisp
 (add-hook! '(sh-mode-hook conf-mode-hook python-mode-hook c-mode-hook typescript-mode-hook)
@@ -1135,27 +985,6 @@ _h_ decrease width    _l_ increase width
         modus-themes-links '(neutral-underline faint background italic)
         modus-themes-prompts '(intense))
 #+end_src
-** Emojis
-#+begin_src emacs-lisp
-(after! emojify
-  (setq emojify-display-style 'ascii))
-#+end_src
-** CalibreDB
-#+begin_src emacs-lisp
-(use-package calibredb
-  :defer t
-  :config
-  (setq calibredb-root-dir "~/Calibre")
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
-(setq calibredb-virtual-library-alist '(("Angular" . "Angular")
-                                        ("Computer Vision" . "Computer\\ Graphics\\|Computer\\ Vision\\|Geometry")
-                                        ("Theory of computation" . "Mathematical\\ Logic\\|Logic\\|Proving\\|Computation\\|Computability\\|Automata\\|NP")
-                                        ("Learning the language of the gods" . "Lisp")
-                                        ("LaTeX books" . "LaTeX")))
-(map! (:map calibredb-search-mode-map
-      :n  "." #'calibredb-dispatch)) ;;TODO
-#+end_src
-
 * EVIL mode
 
 ** Text objects
