@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: in-line-HTML
+# key: </
+# --
+<$1 $0  />

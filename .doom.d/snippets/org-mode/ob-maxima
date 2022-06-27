@@ -1,0 +1,22 @@
+# key: maxima
+# name: ob-maxima
+# --
+#+name:${1:maxima}
+#+begin_src maxima :cmdline :results value verbatim
+display_format_internal:false;
+powerdisp:false;
+pfeformat:false;
+stardisp:true;
+display2d:true;
+simpsum:true;
+load("engineering-format")$
+engineering_format_floats:true;
+engineering_format_min:1;
+engineering_format_max:1000;
+algebraic:true;
+leftjust:false;
+radexpand:true;
+sumexpand:true;
+numer:true;
+fpprintprec:6;
+#+end_src

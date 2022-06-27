@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name:linetype
+# uuid:4234
+# key:lt
+# condition: t
+# --
+
+set linetype ${1:1} lc ${2:rgb} "${3:blue}" lw ${4:1} pt ${5:1}

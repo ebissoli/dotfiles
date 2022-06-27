@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: preamble
+# key: preamble
+# --
+
+
+org 0x7c00
+jmp 0x0000:$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name:complex_poles 
+# key: c_poles
+# --
+
+K${1:0}:at(ratsimp(${2:param}[2]*(s + p${3:0})^${4:1}),[s=p$3]);

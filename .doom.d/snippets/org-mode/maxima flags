@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: maxima flags
+# uuid: 2323423
+# key: mf
+# condition: t
+# --
+
+#+name:FlagsDoMaxima3
+#+header: :results silent
+#+begin_src maxima
+display_format_internal:false;
+powerdisp:true;
+pfeformat:true;
+stardisp:true;
+display2d:true;
+simpsum:true;
+globalsolve:true;
+load("engineering-format")$
+load("scifac")$
+load("facexp")$
+engineering_format_floats:true;
+engineering_format_min:1;
+engineering_format_max:100000000;
+algebraic:true;
+leftjust:false;
+radexpand:true;
+sumexpand:false;
+numer:true;
+fpprintprec:6;
+logsimp:true;
+%emode:true;
+ratvars(s);    
+#+end_src

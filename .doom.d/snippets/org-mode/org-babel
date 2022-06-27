@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name:org-babel 
+# key: ob
+# --
+#+begin_src ${1:scheme}
+#+end_src

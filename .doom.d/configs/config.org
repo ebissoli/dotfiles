@@ -1,0 +1,322 @@
+#+title: Config
+* DOOM
+** Main
+#+begin_src elisp
+;; Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets.
+(setq user-full-name "Enzo Bissoli"
+      user-mail-address "enzogurgel15@gmail.com")
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+;;
+;; -*- lexical-binding: t; -*-
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two
+(setq doom-font (font-spec :family "PragmataPro" :size 12) ;; use :weight parameter for something other than regular
+      doom-variable-pitch-font (font-spec :family "PragmataPro" :size 13 ))
+
+(setq doom-unicode-font (font-spec :family "PragmataPro Mono"))
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'modus-operandi)
+(display-time)
+#+end_src
+# ** Company
+# #+begin_src emacs-lisp
+# (after! company
+#   (setq company-idle-delay 0.3))
+#+end_src
+* ORG
+** Basic org
+#+begin_src elisp
+(remove-hook 'org-mode-hook #'org-superstar-mode) ;;basic doom emacs
+
+
+(setq display-line-numbers-type t) ;; basic -doom -config
+
+(after! org
+  (setq org-fontify-quote-and-verse-blocks nil
+        org-fontify-whole-heading-line nil
+        ;; org-hide-leading-stars nil
+        org-startup-indented nil)
+  (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "NEXT(n)" "|" "DONE(d)" "KILL(k)") (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)") (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")))
+  )
+
+;;If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+
+(setq org-directory "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")
+#+end_src
+** Modern org
+#+begin_src emacs-lisp :tangle yes
+;; Minimal UI
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 40)
+   (internal-border-width . 40)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-ellipsis "…"
+
+ ;; Agenda styling
+ org-agenda-tags-column 0
+ org-agenda-block-separator ?─
+ org-agenda-time-grid
+ '((daily today require-timed)
+   (800 1000 1200 1400 1600 1800 2000)
+   " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+ org-agenda-current-time-string
+ "⭠ now ─────────────────────────────────────────────────")
+(global-org-modern-mode)
+#+end_src
+** Org noter
+#+begin_src elisp
+(setq org-noter-notes-search-path '("~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")) ;;basic org config
+#+end_src
+** Org Capture :CHANGE:
+#+begin_src emacs-lisp
+(after! (:or org-capture org-agenda org)
+    (setq org-capture-templates
+    (doct '(
+        ("UNI" :keys "u"
+        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/"
+        :prepend t
+            :template ("* %{todo-state} %?"
+                        "%i %a")
+            :children (("INFOTEORICA"  :keys "i"
+                        :headline   "infoTeorica"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/info.org"
+                        :todo-state "TODO"
+                        :hook (lambda () (message "\"InfoTeorica\" selected.")))
+                        ("GDI " :keys "g"
+                        :headline   "GDI"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/gdi.org"
+                        :hook (lambda () (message "\"GDI\" selected.")))
+                        ("MON "  :keys "m"
+                        :headline   "MonitoriaPLC"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/mon.org"
+                        :hook (lambda () (message "\"Monitoria PLC\" selected.")))
+                        ("IHS "  :keys "h"
+                        :headline   "interface hardware software"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ihs.org"
+                        :hook (lambda () (message "\"Interface hardware software\" selected.")))
+                        ("ING "  :keys "n"
+                        :headline   "Ingles"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ing.org"
+                        :hook (lambda () (message "\"ingles\" selected.")))
+                        ("Ste "  :keys "s"
+                        :headline   "Stellantis"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ste.org"
+                        :hook (lambda () (message "\"Stellantis\" selected.")))
+                        ))
+            ("Bookmarks" :keys "b"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/20220409134224-bookmarks.org"
+            :append t
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Appointments" :keys "p"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/appt.org"
+            :append t
+            ;:headline "Appointments"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Projects" :keys "P"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/proj.org"
+            :append t
+            ;:headline "Projects"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Later" :keys "l"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/later.org"
+            :append t
+            ;:headline "Later"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+            ("Event" :keys "e"
+            :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/evn.org"
+            :append t
+            ;:headline "Event"
+            :type entry
+            :template ("* %^{Description} %?"
+                        "%i"))
+        ))))
+#+end_src
+
+;; Function to calculate relative day to today
+** Roam
+#+begin_src elisp
+(setq org-roam-directory "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/")
+(setq org-roam-completion-everywhere t)
+;;BUG happens if uncommented (require 'org-roam-protocol)
+(setq org-roam-capture-ref-templates
+'(("i" "internet" plain #'org-roam-capture--get-point "%?"
+    :file-name "float/%<%Y%m%d%H%M>-${slug}"
+    :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_tags: bookmark"
+    :unnarrowed t)))
+
+(use-package! websocket
+   :after org-roam)
+(use-package! org-roam-ui
+:after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+:config
+(setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+end_src
+** Pomodoro
+#+begin_src elisp
+(setq org-pomodoro-length 25)
+(setq org-pomodoro-short-break-length 5)
+(setq org-pomodoro-long-break-length 25)
+(setq org-pomodoro-clock-break 60)
+(setq org-pomodoro-long-break-frequency 8)
+(setq org-pomodoro-keep-killed-pomodoro-time t) ;;planning -pomodoro
+#+end_src
+* EMAIL
+#+begin_src elisp
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
+
+(set-email-account! "enzogurgel15@gmail.com"
+  '((mu4e-sent-folder       . "/Personal/Sent Mail")
+    (mu4e-drafts-folder     . "/Personal/Drafts")
+    (mu4e-trash-folder      . "/Personal/Trash")
+    (mu4e-refile-folder     . "/Personal/All Mail")
+    (smtpmail-smtp-user     . "enzogurgel15@gmail.com")
+    (mu4e-compose-signature . "---\n---/n/-------"))
+  t)
+
+(set-email-account! "egb2@cin.ufpe.br"
+  '((mu4e-sent-folder       . "/CIn/Sent Mail")
+    (mu4e-drafts-folder     . "/CIn/Drafts")
+    (mu4e-trash-folder      . "/CIn/Trash")
+    (mu4e-refile-folder     . "/CIn/All Mail")
+    (smtpmail-smtp-user     . "egb2@cin.ufpe.br")
+    (mu4e-compose-signature . "---\n Tenha um ótimo dia--"))
+  t)
+
+(setq +mu4e-gmail-accounts '(("enzogurgel15@gmail.com" . "/enzogurgel15")
+                             ("egb2@cin.ufpe.br" . "/egb2")))
+
+(setq mu4e-context-policy 'ask-if-none
+      mu4e-compose-context-policy 'always-ask)
+
+(setq mu4e-index-cleanup nil
+      ;; because gmail uses labels as folders we can use lazy check since
+      ;; messages don't really "move"
+      mu4e-index-lazy-check t)
+#+end_src
+* PREFERENCES
+** Elfeed
+#+begin_src elisp
+(after! elfeed
+  (setq elfeed-search-filter "@1-day-ago"))
+#+end_src
+
+** Dired
+#+begin_src elisp
+(setq ranger-cleanup-on-disable t) ;; apps - dired
+
+(setq delete-by-moving-to-trash t) ;; emergency trash can
+
+(after! ranger (setq ranger-override-dired-mode t))
+
+(map! :map dired-mode-map
+      :n "-" 'dired-up-directory)
+#+end_src
+
+** Forge
+#+begin_src elisp
+(setq auth-sources '("~/.authinfo.gpg"))
+#+end_src
+
+** Telega
+#+begin_src elisp
+(setq telega-directory "~/.telega")
+#+end_src
+
+** Emms
+#+begin_src emacs-lisp
+(setq emms-player-list '(emms-player-mpd))
+(setq emms-player-mpd-server-name "localhost")
+(setq emms-player-mpd-server-port "6600")
+(setq emms-player-mpd-music-directory "~/Music")
+(setq emms-add-rirectory-tree "~/Music")
+#+end_src
+
+** Folds
+#+begin_src emacs-lisp
+(add-hook! '(sh-mode-hook conf-mode-hook python-mode-hook c-mode-hook typescript-mode-hook)
+    (vimish-fold-mode 1))
+#+end_src
+
+** Modus-theme
+#+begin_src emacs-lisp
+(setq   modus-themes-inhibit-reload nil
+        modus-themes-bold-constructs t
+        modus-themes-italic-constructs t
+        modus-themes-syntax '(alt-syntax)
+        modus-themes-mixed-fonts t
+        modus-themes-links '(neutral-underline faint background italic)
+        modus-themes-prompts '(intense))
+#+end_src
+** Emojis
+#+begin_src emacs-lisp
+(after! emojify
+  (setq emojify-display-style 'ascii))
+#+end_src
+** CalibreDB
+#+begin_src emacs-lisp
+(use-package calibredb
+  :defer t
+  :config
+  (setq calibredb-root-dir "~/Calibre")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
+(setq calibredb-virtual-library-alist '(("Angular" . "Angular")
+                                        ("Computer Vision" . "Computer\\ Graphics\\|Computer\\ Vision\\|Geometry")
+                                        ("Theory of computation" . "Mathematical\\ Logic\\|Logic\\|Proving\\|Computation\\|Computability\\|Automata\\|NP")
+                                        ("Learning the language of the gods" . "Lisp")
+                                        ("LaTeX books" . "LaTeX")))
+(map! (:map calibredb-search-mode-map
+      :n  "." #'calibredb-dispatch)) ;;TODO
+#+end_src
+

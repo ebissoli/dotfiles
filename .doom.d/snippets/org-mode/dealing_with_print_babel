@@ -1,0 +1,8 @@
+# key: out
+# name: dealing_with_print_babel
+# --
+def printTHIS():
+    if ${1:}:
+       return ${0:}
+    else:
+       return ${2:}

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: expression analysis
+# key: 3123123
+# --
+
+  | Syntax                    | Type-checking     | Evaluation        |
+  | ${1:expr}                 |                    |                    |
+  | keywords:-                |                   |                   |
+  | subexpressions:-          |                   |                   |
+  | operators: -              |                   |                   |

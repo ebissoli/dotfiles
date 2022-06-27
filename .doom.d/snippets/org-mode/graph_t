@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: graph_t
+# uuid: 2423
+# key: gt
+# condition: t
+# --
+
+#+begin_src gnuplot :file ${1:file}.tex :exports ${2:both}
+reset
+set samples 1000
+unset grid
+set border
+# Labels
+# set xlabel "${3:X}"
+# set ylabel "${4:Y}"
+# Dimensões
+set xrange [0:${5:100}]
+set yrange [0:${6:10}]
+set label '$Latex$' at ${7:x_cord},${8:y_cord}
+set xtics format "%"
+# Divisões de escala e desabilititand mirror para os tics
+set xtics nomirror
+set ytics nomirror
+# Função a ser plotada
+set dummy ${8:t}
+f(t) =  
+# Customization
+set linetype 1 lc rgb "#e63946" lw  pt 5
+# parametros do plot
+plot v(t) w l lt 1 t '$latex$'
+set terminal cairolatex pdf
+set termoption font "${9:Helvetica}"
+replot
+#+end_src

@@ -1,0 +1,4 @@
+# key: 831809128309180920
+# name: Pyhton-comprenhesions
+# --
+{${1:exp} for ${2:var} in ${3:collection} ${4:if}}

@@ -1,0 +1,6 @@
+# key: pymacs
+# name: python-session
+# --
+#+begin_src python :session ${1:emacs} :results pp
+    $0
+#+end_src

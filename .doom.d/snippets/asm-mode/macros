@@ -1,0 +1,8 @@
+# key: macros
+# name: macros
+# --
+%macro $1
+
+       $0
+
+%endmacro

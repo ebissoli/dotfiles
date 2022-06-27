@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: prepareData
+# key: prepareData
+# --
+
+
+    %macro define prepareData 0
+
+    mov cx, $0
+    mov di, $1
+    mov si, $2
+
+    %endmacro

@@ -1,0 +1,6 @@
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/ebissoli/ohmyzsh
+[submodule ".nerd-fonts"]
+	path = .nerd-fonts
+	url = https://github.com/ryanoasis/nerd-fonts

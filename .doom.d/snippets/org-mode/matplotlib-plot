@@ -1,0 +1,10 @@
+# key: plt
+# name: matplotlib-plot
+# --
+#+begin_src python :session plot :results file
+plt.figure()
+
+$1 ='./plots/$1.png'
+plt.savefig($1)
+$1
+#+end_src

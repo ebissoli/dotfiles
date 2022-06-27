@@ -1,0 +1,70 @@
+# -*- mode: snippet -*-
+# name:Analise de Circuito no regime permanente e transitorio
+# uuid:2015 
+# key: anal_rptran
+# condition: t
+# --
+
+** Circuito ${1:0}
+   #+name:FlagsDoMaxima3
+   #+header: :results silent
+   #+begin_src maxima
+ display_format_internal:false;
+ powerdisp:true;
+ pfeformat:true;
+ stardisp:true;
+ display2d:true;
+ simpsum:true;
+ globalsolve:true;
+ load("engineering-format")$
+ load("scifac")$
+ load("facexp")$
+ engineering_format_floats:true;
+ engineering_format_min:1;
+ engineering_format_max:100000000;
+ algebraic:true;
+ leftjust:false;
+ radexpand:true;
+ sumexpand:false;
+ numer:true;
+ fpprintprec:6;
+ logsimp:true;
+ %emode:true;
+ ratvars(s);    
+ #+end_src
+
+ #+name:circuito_simbolico$1
+#+begin_src maxima :results value verbatim :noweb yes
+            /*Calculo de ${2:param}*/
+<<FlagsDoMaxima3>>
+/* Calculo das condicoes iniciais*/
+
+/* Insercao da expressao simbolica*/
+
+print(gcfac(ratsimp($2)),"param");
+print(gcfac (ratsimp($2)),"componente impulsivo + (componente transitorio + RP)");
+/* /\* /\\* Os polos e zeros do circuito*\\/ *\/ */
+
+$2d:solve(denom($2[2]),s);/*colocar expansao completa !!! */
+print([multiplicities,gcfac(ratsimp($2d))],"Valor dos polos e lista com multiplicidades");
+p0:-rhs($2d[1]);
+/* Os termos da expansao de fracoes parciais*/
+
+K0:at(ratsimp($2[2]*(s + p0)^2),[s=p0]);
+print(ratsimp([K0]),"Valor de Ki");
+ #+end_src
+
+ #+name:circuito_numerico$1
+ #+begin_src maxima  :results value verbatim :noweb yes
+<<FlagsDoMaxima3>>
+/* Componentes */
+
+<<circuito_simbolico3>>
+
+K0_ang:carg(K0);
+print(ratsimp([K0_ang]),"Valor de arg de Ki");
+/* Calcular a transformada de Laplace inversa*/
+LinvK0:expand(trigexpand(cabs(K0)*t^0/0!*exp(-realpart(p0)*t)*float(cos(K0_ang+imagpart(p0)*t))))*u(t);
+/* /\* Printar resultado*\/ */
+print(ratsimp((LinvK0)),"Expressao dominio do tempo");
+ #+end_src

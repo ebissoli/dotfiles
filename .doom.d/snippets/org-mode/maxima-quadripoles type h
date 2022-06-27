@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: maxima-quadripoles type h
+# key: 839012893809
+# --
+
+;; Quadripolo tipo h
+#+begin_src maxima :noweb yes :results verbatim
+h11;
+h12;
+h21;
+h22;
+eq1:V1 = I1*h11 + V2*h12;
+eq2:I2 = I1*h21 + V2*h22;
+eqsolve:linsolve([eq1,eq2],[V1,I2]);
+#+end_src

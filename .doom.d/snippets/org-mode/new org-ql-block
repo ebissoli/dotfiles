@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: new org-ql-block
+# key: ql
+# --
+(org-ql-block '(${1:data})
+              ((org-ql-block-header "${2:header}")))

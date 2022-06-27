@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: list_comprehension
+# key: listComp
+# --
+[$0 for $1 in $2]

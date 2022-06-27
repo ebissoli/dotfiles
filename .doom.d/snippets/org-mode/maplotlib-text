@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: maplotlib-text
+# key: pltT
+# --
+plt.xlabel('$1')
+plt.ylabel('$2')
+plt.title('$3')
+ptl.legend(['$4'])

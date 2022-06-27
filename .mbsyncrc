@@ -1,0 +1,41 @@
+# personal connection
+IMAPStore gmail-remote
+Host imap.gmail.com
+SSLType IMAPS
+AuthMechs LOGIN
+User enzogurgel15@gmail.com
+PassCmd "pass email/enzogurgel15@gmail.com"
+
+MaildirStore gmail-local
+Path ~/.mail/Personal/
+Inbox ~/.mail/Personal/INBOX
+Subfolders Verbatim
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Create Both
+Expunge Both
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+SyncState *
+
+# CIN connection
+IMAPStore cin-remote
+Host imap.gmail.com
+SSLType IMAPS
+AuthMechs LOGIN
+User egb2@cin.ufpe.br
+PassCmd "pass email/egb2@cin.ufpe.br"
+
+MaildirStore cin-local
+Path ~/.mail/CIn/
+Inbox ~/.mail/CIn/INBOX
+Subfolders Verbatim
+
+Channel cin
+Master :cin-remote:
+Slave :cin-local:
+Create Both
+Expunge Both
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+SyncState *

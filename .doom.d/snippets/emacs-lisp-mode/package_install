@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: package_install
+# key: pkg!
+# --
+
+(package! ${1:pkg-name}
+  :recipe (:host github :repo ${2:""}))

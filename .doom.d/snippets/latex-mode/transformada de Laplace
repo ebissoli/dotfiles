@@ -1,0 +1,4 @@
+# key: 2348
+# name: transformada de Laplace
+# --
+\mathcal{L}\{${1:func}\}=${2:result}

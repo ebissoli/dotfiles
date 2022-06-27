@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: cleanReg
+# key: cleanReg
+# --
+
+
+    %macro define cleanReg 0
+
+    xor cx, cx
+    mov ax, cx
+    mov bx, ax
+
+    %endmacro

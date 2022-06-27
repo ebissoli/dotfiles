@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: java class description
+# key: 82903489032094
+# --
+
+public class ${1: class}
+{
+   public static void main(String[] args)
+   {
+
+   } 
+}

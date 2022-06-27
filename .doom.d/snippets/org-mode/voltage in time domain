@@ -1,0 +1,5 @@
+# key: vtd
+# name: voltage in time domain
+# condition: t
+# --
+v${1:0}:print(ratsimp(LinvK$1));

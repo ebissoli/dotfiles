@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: roam-new-link
+# key: nl
+# --
+[[roam:$0]]

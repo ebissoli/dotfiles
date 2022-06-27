@@ -1,0 +1,77 @@
+# -*- mode: snippet -*-
+# name: bodeplot
+# key: 84320
+# --
+
+#+name:BodePlot_${1:filtro}
+#+begin_src gnuplot :file $1.pdf :exports both
+# Basic Config
+reset
+set samples 10000
+set border
+set terminal pdfcairo pdf
+set termoption font "Helvetica"
+set grid
+# set the below to fix anoying issues with phase plot
+set angles degree
+
+# multiplot
+set multiplot layout 2,1 # margins 0.15,0.95,0.15,0.95 spacing 0.03,0.2
+set ytics 10 # the variation in the y axis, good value is between 10 and 30
+# Variable
+set xrange [10**(-${2:3})*(2*pi):10**($2)*(2*pi)] # need to convert Hz to rad/s by 2pi factor
+set logscale x # for both mag and phase
+set dummy w
+
+# function
+ j = {0, 1} # how gnuplot recognize complex numbers
+# insert the extra parameters HERE, g is depedent on circuit parameters, R L or C
+g = 1
+fc =
+km
+kf
+magH(w) =  
+pH(w) =
+wc =
+# A is the gain, with active filters, 1 for passive ones
+A = 1
+
+# aux fns
+set arrow 1 nohead
+set arrow 1 dashtype "-"
+set arrow 1 from wc, graph 0 to wc,A/sqrt(2) graph 0 nohead
+
+# Gain plot -------------------------
+
+# Config
+set ylabel "|H(jw)db|"
+set xtics nomirror
+set ytics nomirror
+set format x ""
+set title "Magnitude da função transferência de um filtro [preencha_isso]"
+# the rigth value is depedent on the choice of filter
+set xtics ("wc" wc, "Hz" 10**$2) 
+# use this to remove the plot indicator
+unset key
+# below you can define the x-axis without the wc
+# set mxtics -3, 1, 3 logscale
+# be warned that |H(jw)| requires a -
+plot -abs(magH(w)) w l
+# the below is only needed for the |H(jw)|
+unset arrow 1
+# set this because y-axis for |H| is Db and for phase is degrees 
+unset yrange
+unset xtics
+
+#Phase plot --------------------------
+
+# Config
+set ytics 15
+set ylabel "theta(H(jw))"
+set xlabel "Hz"
+set ytics format "%g"
+set title "Fase da função transferência de um filtro [preencha_isso]"
+set format x '%L'
+plot pH(w) w l
+unset multiplot
+#+end_src

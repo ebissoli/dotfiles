@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org-link
+# key: ol 
+# --
+[[${1:adress}][$0]]

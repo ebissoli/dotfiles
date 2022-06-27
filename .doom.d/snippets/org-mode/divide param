@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name:divide param 
+# uuid: 20123
+# key: dp
+# condition: t
+# --
+
+${2:param}_divide:divide(num($2),denom($2));
