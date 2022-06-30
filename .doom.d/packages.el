@@ -92,8 +92,8 @@
 
  ;; (package! evil-motion-trainer
  ;;   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
-;; (package! calibredb
-;;   :recipe (:host github :repo "chenyanming/calibredb.el"))
+(package! calibredb
+  :recipe (:host github :repo "chenyanming/calibredb.el"))
 ;; (package! org-xournalpp
 ;;   :recipe (:host gitlab
 ;;            :repo "vherrmann/org-xournalpp"
