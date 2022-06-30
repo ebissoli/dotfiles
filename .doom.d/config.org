@@ -65,38 +65,80 @@
         ("UNI" :keys "u"
         :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/"
         :prepend t
-            :template ("* %{todo-state} %?"
+            :template ( "* %{todo-state} %T %? %^G"
                         "%i %a")
-            :children (("INFOTEORICA"  :keys "i"
-                        :headline   "infoTeorica"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/info.org"
+            :children (
+                       ("GDI" :keys "g"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Gerenciamento de Dados e Info/gdi.org"
                         :todo-state "TODO"
-                        :hook (lambda () (message "\"InfoTeorica\" selected.")))
-                        ("GDI " :keys "g"
-                        :headline   "GDI"
+                        :hook (lambda () (message "\"GDI\" selected."))
+                        :children(
+                       ("GDI-Tasks"  :keys "t"
+                        :headline   "Gerenciamento de dados e informação Tarefas")
+                       ("GDI-Summary"  :keys "s"
+                        :headline   "Gerenciamento de dados e informação Summario")
+                       ("GDI-Resources"  :keys "r"
+                        :headline   "Gerenciamento de dados e informação Recursos")))
+                        ("IHS" :keys "i"
                         :todo-state "TODO"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/gdi.org"
-                        :hook (lambda () (message "\"GDI\" selected.")))
-                        ("MON "  :keys "m"
-                        :headline   "MonitoriaPLC"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Interface Hardware Software/ihs.org"
+                        :hook (lambda () (message "\"IHS\" selected."))
+                         :children(
+                        ("IHS-Tasks " :keys "t"
+                        :headline   "Interface hardware e software Tarefas")
+                        ("IHS-Summary " :keys "r"
+                        :headline   "Interface hardware e software Sumários")
+                        ("IHS-Resources " :keys "r"
+                        :headline   "Interface hardware e software Recursos")))
+                        ("PROG" :keys "p"
                         :todo-state "TODO"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/mon.org"
-                        :hook (lambda () (message "\"Monitoria PLC\" selected.")))
-                        ("IHS "  :keys "h"
-                        :headline   "interface hardware software"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Programação concorrente e distribúida/prog.org"
+                        :hook (lambda () (message "\"Programação Concorrente e distríbuida\" selected."))
+                         :children(
+                        ("PROG-Tasks "  :keys "t"
+                        :headline   "Programação concorrente e distríbuida Tarefas")
+                        ("PROG-Summary "  :keys "s"
+                        :headline   "Programação concorrente e distríbuida Sumários")
+                        ("PROG-Resources "  :keys "r"
+                        :headline   "Programação concorrente e distríbuida Tarefas")))
+                        ("SYSMODEL" :keys "s"
                         :todo-state "TODO"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ihs.org"
-                        :hook (lambda () (message "\"Interface hardware software\" selected.")))
-                        ("ING "  :keys "n"
-                        :headline   "Ingles"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Modelagem de Sistemas/modelagem.org"
+                        :hook (lambda () (message "\"Modelagem de sistemas\" selected."))
+                         :children(
+                        ("SYSMODEL-Tasks "  :keys "t"
+                        :headline   "Modelagem de sistemas Tarefas")
+                        ("SYSMODEL-Summary "  :keys "s"
+                        :headline   "Modelagem de sistemas Sumário")
+                        ("SYSMODEL-Resources "  :keys "r"
+                        :headline   "Modelagem de sistemas Resources")))
+                        ("SI" :keys "a"
                         :todo-state "TODO"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ing.org"
-                        :hook (lambda () (message "\"ingles\" selected.")))
-                        ("Ste "  :keys "s"
-                        :headline   "Stellantis"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Sistemas Inteligentes/si.org"
+                        :hook (lambda () (message "\"Sistemas inteligentes\" selected."))
+                        :children(
+                        ("SI-Tasks "  :keys "t"
+                        :headline   "Sistemas inteligentes Tarefas")
+                        ("SI-Summary "  :keys "s"
+                        :headline   "Sistemas inteligentes Sumários")
+                        ("SI-Resources "  :keys "r"
+                        :headline   "Sistemas inteligentes Tarefas")))
+                        ("MAT" :keys "m"
                         :todo-state "TODO"
-                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/06/ste.org"
-                        :hook (lambda () (message "\"Stellantis\" selected.")))
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/Otimizacao Matemática/otimizacao.org"
+                        :hook (lambda () (message "\"Otimizacao Matemática\" selected."))
+                        :children(
+                        ("MAT-Tasks "  :keys "t"
+                        :headline   "Otimização Tarefas")
+                        ("MAT-Summary "  :keys "s"
+                        :headline   "Otimização Sumários")
+                        ("MAT-Resources "  :keys "r"
+                        :headline   "Otimização Tarefas")))
+                        ("PLC "  :keys "m"
+                        :headline   "Monitoria de PLC Tarefas"
+                        :todo-state "TODO"
+                        :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/planning/2022/MonitoriaPLC/plc.org"
+                        :hook (lambda () (message "\"Monitoria de PLC\" selected.")))
                         ))
             ("Bookmarks" :keys "b"
             :file "~/Insync/enzogurgel15@gmail.com/GoogleDrive/org/20220409134224-bookmarks.org"
@@ -158,7 +200,7 @@
            (
             (org-ql-block '(and
                             (deadline :from "6" :to "7")
-                            (path "2022/")
+                            (olps "2022/")
                             )
                           ((org-ql-block-header "Deadline in 6-7 days")))
             (org-ql-block '(and
@@ -190,7 +232,7 @@
                           ((org-ql-block-header "Scheduled in 1-2 days")))
             (org-ql-block '(or (and
                                 (priority "A")
-                                (path "2022/"))
+                                (olps "2022/"))
                                (and (tags "RECUR")
                                     (not (ancestors (tags "RECUR")))
                                     ))
@@ -205,61 +247,61 @@
                             :order 1
                             :discard (:anything t))))))
             ))
-          ("U" "Uni stuff List"
-           (
-            (org-ql-block '(and
-                            (ancestors (h "INFOTEORICA"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "IT month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "GDI"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "GDI month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "IHS"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "IHS month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "MON"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "MON month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "ING"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "Ingles month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "STE"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "Stellantis month planning")))
-            ))
-          ("P" "Personal stuff List"
-           ((org-ql-block '(and
-                            (ancestors (h "Appointments"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "Appointments month planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Projects"))
-                            (not (todo "DONE"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/"))
-                          ((org-ql-block-header "Projects planning")))
-            (org-ql-block '(and
-                            (ancestors (h "Events"))
-                            (deadline :from "8" :to "120")
-                            (path "2022/")))))
-          ("L" "Later stuff List"
-           ((org-ql-block '(and
-                        (ancestors (h "Later"))
-                        (not (todo "DONE"))
-                        (path "2022/"))
-                        ((org-ql-block-header "Later List")))))
+          ;; ("U" "Uni stuff List"
+          ;;  (
+          ;;   (org-ql-block '(and
+          ;;                   ;; (ancestors (h "INFOTEORICA"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (olp "2022/Gerenciamento de Dados e Info/"))
+          ;;                 ((org-ql-block-header "GDI month planning")))
+          ;;   (org-ql-block '(and
+          ;;                   ;; (ancestors (h "GDI"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (olp "2022/Interface Hardware Software"))
+          ;;                 ((org-ql-block-header "IHS month planning")))
+          ;;   (org-ql-block '(and
+          ;;                   ;; (ancestors (h "IHS"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (olp "2022/Modelagem de Sistemas"))
+          ;;                 ((org-ql-block-header "SysModel month planning")))
+          ;;   (org-ql-block '(and
+          ;;                   ;; (ancestors (h "MON"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (olp "2022/Programação concorrente e distribúida"))
+          ;;                 ((org-ql-block-header "ProgCon month planning")))
+          ;;   (org-ql-block '(and
+          ;;                   ;; (ancestors (h "ING"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (olp "2022/Sistemas Inteligentes"))
+          ;;                 ((org-ql-block-header "SI month planning")))
+          ;;   ;; (org-ql-block '(and
+          ;;   ;;                 (ancestors (h "STE"))
+          ;;   ;;                 (deadline :from "8" :to "120")
+          ;;   ;;                 (path "2022/"))
+          ;;   ;;               ((org-ql-block-header "Stellantis month planning")))
+          ;;   ))
+          ;; ("P" "Personal stuff List"
+          ;;  ((org-ql-block '(and
+          ;;                   (ancestors (h "Appointments"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (path "2022/"))
+          ;;                 ((org-ql-block-header "Appointments month planning")))
+          ;;   (org-ql-block '(and
+          ;;                   (ancestors (h "Projects"))
+          ;;                   (not (todo "DONE"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (path "2022/"))
+          ;;                 ((org-ql-block-header "Projects planning")))
+          ;;   (org-ql-block '(and
+          ;;                   (ancestors (h "Events"))
+          ;;                   (deadline :from "8" :to "120")
+          ;;                   (path "2022/")))))
+          ;; ("L" "Later stuff List"
+          ;;  ((org-ql-block '(and
+          ;;               (ancestors (h "Later"))
+          ;;               (not (todo "DONE"))
+          ;;               (path "2022/"))
+          ;;               ((org-ql-block-header "Later List")))))
           )))
 #+end_src
 ** Roam
