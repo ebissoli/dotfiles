@@ -25,6 +25,7 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'modus-operandi)
 (display-time)
+(which-key-mode)
 #+end_src
 # ** Company
 # #+begin_src emacs-lisp
