@@ -951,7 +951,25 @@ _h_ decrease width    _l_ increase width
 (after! elfeed
   (setq elfeed-search-filter "@1-day-ago"))
 #+end_src
+** CalibreDB
+#+begin_src emacs-lisp
+(use-package calibredb
+  :defer t
+  :config
+  (setq calibredb-root-dir "~/Calibre")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
+(setq calibredb-virtual-library-alist '(("Angular" . "Angular")
+                                        ("Computer Vision" . "Computer\\ Graphics\\|Computer\\ Vision\\|Geometry")
+                                        ("Theory of computation" . "Mathematical\\ Logic\\|Logic\\|Proving\\|Computation\\|Computability\\|Automata\\|NP")
+                                        ("Learning the language of the gods" . "Lisp")
+                                        ("LaTeX books" . "LaTeX")
+                                        ("Modelagem e Sistemas" . "ModelagemDeSistemas")
+                                        ("Sistemas inteligentes" . "SISTEMAS_INTELIGENTES")
+                                        ("Programação concorrente e distríbuida" . "PROGDISTR")))
+(map! (:map calibredb-search-mode-map
+      :n  "." #'calibredb-dispatch)) ;;TODO
 
+#+end_src
 ** Dired
 #+begin_src elisp
 (setq ranger-cleanup-on-disable t) ;; apps - dired
